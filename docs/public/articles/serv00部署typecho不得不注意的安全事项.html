@@ -6,14 +6,21 @@
     <title>serv00部署typecho不得不注意的安全事项 | Aoeo's Blog - Always Overflowing Enthusiasm On</title>
     <meta name="description" content="A VitePress Site">
     <meta name="generator" content="VitePress v1.6.3">
-    <link rel="preload stylesheet" href="/assets/style.CgeTgHW_.css" as="style">
+    <link rel="preload stylesheet" href="/assets/style.DvJ_Pfyf.css" as="style">
     <link rel="preload stylesheet" href="/vp-icons.css" as="style">
     
-    <script type="module" src="/assets/app.Cf2rnKbf.js"></script>
+    <script type="module" src="/assets/app.XIWSeG-A.js"></script>
     <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
-    <link rel="modulepreload" href="/assets/chunks/theme.CuDAf1gG.js">
-    <link rel="modulepreload" href="/assets/chunks/framework.Ds6Eueu6.js">
-    <link rel="modulepreload" href="/assets/public_articles_serv00部署typecho不得不注意的安全事项.md.D9eJhsDw.lean.js">
+    <link rel="modulepreload" href="/assets/chunks/theme.C1zQiobQ.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.DQR1PrH6.js">
+    <link rel="modulepreload" href="/assets/public_articles_serv00部署typecho不得不注意的安全事项.md.Bo_LxNdp.lean.js">
+    <script type="text/javascript" innerHTML="
+        (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src=&quot;https://www.clarity.ms/tag/&quot;+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, &quot;clarity&quot;, &quot;script&quot;, &quot;rblqbc7v0t&quot;);
+        "></script>
     <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
     <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
   </head>
@@ -47,7 +54,7 @@
 <span class="line"><span>&lt;Files *&gt;</span></span>
 <span class="line"><span>Options -Indexes</span></span>
 <span class="line"><span>&lt;/Files&gt;</span></span></code></pre></div><p>即可缓解问题。</p><h4 id="测试配置是否有效-1" tabindex="-1">测试配置是否有效 <a class="header-anchor" href="#测试配置是否有效-1" aria-label="Permalink to &quot;测试配置是否有效&quot;">​</a></h4><p>在serv00的官方文档中，对于htacess文件是这么说的： &quot; The <em>.htaccess</em> file is supported on <em>PHP</em> type of website.&quot; 所以对于其他非PHP项目或二进制部署文件，我也不知道使用此方法是否管用。所以在配置后应当进行测试，看是否可以通过URL访问敏感文件，如果返回错误，则说明配置应该起作用了。</p><p>示例： 这是部署规则前： 输入域名/usr，会显示这样： <img src="/assets/%E7%B4%A2%E5%BC%95%E9%A1%B5%E9%9D%A2.DVQmZity.jpeg" alt="索引页面"></p><p>部署规则之后： <img src="/assets/403%E9%94%99%E8%AF%AF.Csj_EmxN.jpeg" alt="403"> 说明我们配置成功了。</p></div></div></main><footer class="VPDocFooter" data-v-c9831eab data-v-1ffbf2a7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-1ffbf2a7><span class="visually-hidden" id="doc-footer-aria-label" data-v-1ffbf2a7>Pager</span><div class="pager" data-v-1ffbf2a7><!----></div><div class="pager" data-v-1ffbf2a7><a class="VPLink link pager-link next" href="/markdown-examples.html" data-v-1ffbf2a7><!--[--><span class="desc" data-v-1ffbf2a7>Next page</span><span class="title" data-v-1ffbf2a7>Markdown Examples</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><footer class="VPFooter has-sidebar" data-v-c8ab7d5c data-v-9c10dca0><div class="container" data-v-9c10dca0><p class="message" data-v-9c10dca0>Powered by Vitepress,under the MIT license .</p><p class="copyright" data-v-9c10dca0>All articles are licensed under CC BY-NC 4.0</p></div></footer><!--[--><!--]--></div></div>
-    <script>window.__VP_HASH_MAP__=JSON.parse("{\"api-examples.md\":\"qHGrmtMy\",\"friends.md\":\"CfFmJxuG\",\"index.md\":\"DcUyz0t3\",\"markdown-examples.md\":\"B3_bzz1B\",\"my-articles.md\":\"BtcU__lG\",\"public_articles_serv00部署typecho不得不注意的安全事项.md\":\"D9eJhsDw\",\"关于.md\":\"DvS1dqDJ\",\"建站文档.md\":\"Cfv3S4ow\",\"网站导航.md\":\"CCgk65Hj\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"zh-CN\",\"dir\":\"ltr\",\"title\":\"Aoeo's Blog - Always Overflowing Enthusiasm On\",\"description\":\"A VitePress Site\",\"base\":\"/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"externalLinkIcon\":true,\"siteTitle\":\"Aoeo's Blog\",\"nav\":[{\"text\":\"Home\",\"link\":\"/\"},{\"text\":\"文档\",\"items\":[{\"text\":\"Markdown\",\"link\":\"markdown-examples\"},{\"text\":\"Vitepress API Examples\",\"link\":\"/api-examples\"}]},{\"text\":\"友链\",\"link\":\"/friends\"}],\"sidebar\":[{\"text\":\"Examples\",\"items\":[{\"text\":\"Markdown Examples\",\"link\":\"/markdown-examples\"},{\"text\":\"Runtime API Examples\",\"link\":\"/api-examples\"}]}],\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/vuejs/vitepress\"}],\"search\":{\"provider\":\"local\"},\"footer\":{\"message\":\"Powered by Vitepress,under the MIT license .\",\"copyright\":\"All articles are licensed under CC BY-NC 4.0\"}},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"api-examples.md\":\"BZYS3QNX\",\"documents_建站文档.md\":\"DJYEYvZQ\",\"friends.md\":\"CvTGTegj\",\"index.md\":\"DN1FMiwf\",\"markdown-examples.md\":\"DkX3BbAo\",\"my-articles.md\":\"D0h77WBM\",\"nav_help.md\":\"qRQNQjxI\",\"nav_index.md\":\"NiHZljxE\",\"public_articles_serv00部署typecho不得不注意的安全事项.md\":\"Bo_LxNdp\",\"关于.md\":\"YZt3dWcd\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"zh-CN\",\"dir\":\"ltr\",\"title\":\"Aoeo's Blog - Always Overflowing Enthusiasm On\",\"description\":\"A VitePress Site\",\"base\":\"/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{\"externalLinkIcon\":true,\"siteTitle\":\"Aoeo's Blog\",\"nav\":[{\"text\":\"Home\",\"link\":\"/\"},{\"text\":\"文档\",\"items\":[{\"text\":\"Markdown\",\"link\":\"markdown-examples\"},{\"text\":\"Vitepress API Examples\",\"link\":\"/api-examples\"}]},{\"text\":\"友链\",\"link\":\"/friends\"}],\"sidebar\":[{\"text\":\"Examples\",\"items\":[{\"text\":\"Markdown Examples\",\"link\":\"/markdown-examples\"},{\"text\":\"Runtime API Examples\",\"link\":\"/api-examples\"}]}],\"socialLinks\":[{\"icon\":\"github\",\"link\":\"https://github.com/vuejs/vitepress\"}],\"search\":{\"provider\":\"local\"},\"footer\":{\"message\":\"Powered by Vitepress,under the MIT license .\",\"copyright\":\"All articles are licensed under CC BY-NC 4.0\"}},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
     
   </body>
 </html>
