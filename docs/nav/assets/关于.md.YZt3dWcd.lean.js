@@ -1,1 +1,0 @@
-import{_ as e,c as r,o as t,ag as o}from"./chunks/framework.DQR1PrH6.js";const m=JSON.parse('{"title":"关于","description":"","frontmatter":{},"headers":[],"relativePath":"关于.md","filePath":"关于.md"}'),l={name:"关于.md"};function i(n,a,s,h,p,c){return t(),r("div",null,a[0]||(a[0]=[o("",15)]))}const _=e(l,[["render",i]]);export{m as __pageData,_ as default};
