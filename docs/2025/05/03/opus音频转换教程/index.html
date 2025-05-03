@@ -15,6 +15,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="Aoeo">
   <meta name="keywords" content="">
@@ -23,12 +25,12 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="opus音频的转换">
 <meta property="og:url" content="https://aoeo.eu.org/2025/05/03/opus%E9%9F%B3%E9%A2%91%E8%BD%AC%E6%8D%A2%E6%95%99%E7%A8%8B/">
-<meta property="og:site_name" content="Aoeo&#39;s Blog">
+<meta property="og:site_name" content="Aoeo&#39;s Blog - Always Overflowing Enthusiasm On">
 <meta property="og:description" content="opus音频的转换在一些环境中（如游戏解包中），我们将会遇到.opus、.ogg这样的奇奇怪怪的音频格式。这篇文章记录了如何将此类格式的文件转换为wav这样方便处理的音频格式。 背景介绍opus是一种音频编码格式，官网是https:&#x2F;&#x2F;www.opus-codec.org。它不能直接被市面上的播放器播放，也不能被处理。 几个名词解释opus：一种音频格式文件编解码器，也指这种音频格式。 opus-">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://aoeo.eu.org/imagine/Snipaste_2025-04-30_12-31-46.png">
 <meta property="article:published_time" content="2025-05-03T13:06:37.000Z">
-<meta property="article:modified_time" content="2025-05-03T13:09:34.536Z">
+<meta property="article:modified_time" content="2025-05-03T15:02:42.485Z">
 <meta property="article:author" content="Aoeo">
 <meta property="article:tag" content="问题">
 <meta name="twitter:card" content="summary_large_image">
@@ -36,7 +38,7 @@
   
   
   
-  <title>opus音频的转换 - Aoeo&#39;s Blog</title>
+  <title>opus音频的转换 - Aoeo&#39;s Blog - Always Overflowing Enthusiasm On</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -100,7 +102,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>Aoeo&#39;s Blog</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -169,6 +171,18 @@
               <a class="nav-link" href="/about/" target="_self">
                 <i class="iconfont icon-user-fill"></i>
                 <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
               </a>
             </li>
           
@@ -279,7 +293,7 @@
               <div class="markdown-body">
                 
                 <h2 id="opus音频的转换"><a href="#opus音频的转换" class="headerlink" title="opus音频的转换"></a>opus音频的转换</h2><p>在一些环境中（如游戏解包中），我们将会遇到.opus、.ogg这样的奇奇怪怪的音频格式。这篇文章记录了如何将此类格式的文件转换为wav这样方便处理的音频格式。</p>
-<h3 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h3><p>opus是一种音频编码格式，官网是<a target="_blank" rel="noopener" href="https://www.opus-codec.org.它不能直接被市面上的播放器播放,也不能被处理./">https://www.opus-codec.org。它不能直接被市面上的播放器播放，也不能被处理。</a></p>
+<h3 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h3><p>opus是一种音频编码格式，官网是<a target="_blank" rel="noopener" href="https://www.opus-codec.org/">https://www.opus-codec.org</a>。它不能直接被市面上的播放器播放，也不能被处理。</p>
 <h4 id="几个名词解释"><a href="#几个名词解释" class="headerlink" title="几个名词解释"></a>几个名词解释</h4><p>opus：一种音频格式文件编解码器，也指这种音频格式。</p>
 <p>opus-tools：为转换opus格式音频文件而开发的工具的统称，包含opusdec（opus 至 wav）、opusenc、opusinfo等工具。</p>
 <p>lbopus：是opus编解码器（opus标准）的源码实现（不包含可执行文件）</p>
@@ -476,7 +490,7 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+       <div><p><span>Powered by  <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a></span> and  <!--<i class="iconfont icon-love"></i>--> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </div> <div><span>Aoeo's blog</span></div> 
     </div>
   
   
