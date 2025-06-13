@@ -23,6 +23,7 @@ jobs:
       with:
         repository: sakuraflows/nim-basics-chs
         path: source
+        token: ${{ secrets.ACCESS_TOKEN1 }}
     
     - name: Copy files
       run: |
