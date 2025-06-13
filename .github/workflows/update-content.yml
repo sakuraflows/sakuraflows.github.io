@@ -1,0 +1,39 @@
+name: Sync Content from nim-basics-chs
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * *'  # 每天午夜运行一次
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout target repository
+      uses: actions/checkout@v4
+      with:
+        ref: main  # 或你的 GitHub Pages 分支名
+        path: target
+    
+    - name: Checkout source repository
+      uses: actions/checkout@v4
+      with:
+        repository: sakuraflows/nim-basics-chs
+        path: source
+    
+    - name: Copy files
+      run: |
+        mkdir -p target/docs
+        cp source/index.html target/docs/nim-basics-chs/
+                                                        #  cp source/github.css target/docs/nim-basics-chs/
+        
+    - name: Commit and push changes
+      run: |
+        cd target
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "chore: sync content from nim-basics-chs [skip ci]" || exit 0
+        git push origin main  # 或你的 GitHub Pages 分支名
