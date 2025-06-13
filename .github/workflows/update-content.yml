@@ -17,14 +17,14 @@ jobs:
         repository: sakuraflows/sakuraflows.github.io  # 明确指定目标仓库
         ref: main
         path: target
-        token: ${{ secrets.ACCESS_TOKEN1 }}
+        token: ${{ secrets.ACCESS_TOKEN2 }}
     
     - name: Checkout source repository
       uses: actions/checkout@v4
       with:
         repository: sakuraflows/nim-basics-chs
         path: source
-        token: ${{ secrets.ACCESS_TOKEN1 }}
+        token: ${{ secrets.ACCESS_TOKEN2 }}
     
     - name: Copy files
       run: |
