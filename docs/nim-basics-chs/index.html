@@ -43,13 +43,13 @@
 <li><a href="#_整数_integers">整数 Integers</a></li>
 <li><a href="#_浮点数_floats">浮点数 Floats</a>
 <ul class="sectlevel2">
-<li><a href="#_converting_floats_and_integers">Converting floats and integers</a></li>
+<li><a href="#_浮点数和整数的转换">浮点数和整数的转换</a></li>
 </ul>
 </li>
-<li><a href="#_characters">Characters</a></li>
-<li><a href="#_strings">Strings</a>
+<li><a href="#_字符_characters">字符 Characters</a></li>
+<li><a href="#_字符串_strings">字符串 Strings</a>
 <ul class="sectlevel2">
-<li><a href="#_special_characters">Special characters</a></li>
+<li><a href="#_特殊字符_special_characters">特殊字符 Special characters</a></li>
 <li><a href="#_string_concatenation">String concatenation</a></li>
 </ul>
 </li>
@@ -679,12 +679,12 @@ c / d = 3.0  <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Notice that in the addition and division examples, even though we get a number without a decimal part, the result is still of the floating type.</td>
+<td>请注意，在加法和除法的例子中，即使我们得到的数字没有小数部分，结果仍然是浮点类型。</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The precedence of mathematical operations is as one would expect: multiplication and division have higher priority than addition and subtraction.</p>
+<p>数学运算的优先级符合预期：乘法和除法的优先级高于加法和减法。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -699,9 +699,9 @@ c / d = 3.0  <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_converting_floats_and_integers">Converting floats and integers</h3>
+<h3 id="_浮点数和整数的转换">浮点数和整数的转换</h3>
 <div class="paragraph">
-<p>Mathematical operations between variables of different numerical types are not possible in Nim, and they will produce an error:</p>
+<p>在Nim中，不同数值类型的变量之间无法进行数学运算，否则会产生错误：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -713,8 +713,8 @@ c / d = 3.0  <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The values of variables need to be converted to the same type.
-Conversion is straight-forward: to convert to an integer, we use the <code>int</code> function, and to convert to a float the <code>float</code> function is used.</p>
+<p>变量的值需要转换为同一类型。
+转换过程很简单：要转换为整数，我们使用 <code>int</code> 函数；要转换为浮点数，则使用 <code>float</code> 函数。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -733,19 +733,19 @@ Conversion is straight-forward: to convert to an integer, we use the <code>int</
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Printing a <code>float</code> version of an integer <code>e</code>. (<code>e</code> remains of integer type)</td>
+<td>打印一个整数的 <code>float</code> 形式。（ <code>e</code> 仍为整数类型）</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Printing an <code>int</code> version of a float <code>f</code>.</td>
+<td>打印浮点数`f`的 <code>int</code> 形式。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Both operands are floats and can be added.</td>
+<td>两个操作数均为浮点数，可以进行加法运算。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Both operands are integers and can be added.</td>
+<td>两个操作数都是整数，可以相加。</td>
 </tr>
 </table>
 </div>
@@ -764,9 +764,8 @@ Conversion is straight-forward: to convert to an integer, we use the <code>int</
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-When using the <code>int</code> function to convert a float to an integer no rounding will be performed.
-The number simply drops any decimals.<br>
-To perform rounding we must call another function, but for that we must know a bit more about how to use Nim.
+使用 <code>int</code> 函数将浮点数转换为整数时不会执行四舍五入操作，数字会直接舍弃小数部分。<br>
+要进行四舍五入运算，我们必须调用另一个函数，但在此之前需要先了解一些关于如何使用 Nim 的基础知识。
 </td>
 </tr>
 </table>
@@ -775,15 +774,15 @@ To perform rounding we must call another function, but for that we must know a b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_characters">Characters</h2>
+<h2 id="_字符_characters">字符 Characters</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>char</code> type is used for representing a single <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> character.</p>
+<p><code>char</code> 类型用于表示单个 <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> 字符。</p>
 </div>
 <div class="paragraph">
-<p>Chars are written between two single ticks (<code>'</code>).
-Chars can be letters, symbols, or single digits.
-Multiple digits or multiple letters produce an error.</p>
+<p>字符写在两个单引号之间（ <code>'</code> ）。
+字符可以是字母、符号或单个数字。
+多个数字或多个字母会导致错误。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -798,14 +797,14 @@ Multiple digits or multiple letters produce an error.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_strings">Strings</h2>
+<h2 id="_字符串_strings">字符串 Strings</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Strings can be described as a series of characters.
-Their content is written between two double quotes (<code>"</code>).</p>
+<p>字符串可以被描述为一系列字符。
+其内容写在两个双引号之间（ <code>"</code> ）。</p>
 </div>
 <div class="paragraph">
-<p>We might think of strings as words, but they can contain more than one word, some symbols, or digits.</p>
+<p>我们可能认为字符串就是单词，但它们可以包含多个单词、一些符号(译者注：可以是utf-8字符)或数字。</p>
 </div>
 <div class="listingblock">
 <div class="title">strings.nim</div>
@@ -822,22 +821,22 @@ Their content is written between two double quotes (<code>"</code>).</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>An empty string.</td>
+<td>一个空字符串</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>This is not a number (int). It is inside double quotes, making it a string.</td>
+<td>这不是数字（整数）。它在双引号内，因此是一个字符串。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Even though this is only one character, it is not a char because it is enclosed inside of double quotes.</td>
+<td>尽管这只是一个字符，但它不是 char 类型，因为它被包含在双引号内。</td>
 </tr>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_special_characters">Special characters</h3>
+<h3 id="_特殊字符_special_characters">特殊字符 Special characters</h3>
 <div class="paragraph">
-<p>If we try to print the following string:</p>
+<p>如果我们尝试打印以下字符串：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -845,7 +844,7 @@ Their content is written between two double quotes (<code>"</code>).</p>
 </div>
 </div>
 <div class="paragraph">
-<p>the result might surprise us:</p>
+<p>结果可能会让我们感到惊讶：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -854,24 +853,24 @@ im	ips</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>This is because there are several characters which have a special meaning.
-They are used by prepending the escape character <code>\</code> to them.</p>
+<p>这是因为有几个字符具有特殊含义。
+它们通过在字符前添加转义字符 <code>\</code> 来使用。</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>\n</code> is a newline character</p>
+<p><code>\n</code> 是换行符</p>
 </li>
 <li>
-<p><code>\t</code> is a tab character</p>
+<p><code>\t</code> 是一个制表符</p>
 </li>
 <li>
-<p><code>\\</code> is a backslash (since one <code>\</code> is used as the escape character)</p>
+<p><code>\\</code> 是一个反斜杠（因为一个 <code>\</code> 被用作转义字符）</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>If we wanted to print the above example as it was written, we have two possibilities:</p>
+<p>如果我们想按照原样打印上面的示例，那么有两种可能选择：</p>
 </div>
 <div class="ulist">
 <ul>
