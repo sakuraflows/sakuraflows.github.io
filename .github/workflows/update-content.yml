@@ -14,7 +14,8 @@ jobs:
     - name: Checkout target repository
       uses: actions/checkout@v4
       with:
-        ref: main  # 或你的 GitHub Pages 分支名
+        repository: sakuraflows/sakuraflows.github.io  # 明确指定目标仓库
+        ref: main
         path: target
         token: ${{ secrets.ACCESS_TOKEN1 }}
     
@@ -29,7 +30,7 @@ jobs:
       run: |
         mkdir -p target/docs
         cp source/index.html target/docs/nim-basics-chs/
-                                                        #  cp source/github.css target/docs/nim-basics-chs/
+        # cp source/github.css target/docs/nim-basics-chs/
         
     - name: Commit and push changes
       run: |
@@ -38,4 +39,4 @@ jobs:
         git config --local user.name "GitHub Action"
         git add .
         git commit -m "chore: sync content from nim-basics-chs [skip ci]" || exit 0
-        git push origin main  # 或你的 GitHub Pages 分支名
+        git push origin main
