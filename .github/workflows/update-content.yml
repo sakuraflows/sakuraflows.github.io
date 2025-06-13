@@ -16,6 +16,7 @@ jobs:
       with:
         ref: main  # 或你的 GitHub Pages 分支名
         path: target
+        token: ${{ secrets.ACCESS_TOKEN1 }}
     
     - name: Checkout source repository
       uses: actions/checkout@v4
