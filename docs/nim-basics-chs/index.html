@@ -82,16 +82,16 @@
 <li><a href="#_练习_2">练习</a></li>
 </ul>
 </li>
-<li><a href="#_containers">Containers</a>
+<li><a href="#_容器_containers">容器 Containers</a>
 <ul class="sectlevel1">
-<li><a href="#_arrays">Arrays</a></li>
-<li><a href="#_sequences">Sequences</a></li>
-<li><a href="#_indexing_and_slicing">Indexing and slicing</a></li>
+<li><a href="#_数组_arrays">数组 Arrays</a></li>
+<li><a href="#_序列_sequences">序列 Sequences</a></li>
+<li><a href="#_索引_indexing_与_切片_slicing">索引 Indexing 与 切片 slicing</a></li>
 <li><a href="#_tuples">Tuples</a></li>
 <li><a href="#_exercises">Exercises</a></li>
 </ul>
 </li>
-<li><a href="#_procedures">Procedures</a>
+<li><a href="#_过程_procedures">过程 Procedures</a>
 <ul class="sectlevel1">
 <li><a href="#_declaring_a_procedure">Declaring a procedure</a></li>
 <li><a href="#_calling_the_procedures">Calling the procedures</a></li>
@@ -1813,16 +1813,14 @@ With the <code>break</code> statement, when <code>i</code> becomes 3, we immedia
 </div>
 </div>
 </div>
-<h1 id="_containers" class="sect0">Containers</h1>
+<h1 id="_容器_containers" class="sect0">容器 Containers</h1>
 <div class="openblock partintro">
 <div class="content">
 <div class="paragraph">
-<p>Containers are data types which contain a collection of items and allow us to access those elements.
-Typically a container is also iterable, meaning that we can use them the same way we used strings in the <a href="#_循环_loops">循环 Loops</a>.</p>
+<p>容器是一种数据类型，它包含一组元素并允许我们访问这些元素。通常容器也是可迭代的，这意味着我们可以像在<a href="#_循环_loops">循环 Loops</a>中使用字符串那样使用它们。</p>
 </div>
 <div class="paragraph">
-<p>For example, a grocery list is a container of items we want to buy, and a list of primes is a container of numbers.
-Written in pseudocode:</p>
+<p>例如，购物清单是我们想购买的物品的容器，而质数列表则是数字的容器。用伪代码表示：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1833,20 +1831,16 @@ Written in pseudocode:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_arrays">Arrays</h2>
+<h2 id="_数组_arrays">数组 Arrays</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>An array is the simplest container type.
-Arrays are homogeneous, i.e. all elements in an array must have the same type.
-Arrays are also of a constant size, meaning that the amount of elements (or rather: the amount of <em>possible</em> elements), must be known at compile-time.
-This means that we call arrays a "homogeneous container of a constant length".</p>
+<p>数组是最简单的容器类型。数组是同质的，即数组中的所有元素必须具有相同的类型。数组的大小也是固定的，意味着元素的数量（或者更准确地说：可能的元素数量）必须在编译时已知。这意味着我们称数组为“固定长度的同质容器”。</p>
 </div>
 <div class="paragraph">
-<p>The array type is declared using <code>array[&lt;length&gt;, &lt;type&gt;]</code>, where <code>length</code> is the total capacity of the array (number of elements it can fit), and <code>type</code> is a type of all its elements.
-The declaration can be omitted if both length and type can be inferred from the passed elements.</p>
+<p>数组类型使用 <code>array[&lt;length&gt;, &lt;type&gt;]</code> 声明，其中 <code>length</code> 是数组的总容量（可容纳的元素数量）， <code>type</code> 是其所有元素的类型。如果长度和类型可以从传递的元素中推断出来，则可以省略声明。</p>
 </div>
 <div class="paragraph">
-<p>The elements of an array are enclosed inside of square brackets.</p>
+<p>数组的元素被包含在方括号内。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1861,20 +1855,20 @@ The declaration can be omitted if both length and type can be inferred from the 
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>If we provide the values, the length and type of array <code>b</code> are known at compile time. Although correct, there is no need to specifically declare it like array <code>a</code>.</td>
+<td>如果我们提供了值，数组 <code>b</code> 的长度和类型在编译时就是已知的。虽然正确，但无需像数组 <code>a</code> 那样特别声明。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Neither the length nor the type of the elements can be inferred from this kind of declaration&#8201;&#8212;&#8201;this produces an error.</td>
+<td>这种声明方式既无法推断元素的长度，也无法推断其类型——这会导致错误。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The correct way to declare an empty array (which will be filled later) is to give its length and type, without providing the values of its elements&#8201;&#8212;&#8201;array <code>d</code> can contain seven strings.</td>
+<td>正确声明空数组（稍后将填充）的方法是给出其长度和类型，而不提供元素值——数组 <code>d</code> 可以包含七个字符串。</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Since the length of an array has to be known at compile-time, this will not work:</p>
+<p>由于数组的长度必须在编译时已知，因此以下代码将无法工作：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1889,21 +1883,20 @@ The declaration can be omitted if both length and type can be inferred from the 
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>This produces an error because <code>n</code> is declared using <code>let</code>&#8201;&#8212;&#8201;its value is not known at compile time. We can only use values declared with <code>const</code> as a <code>length</code> parameter for an array initialization.</td>
+<td>这会产生错误，因为 <code>n</code> 是用 <code>let</code> 声明的——它的值在编译时是未知的。我们只能使用用 <code>const</code> 声明的值作为数组初始化的 <code>length</code> 参数。</td>
 </tr>
 </table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_sequences">Sequences</h2>
+<h2 id="_序列_sequences">序列 Sequences</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Sequences are containers similar to arrays, but their length doesn&#8217;t have to be known at compile time, and it can change during runtime: we declare only the type of the contained elements with <code>seq[&lt;type&gt;]</code>.
-Sequences are also homogeneous, i.e. every element in a sequence has to be the same type.</p>
+<p>序列（Sequences）是一种类似于数组的容器，但其长度无需在编译时已知，且可在运行时动态变化：我们仅需通过 <code>seq[&lt;type&gt;]</code> 声明所包含元素的类型。序列也是同质的（homogeneous），即序列中的每个元素必须具有相同的类型。</p>
 </div>
 <div class="paragraph">
-<p>The elements of a sequence are enclosed between <code>@[</code> and <code>]</code>.</p>
+<p>序列的元素被包含在 <code>@[</code> 和 <code>]</code> 之间。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1916,16 +1909,16 @@ Sequences are also homogeneous, i.e. every element in a sequence has to be the s
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The type of an empty sequence must be declared.</td>
+<td>空序列的类型必须被声明。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The type of a non-empty sequence can be inferred. In this case, it is a sequence containing strings.</td>
+<td>非空序列的类型可以被推断出来。在这个例子中，它是一个包含字符串的序列。</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Another way to initialize an empty sequence is to call the <code>newSeq</code> procedure. We&#8217;ll look more at procedure calls in the <a href="#_procedures">next chapter</a> but for now just know that this is also a possibility:</p>
+<p>另一种初始化空序列的方法是调用 <code>newSeq</code> 过程。我们将在<a href="#_过程_procedures">下一章节</a>更详细地介绍过程调用，但现在只需知道这也是一种可行方式：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1937,14 +1930,13 @@ Sequences are also homogeneous, i.e. every element in a sequence has to be the s
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Providing the type parameter inside of square brackets allows the procedure to know that it shall return a sequence of a certain type.<br>
-A frequent error is omission of the final <code>()</code>, which must be included.</td>
+<td>在方括号内提供类型参数可以让过程知道它应该返回某种特定类型的序列。<br>
+一个常见的错误是遗漏了在末尾的 <code>()</code> ，这是必需的。</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>We can add new elements to a sequence with the <code>add</code> function, similar to how we did with strings.
-For this to work the sequence must be mutable (defined with <code>var</code>), and the element we&#8217;re adding must be of the same type as the elements in the sequence.</p>
+<p>我们可以使用 <code>add</code> 函数向序列中添加新元素，这与处理字符串的方式类似。为此，序列必须是可变的（用 <code>var</code> 定义），并且我们添加的元素必须与序列中的元素类型相同。</p>
 </div>
 <div class="listingblock">
 <div class="title">seq.nim</div>
@@ -1964,11 +1956,11 @@ For this to work the sequence must be mutable (defined with <code>var</code>), a
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Adding a new element of the same type (char).</td>
+<td>添加一个相同类型（char）的新元素。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Adding another sequence containing the same type.</td>
+<td>添加另一个包含相同类型的序列。</td>
 </tr>
 </table>
 </div>
@@ -1979,7 +1971,7 @@ For this to work the sequence must be mutable (defined with <code>var</code>), a
 </div>
 </div>
 <div class="paragraph">
-<p>Trying to pass different types to the existing sequences will produce an error:</p>
+<p>尝试将不同类型传递给现有序列会产生错误：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1993,16 +1985,16 @@ For this to work the sequence must be mutable (defined with <code>var</code>), a
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Trying to add a <code>float</code> to a sequence of <code>int</code>.</td>
+<td>尝试将 <code>float</code> 添加到 <code>int</code> 的序列中。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Trying to add a sequence of <code>int</code> to a sequence of <code>char</code>.</td>
+<td>尝试将序列 <code>int</code> 添加到序列 <code>char</code> 中</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Since sequences can vary in length we need a way to get their length, for this we can use the <code>len</code> function.</p>
+<p>由于序列长度可变，我们需要一种获取其长度的方法，为此可以使用 <code>len</code> 函数。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2022,21 +2014,20 @@ For this to work the sequence must be mutable (defined with <code>var</code>), a
 </div>
 </div>
 <div class="sect1">
-<h2 id="_indexing_and_slicing">Indexing and slicing</h2>
+<h2 id="_索引_indexing_与_切片_slicing">索引 Indexing 与 切片 slicing</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Indexing allows us to get a specific element from a container by its index.
-Think of the index as a position inside of the container.</p>
+<p>索引允许我们通过下标从容器中获取特定元素。
+可以将索引视为容器内部的位置标识。</p>
 </div>
 <div class="paragraph">
-<p>Nim, like many other programming languages, has zero-based indexing, meaning that the first element in a container has the index zero, the second element has the index one, etc.</p>
+<p>Nim与许多编程语言一样采用零基索引，即容器中第一个元素的索引为零，第二个元素的索引为一，以此类推。</p>
 </div>
 <div class="paragraph">
-<p>If we want to index "from the back", it is done by using the <code>^</code> prefix.
-The last element (first from the back) has index <code>^1</code>.</p>
+<p>若要从后向前索引，需使用 <code>^</code> 前缀。最后一个元素（即倒数第一个）的索引是 <code>^1</code> 。</p>
 </div>
 <div class="paragraph">
-<p>The syntax for indexing is <code>&lt;container&gt;[&lt;index&gt;]</code>.</p>
+<p>索引的语法是 <code>&lt;container&gt;[&lt;index&gt;]</code> 。</p>
 </div>
 <div class="listingblock">
 <div class="title">indexing.nim</div>
@@ -2051,11 +2042,11 @@ The last element (first from the back) has index <code>^1</code>.</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Zero-based indexing: the element at index 1 is <code>b</code>.</td>
+<td>零基索引：索引 <code>1</code> 对应的元素是 <code>b</code> 。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Getting the last element.</td>
+<td>获取最后一个元素。</td>
 </tr>
 </table>
 </div>
@@ -2069,8 +2060,7 @@ e</code></pre>
 <p>&#160;</p>
 </div>
 <div class="paragraph">
-<p>Slicing allows us to get a series of elements with one call.
-It uses the same syntax as ranges (introduced in the <a href="#_for循环for_loop">for循环(For loop)</a>).</p>
+<p>切片操作允许我们通过一次调用获取一系列元素。它使用的语法与范围（在 <a href="#_for循环for_loop">for循环(For loop)</a> 中介绍过）相同。</p>
 </div>
 <div class="paragraph">
 <p>If we use <code>start .. stop</code> syntax, both ends are included in the slice.
@@ -2263,7 +2253,7 @@ This can be used for accessing the elements of the tuple, instead of indexing.</
 </div>
 </div>
 </div>
-<h1 id="_procedures" class="sect0">Procedures</h1>
+<h1 id="_过程_procedures" class="sect0">过程 Procedures</h1>
 <div class="openblock partintro">
 <div class="content">
 <div class="paragraph">
