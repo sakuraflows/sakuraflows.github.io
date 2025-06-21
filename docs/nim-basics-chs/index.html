@@ -97,28 +97,28 @@
 <ul class="sectlevel1">
 <li><a href="#_声明过程_declaring_a_procedure">声明过程 Declaring a procedure</a></li>
 <li><a href="#_调用程序_calling_the_procedures">调用程序 Calling the procedures</a></li>
-<li><a href="#_result_variable">Result variable</a></li>
-<li><a href="#_forward_declaration">Forward declaration</a></li>
-<li><a href="#_exercises">Exercises</a></li>
+<li><a href="#_结果变量_result_variable">结果变量 Result variable</a></li>
+<li><a href="#_前置声明_forward_declaration">前置声明 Forward declaration</a></li>
+<li><a href="#_练习_4">练习</a></li>
 </ul>
 </li>
-<li><a href="#_modules">Modules</a>
+<li><a href="#_模块_modules">模块 Modules</a>
 <ul class="sectlevel1">
-<li><a href="#_importing_a_module">Importing a module</a></li>
-<li><a href="#_creating_our_own">Creating our own</a></li>
+<li><a href="#_导入模块">导入模块</a></li>
+<li><a href="#_创建我们自己的">创建我们自己的</a></li>
 </ul>
 </li>
-<li><a href="#_interacting_with_user_input">Interacting with user input</a>
+<li><a href="#_与用户输入交互">与用户输入交互</a>
 <ul class="sectlevel1">
-<li><a href="#_reading_from_a_file">Reading from a file</a></li>
-<li><a href="#_reading_user_input">Reading user input</a></li>
-<li><a href="#_dealing_with_numbers">Dealing with numbers</a></li>
-<li><a href="#_exercises_2">Exercises</a></li>
+<li><a href="#_从文件读取">从文件读取</a></li>
+<li><a href="#_读取用户输入">读取用户输入</a></li>
+<li><a href="#_处理数字">处理数字</a></li>
+<li><a href="#_练习_5">练习</a></li>
 </ul>
 </li>
-<li><a href="#_conclusion">Conclusion</a>
+<li><a href="#_结语">结语</a>
 <ul class="sectlevel1">
-<li><a href="#_next_steps">Next steps</a></li>
+<li><a href="#_下一步">下一步</a></li>
 </ul>
 </li>
 </ul>
@@ -2213,7 +2213,7 @@ Tom and Barry</code></pre>
 </div>
 </li>
 <li>
-<p>重新实现考拉兹猜想（<a href="#_exercises_2">Collatz conjecture exercise</a>）练习，但这次不打印每个步骤，而是将其添加到序列中。</p>
+<p>重新实现考拉兹猜想（<a href="#_练习_2">Collatz conjecture exercise</a>）练习，但这次不打印每个步骤，而是将其添加到序列中。</p>
 <div class="ulist">
 <ul>
 <li>
@@ -2466,7 +2466,7 @@ Tom and Barry</code></pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The result from the function <code>findMax</code> is here named <code>c</code>, and is called with the results of our first two calls (<code>findMax(987, 321)</code>).</td>
+<td>函数 <code>findMax</code> 的结果在此处命名为 <code>c</code> ，并使用前两次调用( <code>findMax(987, 321)</code> )的结果进行调用。</td>
 </tr>
 </table>
 </div>
@@ -2481,10 +2481,10 @@ Tom and Barry</code></pre>
 <p>&#160;</p>
 </div>
 <div class="paragraph">
-<p>Nim, unlike many other languages, also supports <a href="https://en.wikipedia.org/wiki/Uniform_Function_Call_Syntax">Uniform Function Call Syntax</a>, which allows many different ways of calling procedures.</p>
+<p>与其他许多语言不同，Nim 还支持统一函数调用( <a href="https://en.wikipedia.org/wiki/Uniform_Function_Call_Syntax">Uniform Function Call Syntax</a> )语法，这允许以多种不同方式调用过程。</p>
 </div>
 <div class="paragraph">
-<p>This one is a call where the first argument is written before the function name, and the rest of the parameters are stated in parentheses:</p>
+<p>这是一种调用方式，其中第一个参数写在函数名之前，其余参数则在括号内声明：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2492,8 +2492,7 @@ Tom and Barry</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We have used this syntax when we were adding elements to an existing sequence (<code>&lt;seq&gt;.add(&lt;element&gt;)</code>), as this makes it more readable and expresses our intent more clearly than writing <code>add(&lt;seq&gt;, &lt;element&gt;)</code>.
-We can also omit the parentheses around the arguments:</p>
+<p>我们在向现有序列添加元素时使用了这种语法（ <code>&lt;seq&gt;.add(&lt;element&gt;)</code> ），因为它比书写 <code>add(&lt;seq&gt;, &lt;element&gt;)</code> 更具可读性且能更清晰地表达意图。参数周围的括号也可以省略：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2501,8 +2500,7 @@ We can also omit the parentheses around the arguments:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>We&#8217;ve seen this style being used when we call the <code>echo</code> procedure, and when calling the <code>len</code> procedure without any arguments.
-These two can also be combined like this, but this syntax however is not seen very often:</p>
+<p>我们在调用 <code>echo</code> 过程时，以及无参数调用 <code>len</code> 过程时，已经见过这种风格的用法。这两种情况也可以像这样组合使用，不过这种语法并不常见：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2513,7 +2511,7 @@ These two can also be combined like this, but this syntax however is not seen ve
 <p>&#160;</p>
 </div>
 <div class="paragraph">
-<p>The uniform call syntax allows for more readable chaining of multiple procedures:</p>
+<p>统一调用语法使得多个过程的链式调用更具可读性：</p>
 </div>
 <div class="listingblock">
 <div class="title">ufcs.nim</div>
@@ -2541,15 +2539,15 @@ These two can also be combined like this, but this syntax however is not seen ve
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>If multiple parameters are of the same type, we can declare their type in this compact way.</td>
+<td>若多个参数属于同一类型，我们可以采用这种简洁的方式进行类型声明。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>First we add <code>a</code> and <code>b</code>, then the result of that operation (2 + 3 = 5) is passed as the first parameter to the <code>multi</code> procedure, where it is multiplied by <code>c</code> (5 * 4 = 20).</td>
+<td>首先将 <code>a</code> 与 <code>b</code> 相加，然后将运算结果（2 + 3 = 5）作为第一个参数传递给 <code>multi</code> 过程，在该过程中与 <code>c</code> 相乘（5 * 4 = 20）。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>First we multiply <code>c</code> and <code>b</code>, then the result of that operation (4 * 3 = 12) is passed as the first parameter to the <code>plus</code> procedure, where it is added with <code>a</code> (12 + 2 = 14).</td>
+<td>首先将 <code>c</code> 与 <code>b</code> 相乘，然后将运算结果（4*3=12）作为第一个参数传递给 <code>plus</code> 过程，在该过程中与 <code>a</code> 相加（12+2=14）。</td>
 </tr>
 </table>
 </div>
@@ -2564,11 +2562,10 @@ true
 </div>
 </div>
 <div class="sect1">
-<h2 id="_result_variable">Result variable</h2>
+<h2 id="_结果变量_result_variable">结果变量 Result variable</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In Nim, every procedure that returns a value has an implicitly declared and initialized (with a default value) <code>result</code> variable.
-The procedure will return the value of this <code>result</code> variable when it reaches the end of its indented block, even with no <code>return</code> statement.</p>
+<p>在Nim语言中，每个返回值的过程都会隐式声明并初始化（使用默认值）一个 <code>result</code> 变量。当过程执行到其缩进代码块末尾时，即使没有 <code>return</code> 语句，也会返回这个 <code>result</code> 变量的值。</p>
 </div>
 <div class="listingblock">
 <div class="title">result.nim</div>
@@ -2587,11 +2584,11 @@ The procedure will return the value of this <code>result</code> variable when it
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The return type is <code>int</code>. The <code>result</code> variable is initialized with the default value for <code>int</code>: <code>0</code>.</td>
+<td>返回类型是 <code>int</code> 。 <code>result</code> 变量会被初始化为 <code>int</code> 的默认值： <code>0</code> 。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>When the end of the procedure is reached, the value of <code>result</code> is returned.</td>
+<td>当过程执行结束时，将返回 <code>result</code> 的值。</td>
 </tr>
 </table>
 </div>
@@ -2601,8 +2598,7 @@ The procedure will return the value of this <code>result</code> variable when it
 </div>
 </div>
 <div class="paragraph">
-<p>Note that this procedure is here to demonstrate the <code>result</code> variable, and it is not 100% correct:
-if you would pass a sequence containing only negative numbers, this procedure would return <code>0</code> (which is <em>not</em> contained in the sequence).</p>
+<p>请注意，此处展示的过程是为了演示 <code>result</code> 变量，它并非完全正确：如果传入一个仅包含负数的序列，该过程将返回 <code>0</code> （而该值并不存在于序列中）。</p>
 </div>
 <div class="paragraph">
 <p>&#160;</p>
@@ -2614,8 +2610,8 @@ if you would pass a sequence containing only negative numbers, this procedure wo
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Beware!
-In older Nim versions (before Nim 0.19.0), the default value of strings and sequences was <a href="https://en.wikipedia.org/wiki/Null_pointer"><code>nil</code></a>, and when we would use them as returning types, the <code>result</code> variable would need to be initialized as an empty string (<code>""</code>) or as an empty sequence (<code>@[]</code>).
+注意！
+在旧版 Nim（0.19.0 之前）中，字符串和序列的默认值为 <a href="https://en.wikipedia.org/wiki/Null_pointer"><code>nil</code></a>，当我们将它们用作返回类型时， <code>result</code> 变量需要初始化为空字符串（ <code>""</code> ）或空序列（ <code>@[]</code> ）。
 </td>
 </tr>
 </table>
@@ -2638,21 +2634,21 @@ In older Nim versions (before Nim 0.19.0), the default value of strings and sequ
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>In Nim version 0.19.0 and newer, this line is not needed&#8201;&#8212;&#8201;sequences are automatically initialized as empty sequences.<br>
-In older Nim versions, sequences must be initialized, and without this line the compiler would throw an error. (Notice that <code>var</code> must <em>not</em> be used, as <code>result</code> is already implicitly declared.)</td>
+<td>在Nim-0.19.0及更新版本中，无需这行代码 —— 序列会自动初始化为空序列。<br>
+在旧版Nim中，序列必须手动初始化，缺少这行代码会导致编译器报错。（注意不应使用 <code>var</code> ，因为 <code>result</code> 已被隐式声明。）</td>
 </tr>
 </table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="output">@[1, 43, 57]</code></pre>
+<pre class="rouge highlight"><code data-lang="nim"><span class="o">@[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">57</span><span class="o">]</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>&#160;</p>
 </div>
 <div class="paragraph">
-<p>Inside of a procedure we can also call other procedures.</p>
+<p>在过程内部我们也可以调用其他过程。</p>
 </div>
 <div class="listingblock">
 <div class="title">filterOdds.nim</div>
@@ -2681,15 +2677,15 @@ In older Nim versions, sequences must be initialized, and without this line the 
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Once again, this line is not needed in the newer versions of Nim.</td>
+<td>新版本的 Nim 中不再需要这行代码。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Calling the previously declared procedure. Its return type is <code>bool</code> and can be used in the if-statement.</td>
+<td>调用先前声明的过程。其返回类型为 <code>bool</code> ，可在 <code>if</code> 语句中使用。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The third way of calling a procedure, as we saw above.</td>
+<td>第三种调用过程的方式，如上文所示。</td>
 </tr>
 </table>
 </div>
@@ -2703,11 +2699,11 @@ In older Nim versions, sequences must be initialized, and without this line the 
 </div>
 </div>
 <div class="sect1">
-<h2 id="_forward_declaration">Forward declaration</h2>
+<h2 id="_前置声明_forward_declaration">前置声明 Forward declaration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As mentioned in the very beginning of this section we can declare a procedure without a code block.
-The reason for this is that we have to declare procedures before we can call them, doing this will not work:</p>
+<p>正如本节开头所述，我们可以声明不带代码块的过程。
+原因在于必须先声明过程才能调用它们，以下做法是无效的：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2721,16 +2717,16 @@ The reason for this is that we have to declare procedures before we can call the
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>This will throw an error as <code>plus</code> isn&#8217;t defined yet.</td>
+<td>这会抛出错误，因为 <code>plus</code> 尚未定义。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Here we define <code>plus</code>, but since it&#8217;s after we use it Nim doesn&#8217;t know about it yet.</td>
+<td>这里我们定义了 <code>plus</code> ，但由于它出现在使用之后，Nim此时还不知道它的存在。</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The way to get around this is what&#8217;s called a forward declaration:</p>
+<p>解决这个问题的方法称为前置声明：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2746,36 +2742,36 @@ The reason for this is that we have to declare procedures before we can call the
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Here we tell Nim that it should consider the <code>plus</code> procedure to exist with this definition.</td>
+<td>这里我们告诉Nim它应该认为 <code>plus</code> 过程是以这个定义存在的。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Now we are free to use it in our code, this will work.</td>
+<td>现在我们可以在代码中自由使用它，这将正常工作。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>This is were <code>plus</code> is actually implemented, this must of course match our previous definition.</td>
+<td>这里实际实现了 <code>plus</code> ，当然必须与我们之前的定义相匹配。</td>
 </tr>
 </table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_exercises">Exercises</h2>
+<h2 id="_练习_4">练习</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create a procedure which will greet a person (print "Hello &lt;name&gt;") based on the provided name. Create a sequence of names. Greet each person using the created procedure.</p>
+<p>创建一个过程（procedure），用于根据提供的姓名向某人问候（打印"Hello &lt;姓名&gt;"）。创建一个姓名序列。使用已创建的过程向每个人问候。</p>
 </li>
 <li>
-<p>Create a procedure <code>findMax3</code> which will return the largest of three values.</p>
+<p>创建一个过程 <code>findMax3</code> ，该过程将返回三个值中的最大值。</p>
 </li>
 <li>
-<p>Points in 2D plane can be represented as <code>tuple[x, y: float]</code>. Write a procedure which will receive two points and return a new point which is a sum of those two points (add x&#8217;s and y&#8217;s separately).</p>
+<p>二维平面中的点可以表示为 <code>tuple[x, y: float]</code> 。编写一个过程，该过程接收两个点并返回一个新点，新点是这两个点的和（分别相加 x 坐标和 y 坐标）。</p>
 </li>
 <li>
-<p>Create two procedures <code>tick</code> and <code>tock</code> which echo out the words "tick" and "tock". Have a global variable to keep track of how many times they have run, and run one from the other until the counter reaches 20. The expected output is to get lines with "tick" and "tock" alternating 20 times. (Hint: use forward declarations.)</p>
+<p>创建两个过程 <code>tick</code> 和 <code>tock</code> ，分别输出单词"tick"和"tock"。使用一个全局变量来记录它们运行的次数，并让它们相互调用直到计数器达到 20。预期输出是交替出现 20 行"tick"和"tock"。（提示：使用前向声明。）</p>
 </li>
 </ol>
 </div>
@@ -2786,53 +2782,51 @@ The reason for this is that we have to declare procedures before we can call the
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You can press Ctrl+C to stop execution of a program if you enter an infinite loop.
+如果程序进入无限循环，可以按 Ctrl+C 停止执行。
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Test all procedures by calling them with different parameters.</p>
+<p>通过调用不同参数来测试所有过程。</p>
 </div>
 </div>
 </div>
-<h1 id="_modules" class="sect0">Modules</h1>
+<h1 id="_模块_modules" class="sect0">模块 Modules</h1>
 <div class="openblock partintro">
 <div class="content">
 <div class="paragraph">
-<p>So far we have used the functionality which is available by default every time we start a new Nim file.
-This can be extended with modules, which give more functionality for some specific topic.</p>
+<p>到目前为止，我们使用的都是每次新建 Nim 文件时默认提供的功能。这些功能可以通过模块进行扩展，从而获得针对特定主题的更多功能。</p>
 </div>
 <div class="paragraph">
-<p>Some of the most used Nim modules are:</p>
+<p>最常用的Nim模块包括：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>strutils</code>: additional functionality when dealing with strings</p>
+<p><code>strutils</code>: 处理字符串时的附加功能</p>
 </li>
 <li>
-<p><code>sequtils</code>: additional functionality for sequences</p>
+<p><code>sequtils</code>: 处理序列时的附加功能</p>
 </li>
 <li>
-<p><code>math</code>: mathematical functions (logarithms, square roots, &#8230;&#8203;), trigonometry (sin, cos, &#8230;&#8203;)</p>
+<p><code>math</code>: 数学函数（对数、平方根等）、三角函数（正弦、余弦等）</p>
 </li>
 <li>
-<p><code>times</code>: measure and deal with time</p>
+<p><code>times</code>: 测量和处理时间</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>But there are many more, both in what&#8217;s called the <a href="https://nim-lang.org/docs/lib.html">standard library</a> and in the <a href="https://nimble.directory/">nimble package manager</a>.</p>
+<p>但还有更多模块，无论是在所谓的标准库（ <a href="https://nim-lang.org/docs/lib.html">standard library</a> ）中，还是在nimble包管理器（ <a href="https://nimble.directory/">nimble package manager</a> ）中。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_importing_a_module">Importing a module</h2>
+<h2 id="_导入模块">导入模块</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If we want to import a module and all of its functionality, all we have to do is put <code>import &lt;moduleName&gt;</code> in our file.
-This is commonly done on the top of the file so we can easily see what our code uses.</p>
+<p>如果我们想导入一个模块及其所有功能，只需在文件中添加 <code>import &lt;moduleName&gt;</code> 。通常这会在文件顶部完成，以便我们轻松查看代码使用了哪些内容。</p>
 </div>
 <div class="listingblock">
 <div class="title">stringutils.nim</div>
@@ -2852,19 +2846,19 @@ This is commonly done on the top of the file so we can easily see what our code 
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Importing <a href="https://nim-lang.org/docs/strutils.html">strutils</a>.</td>
+<td>导入 <a href="https://nim-lang.org/docs/strutils.html">strutils</a> 模块.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Using <code>split</code> from <code>strutils</code> module. It splits the string in a sequence of words.</td>
+<td>使用 <code>strutils</code> 模块中的 <code>split</code> 功能。它可以将字符串分割成单词序列。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td><code>toUpperAscii</code> converts all ASCII letters to uppercase.</td>
+<td><code>toUpperAscii</code> 将所有 ASCII 字母转换为大写形式。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><code>repeat</code> is also from <code>strutils</code> module, and it repeats either a character or a whole string the requested amount of times.</td>
+<td><code>repeat</code> 同样来自 strutils 模块，它能将单个字符或整个字符串重复指定次数。</td>
 </tr>
 </table>
 </div>
@@ -2882,7 +2876,7 @@ MY STRING WITH WHITESPACE.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-To the users coming from other programming languages (especially Python), the way that imports work in Nim might seem "wrong". If that&#8217;s the case, <a href="https://narimiran.github.io/2019/07/01/nim-import.html">this</a> is the recommended reading.
+对于来自其他编程语言（尤其是 Python）的用户来说，Nim 中的导入方式可能看起来"不太对"。如果是这种情况，建议阅读 <a href="https://narimiran.github.io/2019/07/01/nim-import.html">以下内容</a> 。
 </td>
 </tr>
 </table>
@@ -2913,15 +2907,15 @@ To the users coming from other programming languages (especially Python), the wa
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Converting degrees to radians with <code>degToRad</code>.</td>
+<td>使用 <code>degToRad</code> 将度数转换为弧度。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td><code>sin</code> takes radians. We round (also from <code>math</code> module) the result to at most 2 decimal places. (Otherwise the result would be: 0.4999999999999999)</td>
+<td><code>sin</code> 接收弧度值。我们将结果（同样来自 <code>math</code> 模块）四舍五入至最多两位小数。（否则结果会是：0.4999999999999999）</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Math module also has <code>^</code> operator for calculating powers of a number.</td>
+<td>数学模块还包含用于计算数字幂的 <code>^</code> 运算符。</td>
 </tr>
 </table>
 </div>
@@ -2935,11 +2929,11 @@ To the users coming from other programming languages (especially Python), the wa
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_our_own">Creating our own</h2>
+<h2 id="_创建我们自己的">创建我们自己的</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Often times we have so much code in a project that it makes sense to split it into pieces that each does a certain thing.
-If you create two files side by side in a folder, let&#8217;s call them <code>firstFile.nim</code> and <code>secondFile.nim</code>, you can import one from the other as a module:</p>
+<p>在项目中，我们经常会有大量代码，这时将其拆分成各自负责特定功能的模块就很有意义。
+如果你在同一个文件夹中创建两个文件（假设命名为 <code>firstFile.nim</code> 和 <code>secondFile.nim</code> ），就可以将一个文件作为模块导入另一个文件中：</p>
 </div>
 <div class="listingblock">
 <div class="title">firstFile.nim</div>
@@ -2955,11 +2949,11 @@ If you create two files side by side in a folder, let&#8217;s call them <code>fi
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Notice how the <code>plus</code> procedure now has an asterisk (<code>*</code>) after its name, this tells Nim that another file importing this one will be able to use this procedure.</td>
+<td>注意 <code>plus</code> 过程现在名称后带有星号（ <code>*</code> ），这告诉 Nim 其他导入此文件的模块将能够使用该过程。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>By contrast this will not be visible when importing this file.</td>
+<td>相比之下，导入此文件时将不会显示该内容。</td>
 </tr>
 </table>
 </div>
@@ -2976,21 +2970,21 @@ If you create two files side by side in a folder, let&#8217;s call them <code>fi
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Here we import <code>firstFile.nim</code>. We don&#8217;t need to put the <code>.nim</code> extension on here.</td>
+<td>这里我们导入 <code>firstFile.nim</code> ，无需在此处添加 <code>.nim</code> 扩展名。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>This will work fine and output <code>15</code> as it&#8217;s declared in <code>firstFile</code> and visible to us.</td>
+<td>这段代码能正常运行并输出 <code>15</code> ，因为它在 <code>firstFile</code> 中声明且对我们可见。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>However this will throw an error as the <code>minus</code> procedure is not visible since it doesn&#8217;t have an asterisk behind it&#8217;s name.</td>
+<td>然而这会抛出错误，因为 <code>minus</code> 过程不可见，其名称后未带星号</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>In case you have more than these two files, you might want to organize them in a subdirectory (or more than one subdirectory).
-With the following directory structure:</p>
+<p>如果你有超过这两个文件，可能需要将它们组织到一个子目录（或多个子目录）中。
+采用如下目录结构：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3005,7 +2999,7 @@ With the following directory structure:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>if you wanted to import all other files in your <code>secondFile.nim</code> this is how you would do it:</p>
+<p>如果你想导入 <code>secondFile.nim</code> 中的所有其他文件，可以这样操作：</p>
 </div>
 <div class="listingblock">
 <div class="title">secondFile.nim</div>
@@ -3017,24 +3011,22 @@ With the following directory structure:</p>
 </div>
 </div>
 </div>
-<h1 id="_interacting_with_user_input" class="sect0">Interacting with user input</h1>
+<h1 id="_与用户输入交互" class="sect0">与用户输入交互</h1>
 <div class="openblock partintro">
 <div class="content">
 <div class="paragraph">
-<p>Using the stuff we&#8217;ve introduced so far (basic data types and containers, control flow, loops) allows us to make quite a few simple programs.</p>
+<p>利用目前介绍的内容（基本数据类型和容器、控制流、循环），我们已经能够编写不少简单程序了。</p>
 </div>
 <div class="paragraph">
-<p>In this chapter we will learn how to make our programs more interactive.
-For that we need an option to read data from a file, or ask a user for an input.</p>
+<p>在本章中，我们将学习如何让程序更具交互性。为此，我们需要实现从文件读取数据或向用户请求输入的功能。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_reading_from_a_file">Reading from a file</h2>
+<h2 id="_从文件读取">从文件读取</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Let&#8217;s say we have a text file called <code>people.txt</code> in the same directory as our Nim code.
-The contents of that file looks like this:</p>
+<p>假设我们有一个名为 <code>people.txt</code> 的文本文件，它与 Nim 代码位于同一目录下。该文件内容如下：</p>
 </div>
 <div class="listingblock">
 <div class="title">people.txt</div>
@@ -3045,7 +3037,7 @@ The contents of that file looks like this:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>We want to use the contents of that file in our program, as a list (sequence) of names.</p>
+<p>我们希望将该文件内容作为名称列表（序列）用于程序中。</p>
 </div>
 <div class="listingblock">
 <div class="title">readFromFile.nim</div>
@@ -3063,11 +3055,11 @@ The contents of that file looks like this:</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>To read contents of a file, we use the <code>readFile</code> procedure, and we provide a path to the file from which to read (if the file is in the same directory as our Nim program, providing a filename is enough). The result is a multiline string.</td>
+<td>要读取文件内容，我们使用 <code>readFile</code> 过程，并提供一个文件路径以供读取（如果文件与我们的 <code>Nim</code> 程序位于同一目录，仅提供文件名即可）。结果将是一个多行字符串。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>To split a multiline string into a sequence of strings (each string contains all the contents of a single line) we use <code>splitLines</code> from the <code>strutils</code> module.</td>
+<td>要将多行字符串拆分为字符串序列（每个字符串包含单行的全部内容），我们使用来自 <code>strutils</code> 模块的 <code>splitLines</code> 。</td>
 </tr>
 </table>
 </div>
@@ -3084,18 +3076,16 @@ Carol C.
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>There was a final new line (empty last line) in the original file, which is also present here.</td>
+<td>原文件中存在一个最后的空行（末尾空行），此处也保留了该空行。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Because of the final new line, our sequence is longer than we expected/wanted.</td>
+<td>由于末尾的换行符，我们的序列比预期/想要的更长。</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>To solve the problem of a final new line, we can use the <code>strip</code> procedure from <code>strutils</code> after we have read from a file.
-All this does is remove any so-called whitespace from the start and end of our string.
-Whitespace is simply any character that makes some space, new-lines, spaces, tabs, etc.</p>
+<p>为了解决末尾换行符的问题，我们可以在读取文件后使用 strutils 中的 strip 过程。该过程的作用就是移除字符串首尾的所有所谓空白字符。空白字符泛指任何产生间隔的字符，包括换行符、空格、制表符等。</p>
 </div>
 <div class="listingblock">
 <div class="title">readFromFile2.nim</div>
@@ -3113,7 +3103,7 @@ Whitespace is simply any character that makes some space, new-lines, spaces, tab
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Using <code>strip</code> provides the expected results.</td>
+<td>使用 <code>strip</code> 可得到预期结果。</td>
 </tr>
 </table>
 </div>
@@ -3128,11 +3118,10 @@ Carol C.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_reading_user_input">Reading user input</h2>
+<h2 id="_读取用户输入">读取用户输入</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If we want to interact with a user, we must be able to ask them for an input, and then process it and use it.
-We need to read from <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_input_(stdin)">standard input (stdin)</a> by passing <code>stdin</code> to the <code>readLine</code> procedure.</p>
+<p>若要与用户交互，我们必须能够向其询问输入内容，随后处理并运用这些信息。我们需要通过向 <code>readLine</code> 过程传递 <code>stdin</code> 参数来从标准输入 <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_input_(stdin)">standard input (stdin)</a> 读取数据。</p>
 </div>
 <div class="listingblock">
 <div class="title">interaction1.nim</div>
@@ -3147,7 +3136,7 @@ We need to read from <a href="https://en.wikipedia.org/wiki/Standard_streams#Sta
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The type of <code>name</code> is inferred to be a string.</td>
+<td><code>name</code> 的类型被推断为字符串。</td>
 </tr>
 </table>
 </div>
@@ -3161,7 +3150,7 @@ We need to read from <a href="https://en.wikipedia.org/wiki/Standard_streams#Sta
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Waiting for user input. After we write our name and press <code>Enter</code>, the program will continue.</td>
+<td>等待用户输入。当我们输入姓名并按下 <code>Enter</code> 后，程序将继续执行。</td>
 </tr>
 </table>
 </div>
@@ -3179,8 +3168,8 @@ Hello Alice, nice to meet you!</code></pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If you are using an outdated version of VS Code, you cannot run this the usual way (using <code>Ctrl+Alt+N</code>) because output window doesn&#8217;t allow user inputs&#8201;&#8212;&#8201;you need to run these examples in the terminal.<br>
-With the newer versions of VS Code there is no such limitation.
+如果您使用的是旧版VS Code，则无法以常规方式运行（使用Ctrl+Alt+N），因为输出窗口不允许用户输入——您需要在终端中运行这些示例。<br>
+较新版本的VS Code不存在此类限制。
 </td>
 </tr>
 </table>
@@ -3188,11 +3177,10 @@ With the newer versions of VS Code there is no such limitation.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_dealing_with_numbers">Dealing with numbers</h2>
+<h2 id="_处理数字">处理数字</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Reading from a file or from a user input always gives a string as a result.
-If we would like to use numbers, we need to convert strings to numbers: we again use the <code>strutils</code> module and use <code>parseInt</code> to convert to integers or <code>parseFloat</code> to convert into a float.</p>
+<p>从文件或用户输入读取的内容始终以字符串形式返回。若需使用数字，需将字符串转换为数字：我们再次使用 <code>strutils</code> 模块，通过 <code>parseInt</code> 转换为整数，或使用 <code>parseFloat</code> 转换为浮点数。</p>
 </div>
 <div class="listingblock">
 <div class="title">interaction2.nim</div>
@@ -3211,7 +3199,7 @@ If we would like to use numbers, we need to convert strings to numbers: we again
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Convert a string to an integer. When written like this, we trust our user to give a valid integer. What would happen if a user inputs <code>'79</code> or <code>ninety-three</code>? Try it yourself.</td>
+<td>将字符串转换为整数。这样编写时，我们默认用户会提供有效的整数。如果用户输入 <code>'79</code> 或 <code>ninety-three</code> 会发生什么？你可以自己试试看。</td>
 </tr>
 </table>
 </div>
@@ -3226,7 +3214,7 @@ You are 84 years old.</code></pre>
 <p>&#160;</p>
 </div>
 <div class="paragraph">
-<p>If we have file <code>numbers.txt</code> in the same directory as our Nim code, with the following content:</p>
+<p>如果我们有一个文件 <code>numbers.txt</code> 与Nim代码位于同一目录下，其内容如下：</p>
 </div>
 <div class="listingblock">
 <div class="title">numbers.txt</div>
@@ -3239,7 +3227,7 @@ You are 84 years old.</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>and we want to read that file and find the sum and average of the numbers provided, we can do something like this:</p>
+<p>我们想要读取该文件并计算所提供数字的总和与平均值，可以这样做：</p>
 </div>
 <div class="listingblock">
 <div class="title">interaction3.nim</div>
@@ -3262,23 +3250,23 @@ You are 84 years old.</code></pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>We import multiple modules. <code>strutils</code> gives us <code>strip</code> and <code>splitLines</code>, <code>sequtils</code> gives <code>map</code>, and <code>math</code> gives <code>sum</code>.</td>
+<td>我们导入多个模块。 <code>strutils</code> 提供 <code>strip</code> 和 <code>splitLines</code> ， <code>sequtils</code> 提供 <code>map</code> ， <code>math</code> 提供 <code>sum</code> 。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>We strip the final new line, and split lines to create a sequence of strings.</td>
+<td>我们移除最后的换行符，并将文本分割成字符串序列。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td><code>map</code> works by applying a procedure (in this case <code>parseFloat</code>) to each member of a container. In other words, we convert each string to a float, returning a new sequence of floats.</td>
+<td><code>map</code> 的工作原理是对容器中的每个元素应用一个过程（本例中是 <code>parseFloat</code> ）。换句话说，我们将每个字符串转换为浮点数，返回一个新的浮点数序列。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Using <code>sum</code> from <code>math</code> module to give us the sum of all elements in a sequence.</td>
+<td>使用 <code>math</code> 模块中的 <code>sum</code> 函数来计算序列中所有元素的总和。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>We need to convert the length of a sequence to float, because <code>sumNums</code> is a float.</td>
+<td>我们需要将序列长度转换为浮点数，因为 <code>sumNums</code> 是浮点类型。</td>
 </tr>
 </table>
 </div>
@@ -3291,41 +3279,39 @@ You are 84 years old.</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_exercises_2">Exercises</h2>
+<h2 id="_练习_5">练习</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Ask a user for their height and weight. Calculate their <a href="https://en.wikipedia.org/wiki/Body_mass_index">BMI</a>. Report them the BMI value and the category.</p>
+<p>向用户询问身高和体重，计算其 <a href="https://en.wikipedia.org/wiki/Body_mass_index">BMI</a> 指数。反馈 BMI 数值及对应等级。</p>
 </li>
 <li>
-<p>Repeat <a href="#_exercises_2">Collatz conjecture exercise</a> so your program asks a user for a starting number. Print the resulting sequence.</p>
+<p>重复考拉兹猜想（ <a href="#_练习_2">Collatz conjecture exercise</a> ）练习：编写程序让用户输入起始数字，打印生成的数列。</p>
 </li>
 <li>
-<p>Ask a user for a string they want to have reversed. Create a procedure which takes a string and returns a reversed version. For example, if user types <code>Nim-lang</code>, the procedure should return <code>gnal-miN</code>. (Hint: use indexing and <code>countdown</code>)</p>
+<p>让用户输入需要反转的字符串。创建一个接收字符串并返回反转版本的过程。例如用户输入 <code>Nim-lang</code> 时，该过程应返回 <code>gnal-miN</code> 。（提示：使用索引和 <code>countdown</code> ）</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
-<h1 id="_conclusion" class="sect0">Conclusion</h1>
+<h1 id="_结语" class="sect0">结语</h1>
 <div class="openblock partintro">
 <div class="content">
 <div class="paragraph">
-<p>It is time to conclude this tutorial.
-Hopefully this has been useful to you, and you managed to make your first steps in programming and/or the Nim programming language.</p>
+<p>是时候结束这篇教程了。希望它对您有所帮助，并让您在编程和/或 Nim 编程语言的学习上迈出了第一步。</p>
 </div>
 <div class="paragraph">
-<p>These have only been the basics and we&#8217;ve only scratched the surface, but this should be enough to enable you to make simple programs and solve some simple tasks or puzzles.
-Nim has a lot more to offer, and hopefully you will continue to explore its possibilities.</p>
+<p>这些只是基础知识，我们仅仅触及了皮毛，但应该足以让你编写简单程序并解决一些简单任务或谜题。Nim 还有更多强大功能，希望你能继续探索它的可能性。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_next_steps">Next steps</h2>
+<h2 id="_下一步">下一步</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If you want to continue learning from Nim tutorials:</p>
+<p>如果你想继续学习Nim：</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3338,15 +3324,15 @@ Nim has a lot more to offer, and hopefully you will continue to explore its poss
 </ul>
 </div>
 <div class="paragraph">
-<p>If you want to solve some programming puzzles:</p>
+<p>如果你想解决一些编程难题：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="http://adventofcode.com/">Advent of Code</a>: Series of interesting puzzles released every December. Archive of old puzzles (from 2015 onwards) is available.</p>
+<p><a href="http://adventofcode.com/">Advent of Code</a>: 每年12月发布的一系列趣味谜题。提供自 2015 年起的往期谜题存档。</p>
 </li>
 <li>
-<p><a href="https://projecteuler.net/">Project Euler</a>: Mostly mathematical tasks.</p>
+<p><a href="https://projecteuler.net/">Project Euler</a>: 主要是数学相关的任务。</p>
 </li>
 </ul>
 </div>
@@ -3354,7 +3340,7 @@ Nim has a lot more to offer, and hopefully you will continue to explore its poss
 <p>&#160;</p>
 </div>
 <div class="paragraph">
-<p>Happy coding!</p>
+<p>编程愉快！</p>
 </div>
 <div class="paragraph">
 <p>&#160;</p>
