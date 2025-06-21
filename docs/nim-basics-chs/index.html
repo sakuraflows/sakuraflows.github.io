@@ -5,6 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="description" content="本教程旨在向你介绍编程基础及Nim语法，以便你能更轻松地跟进其他教程和/或自行深入探索。Nim是一门相对较新的编程语言，它能让开发者编写出既易读又高性能的代码。">
+<meta name="keywords" content="nim, nim-basics, Nim basics中文文档">
 <title>Nim basics 中文文档</title>
 <link rel="stylesheet" href="./styles/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -87,17 +89,17 @@
 <li><a href="#_数组_arrays">数组 Arrays</a></li>
 <li><a href="#_序列_sequences">序列 Sequences</a></li>
 <li><a href="#_索引_indexing_与_切片_slicing">索引 Indexing 与 切片 slicing</a></li>
-<li><a href="#_tuples">Tuples</a></li>
-<li><a href="#_exercises">Exercises</a></li>
+<li><a href="#_元组_tuples">元组 Tuples</a></li>
+<li><a href="#_练习_3">练习</a></li>
 </ul>
 </li>
 <li><a href="#_过程_procedures">过程 Procedures</a>
 <ul class="sectlevel1">
-<li><a href="#_declaring_a_procedure">Declaring a procedure</a></li>
-<li><a href="#_calling_the_procedures">Calling the procedures</a></li>
+<li><a href="#_声明过程_declaring_a_procedure">声明过程 Declaring a procedure</a></li>
+<li><a href="#_调用程序_calling_the_procedures">调用程序 Calling the procedures</a></li>
 <li><a href="#_result_variable">Result variable</a></li>
 <li><a href="#_forward_declaration">Forward declaration</a></li>
-<li><a href="#_exercises_2">Exercises</a></li>
+<li><a href="#_exercises">Exercises</a></li>
 </ul>
 </li>
 <li><a href="#_modules">Modules</a>
@@ -111,7 +113,7 @@
 <li><a href="#_reading_from_a_file">Reading from a file</a></li>
 <li><a href="#_reading_user_input">Reading user input</a></li>
 <li><a href="#_dealing_with_numbers">Dealing with numbers</a></li>
-<li><a href="#_exercises_3">Exercises</a></li>
+<li><a href="#_exercises_2">Exercises</a></li>
 </ul>
 </li>
 <li><a href="#_conclusion">Conclusion</a>
@@ -2062,11 +2064,10 @@ e</code></pre>
 <p>切片操作允许我们通过一次调用获取一系列元素。它使用的语法与范围（在 <a href="#_for循环for_loop">for循环(For loop)</a> 中介绍过）相同。</p>
 </div>
 <div class="paragraph">
-<p>If we use <code>start .. stop</code> syntax, both ends are included in the slice.
-Using <code>start ..&lt; stop</code> syntax, the <code>stop</code> index is not included in the slice.</p>
+<p>若使用 <code>start .. stop</code> 语法，切片范围包含两端。使用 <code>start ..&lt; stop</code> 语法时， <code>stop</code> 索引不包含在切片内。</p>
 </div>
 <div class="paragraph">
-<p>The syntax for slicing is <code>&lt;container&gt;[&lt;start&gt; .. &lt;stop&gt;]</code>.</p>
+<p>The syntax for slicing is <code>&lt;container&gt;[&lt;start&gt; .. &lt;stop&gt;]</code>.切片的语法是 <code>&lt;container&gt;[&lt;start&gt; .. &lt;stop&gt;]</code> 。</p>
 </div>
 <div class="listingblock">
 <div class="title">indexing.nim</div>
@@ -2082,7 +2083,7 @@ Using <code>start ..&lt; stop</code> syntax, the <code>stop</code> index is not 
 </div>
 </div>
 <div class="paragraph">
-<p>Both indexing and slicing can be used to assign new values to the existing mutable containers and strings.</p>
+<p>索引和切片均可用于为现有的可变容器和字符串赋予新值。</p>
 </div>
 <div class="listingblock">
 <div class="title">assign.nim</div>
@@ -2107,15 +2108,15 @@ Using <code>start ..&lt; stop</code> syntax, the <code>stop</code> index is not 
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Array of length 5 has indexes from zero to four. We will assign a value to each element of the array.</td>
+<td>长度为 5 的数组索引从零到四。我们将为数组的每个元素赋值。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Assigning (changing) the second element (index 1) of a sequence.</td>
+<td>修改序列中第二个元素（索引为 1）的值。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Changing characters of a string at indexes 8 and 9.</td>
+<td>修改字符串中索引为 8 和 9 位置的字符。</td>
 </tr>
 </table>
 </div>
@@ -2129,15 +2130,14 @@ Tom and Barry</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_tuples">Tuples</h2>
+<h2 id="_元组_tuples">元组 Tuples</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Both of the containers we&#8217;ve seen so far have been homogeneous.
-Tuples, on the other hand, contain heterogeneous data, i.e. elements of a tuple can be of different types.
-Similarly to arrays, tuples have fixed-size.</p>
+<p>我们目前所见到的容器都是同质的。
+而元组则包含异质数据，即元组中的元素可以是不同类型。与数组类似，元组具有固定大小。</p>
 </div>
 <div class="paragraph">
-<p>The elements of a tuple are enclosed inside of parentheses.</p>
+<p>元组的元素被包裹在圆括号内。</p>
 </div>
 <div class="listingblock">
 <div class="title">tuples.nim</div>
@@ -2150,7 +2150,7 @@ Similarly to arrays, tuples have fixed-size.</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Tuples can contain fields of different types. In this case: <code>string</code>, <code>int</code>, and <code>char</code>.</td>
+<td>元组可以包含不同类型的字段。在这个例子中： <code>string</code> 、 <code>int</code> 和 <code>char</code> 。</td>
 </tr>
 </table>
 </div>
@@ -2160,8 +2160,7 @@ Similarly to arrays, tuples have fixed-size.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>We can also name each field in a tuple to distinguish them.
-This can be used for accessing the elements of the tuple, instead of indexing.</p>
+<p>我们还可以为元组中的每个字段命名以便区分。这种方式可用于访问元组元素，而无需使用索引。</p>
 </div>
 <div class="listingblock">
 <div class="title">tuples.nim</div>
@@ -2177,11 +2176,11 @@ This can be used for accessing the elements of the tuple, instead of indexing.</
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Changing the value of a field by using the field&#8217;s index.</td>
+<td>通过字段索引修改字段值</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Changing the value of a field by using the field&#8217;s name.</td>
+<td>通过字段名称修改字段值</td>
 </tr>
 </table>
 </div>
@@ -2193,57 +2192,57 @@ This can be used for accessing the elements of the tuple, instead of indexing.</
 </div>
 </div>
 <div class="sect1">
-<h2 id="_exercises">Exercises</h2>
+<h2 id="_练习_3">练习</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Create an empty array which can contain ten integers.</p>
+<p>创建一个能容纳十个整数的空数组。</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Fill that array with numbers 10, 20, &#8230;&#8203;, 100. (Hint: use loops)</p>
+<p>用数字10、20、……、100填充该数组。（提示：使用循环）</p>
 </li>
 <li>
-<p>Print only the elements of that array that are on odd indices (values 20, 40, &#8230;&#8203;).</p>
+<p>仅打印该数组中位于奇数索引的元素（即数值20、40、……）。</p>
 </li>
 <li>
-<p>Multiply elements on even indices by 5. Print the modified array.</p>
+<p>将偶数索引位置的元素乘以 5。打印修改后的数组。</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Re-do the <a href="#_exercises_2">Collatz conjecture exercise</a>, but this time instead of printing each step, add it to a sequence.</p>
+<p>重新实现考拉兹猜想（<a href="#_exercises_2">Collatz conjecture exercise</a>）练习，但这次不打印每个步骤，而是将其添加到序列中。</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pick a starting number. Interesting choices, among others, are 9, 19, 25 and 27.</p>
+<p>选择一个起始数字。有趣的选择包括9、19、25和27等。</p>
 </li>
 <li>
-<p>Create a sequence whose only member is that starting number</p>
+<p>创建一个仅包含该起始数字的序列</p>
 </li>
 <li>
-<p>Using the same logic as before, keep adding elements to the sequence until you reach 1</p>
+<p>沿用之前的逻辑，持续向序列中添加元素，直到数值变为 1</p>
 </li>
 <li>
-<p>Print the length of the sequence, and the sequence itself</p>
+<p>输出序列的长度及序列本身</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Find the number in a range from 2 to 100 which will produce the longest Collatz sequence.</p>
+<p>在2到100的范围内找出产生最长考拉兹序列的数字。</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For each number in the given range calculate its Collatz sequence</p>
+<p>对于给定范围内的每个数字，计算其考拉兹序列</p>
 </li>
 <li>
-<p>If the length of current sequence is longer than the previous record, save the current length and the starting number as a new record (you can use the tuple <code>(longestLength, startingNumber)</code> or two separate variables)</p>
+<p>如果当前序列长度超过之前的记录，则将当前长度和起始数字保存为新记录（可以使用元组 <code>(longestLength, startingNumber)</code> 或两个单独的变量）</p>
 </li>
 <li>
-<p>Print the starting number which gives the longest sequence, and its length</p>
+<p>输出起始数字及其对应序列的最大长度</p>
 </li>
 </ul>
 </div>
@@ -2256,54 +2255,47 @@ This can be used for accessing the elements of the tuple, instead of indexing.</
 <div class="openblock partintro">
 <div class="content">
 <div class="paragraph">
-<p>Procedures, or <em>functions</em> as they are called in some other programming languages, are parts of code that perform a specific task, packaged as a unit.
-The benefit of grouping code together like this is that we can <em>call</em> these procedures instead of writing all the code over again when we wish to use the procedure&#8217;s code.</p>
+<p>过程（在其他编程语言中常称为函数）是将执行特定任务的代码封装为一个独立单元。
+这种代码组织方式的优势在于，我们可以直接调用这些过程，而无需在每次需要时重复编写相同的代码。</p>
 </div>
 <div class="paragraph">
-<p>In some of the previous chapters we&#8217;ve looked at the Collatz conjecture in various different scenarios.
-By wrapping up the Collatz conjecture logic into a procedure we could have called the same code for all the exercises.</p>
+<p>在前面的某些章节中，我们探讨了不同场景下的考拉兹猜想。通过将考拉兹猜想逻辑封装成过程，我们就能在所有练习中调用相同的代码。</p>
 </div>
 <div class="paragraph">
-<p>So far we have used many built-in procedures, such as <code>echo</code> for printing, <code>add</code> for adding elements to a sequence, <code>inc</code> to increase the value of an integer, <code>len</code> to get the length of a container, etc.
-Now we&#8217;ll see how to create and use our own procedures.</p>
+<p>到目前为止，我们已经使用了许多内置过程，例如用于打印的 <code>echo</code> 、向序列添加元素的 <code>add</code> 、增加整数值的 <code>inc</code> 、获取容器长度的 <code>len</code> 等。现在我们将学习如何创建和使用自己的过程。</p>
 </div>
 <div class="paragraph">
-<p>Some of the advantages of using procedures are:</p>
+<p>使用过程（procedure）的一些优势包括：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Reducing code duplication</p>
+<p>减少代码重复</p>
 </li>
 <li>
-<p>Easier to read code as we can name pieces by what they do</p>
+<p>通过为代码片段赋予功能描述性名称，使代码更易阅读</p>
 </li>
 <li>
-<p>Decomposing a complex task into simpler steps</p>
+<p>将复杂任务分解为更简单的步骤</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>As mentioned in the beginning of this section, procedures are often called functions in other languages.
-This is actually a bit of a misnomer if we consider the mathematical definition of a function.
-Mathematical functions take a set of arguments (like <code>f(x, y)</code>, where <code>f</code> is a function, and <code>x</code> and <code>y</code> are its arguments) and <em>always</em> return the same answer for the same input.</p>
+<p>正如本节开头所述，在其他语言中过程(procedure)常被称为函数(function)。若从数学函数的定义来看，这其实是个不太准确的称谓。数学函数接收一组参数（如 <code>f(x, y)</code> ，其中 <code>f</code> 是函数， <code>x</code> 和 <code>y</code> 是其参数），对于相同的输入总是返回相同的结果。</p>
 </div>
 <div class="paragraph">
-<p>Programmatic procedures on the other hand don&#8217;t always return the same output for a given input.
-Sometimes they don&#8217;t return anything at all.
-This is because our computer programs can store state in the variables we mentioned earlier which procedures can read and change.
-In Nim, the word <code>func</code> is currently reserved to be used as the more mathematically correct kind of function, forcing no side-effects.</p>
+<p>另一方面，程序化过程对于给定输入并不总是返回相同输出。有时它们根本不返回任何内容。这是因为我们的计算机程序可以在之前提到的变量中存储状态，这些过程可以读取和更改状态。在Nim中，当前保留使用 <code>func</code> 这个词来表示数学上更准确的函数类型，强制要求无副作用。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_declaring_a_procedure">Declaring a procedure</h2>
+<h2 id="_声明过程_declaring_a_procedure">声明过程 Declaring a procedure</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before we can use (call) our procedure, we need to create it and define what it does.</p>
+<p>在使用（调用）过程之前，我们需要创建它并定义其功能。</p>
 </div>
 <div class="paragraph">
-<p>A procedure is declared by using the <code>proc</code> keyword and the procedure name, followed by the input parameters and their type inside of parentheses, and the last part is a colon and the type of the value returned from a procedure, like this:</p>
+<p>过程通过使用 proc 关键字和过程名称来声明，后跟括号内的输入参数及其类型，最后部分是一个冒号和过程返回值的类型，如下所示：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2311,7 +2303,7 @@ In Nim, the word <code>func</code> is currently reserved to be used as the more 
 </div>
 </div>
 <div class="paragraph">
-<p>The body of a procedure is written in the indented block following the declaration appended with a <code>=</code> sign.</p>
+<p>过程体以缩进块的形式编写，紧跟在带有 <code>=</code> 符号的声明之后。</p>
 </div>
 <div class="listingblock">
 <div class="title">callProcs.nim</div>
@@ -2329,11 +2321,11 @@ In Nim, the word <code>func</code> is currently reserved to be used as the more 
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Declaring procedure called <code>findMax</code>, which has two parameters, <code>x</code> and <code>y</code>, and it returns an <code>int</code> type.</td>
+<td>声明名为 <code>findMax</code> 的过程，它有两个参数 <code>x</code> 和 <code>y</code> ，并返回一个 <code>int</code> 类型。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>To return a value from a procedure, we use the <code>return</code> keyword.</td>
+<td>要从过程中返回值，我们使用 <code>return</code> 关键字。</td>
 </tr>
 </table>
 </div>
@@ -2354,7 +2346,7 @@ In Nim, the word <code>func</code> is currently reserved to be used as the more 
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The <code>echoLanguageRating</code> procedure just echoes the given name, it doesn&#8217;t return anything, so the return type is not declared.</td>
+<td><code>echoLanguageRating</code> 过程只是回显给定的名称，它不返回任何内容，因此没有声明返回类型。</td>
 </tr>
 </table>
 </div>
@@ -2362,8 +2354,7 @@ In Nim, the word <code>func</code> is currently reserved to be used as the more 
 <p>&#160;</p>
 </div>
 <div class="paragraph">
-<p>Normally we&#8217;re not allowed to change any of the parameters we are given.
-Doing something like this will throw an error:</p>
+<p>通常情况下，我们不允许修改传入的任何参数。类似这样的操作会引发错误：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2375,7 +2366,7 @@ Doing something like this will throw an error:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>In order for this to work we need to allow Nim, and the programmer using our procedure, to change the argument by declaring it as a variable:</p>
+<p>为了让这能够正常工作，我们需要允许Nim以及使用我们过程的程序员通过将参数声明为变量来修改它：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2393,7 +2384,7 @@ Doing something like this will throw an error:</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Notice how <code>argument</code> is now declared as a <code>var int</code> and not just as an <code>int</code>.</td>
+<td>注意 <code>argument</code> 现在被声明为 <code>var int</code> ，而不仅仅是 <code>int</code> 。</td>
 </tr>
 </table>
 </div>
@@ -2404,10 +2395,10 @@ Doing something like this will throw an error:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>This of course means that the name we pass it must be declared as a variable as well, passing in something assigned with <code>const</code> or <code>let</code> will throw an error.</p>
+<p>这当然意味着我们传入的名称也必须声明为变量，传入用 <code>const</code> 或 <code>let</code> 赋值的内容会引发错误。</p>
 </div>
 <div class="paragraph">
-<p>While it is good practice to pass things as arguments it is also possible to use names declared outside the procedure, both variables and constants:</p>
+<p>虽然将内容作为参数传递是良好的实践，但也可以使用过程外部声明的名称，包括变量和常量：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2425,11 +2416,11 @@ Doing something like this will throw an error:</p>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Here we access the outside variable <code>x</code>.</td>
+<td>这里我们访问外部变量 <code>x</code> 。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>We can also update its value, since it&#8217;s declared as a variable.</td>
+<td>我们可以更新它的值，因为它被声明为变量。</td>
 </tr>
 </table>
 </div>
@@ -2442,11 +2433,10 @@ Doing something like this will throw an error:</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_calling_the_procedures">Calling the procedures</h2>
+<h2 id="_调用程序_calling_the_procedures">调用程序 Calling the procedures</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After we have declared a procedure, we can call it.
-The usual way of calling procedures/functions in many programming languages is to state its name and provide the arguments in the parentheses, like this:</p>
+<p>声明过程后，我们可以调用它。在许多编程语言中，调用过程/函数的常规方式是声明其名称并在括号内提供参数，如下所示：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2454,10 +2444,10 @@ The usual way of calling procedures/functions in many programming languages is t
 </div>
 </div>
 <div class="paragraph">
-<p>The result from calling a procedure can be stored in a variable.</p>
+<p>调用过程的结果可以存储在变量中。</p>
 </div>
 <div class="paragraph">
-<p>If we want to call our <code>findMax</code> procedure from the above example, and save the return value in a variable we can do that with:</p>
+<p>如果要从上面的示例中调用我们的 findMax 过程，并将返回值保存在变量中，我们可以这样做：</p>
 </div>
 <div class="listingblock">
 <div class="title">callProcs.nim</div>
@@ -2771,7 +2761,7 @@ The reason for this is that we have to declare procedures before we can call the
 </div>
 </div>
 <div class="sect1">
-<h2 id="_exercises_2">Exercises</h2>
+<h2 id="_exercises">Exercises</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -3301,7 +3291,7 @@ You are 84 years old.</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_exercises_3">Exercises</h2>
+<h2 id="_exercises_2">Exercises</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
