@@ -1,0 +1,3362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="description" content="本教程旨在向你介绍编程基础及Nim语法，以便你能更轻松地跟进其他教程和/或自行深入探索。Nim是一门相对较新的编程语言，它能让开发者编写出既易读又高性能的代码。">
+<meta name="keywords" content="nim, nim-basics, Nim basics中文文档">
+<title>Nim basics 中文文档</title>
+<link rel="stylesheet" href="./styles/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./rouge-gruvbox.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Nim basics 中文文档</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_本教程适合谁">本教程适合谁</a></li>
+<li><a href="#_这不适合谁">这不适合谁？</a></li>
+<li><a href="#_如何使用本教程">如何使用本教程？</a></li>
+<li><a href="#_译者注">译者注</a></li>
+<li><a href="#_安装指南">安装指南</a>
+<ul class="sectlevel1">
+<li><a href="#_安装_nim">安装 Nim</a></li>
+<li><a href="#_安装其他工具">安装其他工具</a></li>
+<li><a href="#_测试安装">测试安装</a></li>
+</ul>
+</li>
+<li><a href="#_命名值naming_values">命名值(Naming values)</a>
+<ul class="sectlevel1">
+<li><a href="#_变量声明variable_declaration">变量声明(Variable declaration)</a></li>
+<li><a href="#_不可变赋值immutable_assignment">不可变赋值(Immutable assignment)</a>
+<ul class="sectlevel2">
+<li><a href="#_常量const">常量(Const)</a></li>
+<li><a href="#_let">Let</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_基本数据类型basic_data_types">基本数据类型(Basic data types)</a>
+<ul class="sectlevel1">
+<li><a href="#_整数_integers">整数 Integers</a></li>
+<li><a href="#_浮点数_floats">浮点数 Floats</a>
+<ul class="sectlevel2">
+<li><a href="#_浮点数和整数的转换">浮点数和整数的转换</a></li>
+</ul>
+</li>
+<li><a href="#_字符_characters">字符 Characters</a></li>
+<li><a href="#_字符串_strings">字符串 Strings</a>
+<ul class="sectlevel2">
+<li><a href="#_特殊字符_special_characters">特殊字符 Special characters</a></li>
+<li><a href="#_字符串连接_string_concatenation">字符串连接 String concatenation</a></li>
+</ul>
+</li>
+<li><a href="#_布尔型_boolean">布尔型 Boolean</a>
+<ul class="sectlevel2">
+<li><a href="#_关系运算符_relational_operators">关系运算符 Relational operators</a></li>
+<li><a href="#_逻辑运算符_logical_operators">逻辑运算符 Logical operators</a></li>
+</ul>
+</li>
+<li><a href="#_回顾">回顾</a></li>
+<li><a href="#_练习">练习</a></li>
+</ul>
+</li>
+<li><a href="#_控制流_control_flow">控制流 Control flow</a>
+<ul class="sectlevel1">
+<li><a href="#_if_语句">If 语句</a>
+<ul class="sectlevel2">
+<li><a href="#_else_否则">Else (否则)</a></li>
+<li><a href="#_elif">Elif</a></li>
+</ul>
+</li>
+<li><a href="#_case情况">Case（情况）</a></li>
+</ul>
+</li>
+<li><a href="#_循环_loops">循环 Loops</a>
+<ul class="sectlevel1">
+<li><a href="#_for循环for_loop">for循环(For loop)</a></li>
+<li><a href="#_while循环_while_loop">while循环 While loop</a></li>
+<li><a href="#_中断break与_继续continue">中断（Break）与 继续（continue）</a></li>
+<li><a href="#_练习_2">练习</a></li>
+</ul>
+</li>
+<li><a href="#_容器_containers">容器 Containers</a>
+<ul class="sectlevel1">
+<li><a href="#_数组_arrays">数组 Arrays</a></li>
+<li><a href="#_序列_sequences">序列 Sequences</a></li>
+<li><a href="#_索引_indexing_与_切片_slicing">索引 Indexing 与 切片 slicing</a></li>
+<li><a href="#_元组_tuples">元组 Tuples</a></li>
+<li><a href="#_练习_3">练习</a></li>
+</ul>
+</li>
+<li><a href="#_过程_procedures">过程 Procedures</a>
+<ul class="sectlevel1">
+<li><a href="#_声明过程_declaring_a_procedure">声明过程 Declaring a procedure</a></li>
+<li><a href="#_调用程序_calling_the_procedures">调用程序 Calling the procedures</a></li>
+<li><a href="#_结果变量_result_variable">结果变量 Result variable</a></li>
+<li><a href="#_前置声明_forward_declaration">前置声明 Forward declaration</a></li>
+<li><a href="#_练习_4">练习</a></li>
+</ul>
+</li>
+<li><a href="#_模块_modules">模块 Modules</a>
+<ul class="sectlevel1">
+<li><a href="#_导入模块">导入模块</a></li>
+<li><a href="#_创建我们自己的">创建我们自己的</a></li>
+</ul>
+</li>
+<li><a href="#_与用户输入交互">与用户输入交互</a>
+<ul class="sectlevel1">
+<li><a href="#_从文件读取">从文件读取</a></li>
+<li><a href="#_读取用户输入">读取用户输入</a></li>
+<li><a href="#_处理数字">处理数字</a></li>
+<li><a href="#_练习_5">练习</a></li>
+</ul>
+</li>
+<li><a href="#_结语">结语</a>
+<ul class="sectlevel1">
+<li><a href="#_下一步">下一步</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://nim-lang.org/">Nim</a> is a relatively new programming language which allows users to write easy-to-read high-performance code.
+But if you are reading this Nim tutorial, the chances are that you already know about Nim.</p>
+</div>
+<div class="paragraph">
+<p>The tutorial is available both <a href="https://narimiran.github.io/nim-basics/">online</a> and as a <a href="https://github.com/narimiran/nim-basics/raw/master/nim-basics.epub">book in epub format</a>.</p>
+</div>
+<div class="paragraph">
+<p>This is a work-in-progress: if you spot any errors and/or you have an idea how to make this tutorial better, please report it to the <a href="https://github.com/narimiran/nim-basics/issues">issue tracker</a>.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://nim-lang.org/">Nim</a> 是一门相对较新的编程语言，它能让用户编写出既易于阅读又高性能的代码。但如果你正在阅读这篇Nim教程，很可能你已经对 Nim 有所了解。
+本教程提供在线阅读和 epub 格式的电子书版本。</p>
+</div>
+<div class="paragraph">
+<p>这是一项进行中的工作：如果您发现任何错误，或者有改进本教程的建议，请到 <a href="https://github.com/narimiran/nim-basics/issues">issue tracker</a> 报告。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_本教程适合谁">本教程适合谁</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>没有或仅有少量编程经验的人士</p>
+</li>
+<li>
+<p>有其他编程语言基础的人士</p>
+</li>
+<li>
+<p>想要从零开始首次探索 Nim 语言的人们</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_这不适合谁">这不适合谁？</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>拥有丰富编程经验的人士：其他更高级的教程可能更适合您。可参阅 <a href="https://nim-lang.org/docs/tut1.html">Official Tutorial</a> 或 <a href="https://nim-by-example.github.io/">Nim by Example</a>。</p>
+</li>
+<li>
+<p>已掌握 Nim 语言的人士（欢迎协助完善本教程）</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_如何使用本教程">如何使用本教程？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>本教程旨在向你介绍编程基础及Nim语法，以便你能更轻松地跟进其他教程和/或自行深入探索。</p>
+</div>
+<div class="paragraph">
+<p>与其仅阅读文本内容，最佳方式是亲自尝试、修改示例、构思自己的例子并保持好奇心。某些章节末尾的练习不容忽视——切勿跳过。</p>
+</div>
+<div class="paragraph">
+<p>若需进一步理解教程内容或完成练习，你随时可在 <a href="https://forum.nim-lang.org/">Nim 论坛</a>、 <a href="https://gitter.im/nim-lang/Nim">Nim Gitter 频道</a> , <a href="https://discordapp.com/invite/ezDFDw2">Discord server</a> 、或  Nim&#8217;s IRC channel on freenode #nim 寻求帮助。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_译者注">译者注</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>本文档归属于 <a href="https://github.com/sakuraflows/nim-basics-chs">nim-basics-chs</a>项目，文档的所有内容默认均为机翻，如有勘误及补充，欢迎在 <a href="https://github.com/sakuraflows/nim-basics-chs/issues">issues</a> 提出！</p>
+</div>
+<div class="paragraph">
+<p>在线浏览： <a href="https://sakuraflows.github.io/nim-basics-chs/">Nim basics 中文文档</a></p>
+</div>
+<div class="paragraph">
+<p>nim是一门正在快速迭代的新兴程序语言，因此本文档中的内容不免存在过时情况，请根据自己的实际情况按需阅读和学习。</p>
+</div>
+</div>
+</div>
+<h1 id="_安装指南" class="sect0">安装指南</h1>
+<div class="sect1">
+<h2 id="_安装_nim">安装 Nim</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nim为三大主流操作系统提供了现成的发行版，安装 Nim 时有多种选择方案。</p>
+</div>
+<div class="paragraph">
+<p>您可以按照  <a href="https://nim-lang.org/install.html">官方安装流程</a> 来安装最新的稳定版本，或者使用名为 <a href="https://github.com/nim-lang/choosenim">choosenim</a> 的工具——如果您对最新功能和修复感兴趣，它能帮助您轻松切换稳定版和开发版。</p>
+</div>
+<div class="paragraph">
+<p>无论选择哪种方式，只需按照对应链接中的安装说明操作，Nim 即可完成安装。我们将在后续章节中验证安装是否成功。</p>
+</div>
+<div class="paragraph">
+<p>若您使用 Linux 系统，您的发行版很可能已通过包管理器收录 Nim。</p>
+</div>
+<div class="paragraph">
+<p>若采用以上方式安装，请确保获取的是最新版本（可参照官网确认最新版本号），否则请通过上述两种方法之一进行安装。</p>
+</div>
+<div class="paragraph">
+<p>在本教程中，我们将使用稳定版本。
+最初，本教程是为 Nim 0.19（2018 年 9 月发布）编写的，它应该适用于任何更新的版本，包括 Nim 1.x 和 Nim 2.x。
+（译者注：截止到2025-06-13，nim官网展示的安装版本是2.2.4。有消息称nim3作为实验分支正在开发中）</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_安装其他工具">安装其他工具</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>你可以在任何文本编辑器中编写Nim代码，然后通过终端进行编译和运行。如果需要语法高亮和代码补全功能，主流代码编辑器都有提供这些特性的插件。</p>
+</div>
+<div class="paragraph">
+<p>大多数 Nim 用户偏好使用  <a href="https://code.visualstudio.com/">VS Code</a> ,搭配 <a href="https://marketplace.visualstudio.com/items?itemName=NimLang.nimlang">Nim extension</a> 扩展插件实现语法高亮与代码补全，并安装 <a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner">Code Runner extension</a> 扩展以实现快速编译运行。</p>
+</div>
+<div class="paragraph">
+<p>The author personally uses <a href="https://neovim.io/">NeoVim</a> editor, with <a href="https://github.com/alaviss/nim.nvim">this plugin</a> which provides additional features like syntax highlighting and code completion.</p>
+</div>
+<div class="paragraph">
+<p>如果您使用的是其他代码编辑器，请参阅 <a href="https://github.com/nim-lang/Nim/wiki/Editor-Support">the wiki</a> 以获取可用的编辑器支持。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_测试安装">测试安装</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>为了检查安装是否成功，我们将编写一个传统上用作入门示例的程序： <a href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">Hello World</a>.</p>
+</div>
+<div class="paragraph">
+<p>在 Nim 中打印（即在屏幕上显示；而非通过打印机打印在纸上）短语 <code>Hello World!</code> 非常简单，且不需要任何模板代码。</p>
+</div>
+<div class="paragraph">
+<p>In a new text file called e.g. <code>helloworld.nim</code> we need to write just one line of code:</p>
+</div>
+<div class="listingblock">
+<div class="title">helloworld.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="n">echo</span> <span class="s">"Hello World!"</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+要打印的短语必须跟在 <code>echo</code> 命令之后，并且必须用双引号（ <code>"</code> ）括起来。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>首先我们需要编译程序，然后运行它看看是否按预期工作。</p>
+</div>
+<div class="paragraph">
+<p>在文件所在的目录中打开终端（在 Linux 系统中，右键点击文件管理器中的目录，可以选择“在此处打开终端”；在 Windows 系统中，需按住 Shift 键并右键点击，才能获取打开命令行的菜单选项）。</p>
+</div>
+<div class="paragraph">
+<p>我们在终端中输入以下命令来编译程序:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="terminal"><span class="go">nim c helloworld.nim</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>编译成功后，我们就可以运行程序了。
+在Linux系统中，我们可以在终端输入`./helloworld`来运行程序，而在Windows系统上则需输入`helloworld.exe`。</p>
+</div>
+<div class="paragraph">
+<p>还有一种可能，只需一个命令即可同时编译和运行程序。
+我们需要输入：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="terminal"><span class="go">nim c -r helloworld.nim</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>c</code> 告诉 Nim 编译该文件，而 <code>-r</code> 则指示它立即运行该文件。
+要查看所有编译器选项，请在终端中输入 <code>nim --help</code> 。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>如果你使用的是之前提到的带有 Code Runner 扩展的 VSCode，只需按下 <code>Ctrl+Alt+N</code> ，你的文件就会被编译并运行。</p>
+</div>
+<div class="paragraph">
+<p>无论你选择哪种方式运行程序，稍等片刻后，在输出窗口（或终端）中你应该会看到：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">Hello World!</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>恭喜，你已经成功运行了你的第一个Nim程序！</p>
+</div>
+<div class="paragraph">
+<p>现在你已经学会了如何在屏幕上显示内容（使用 <code>echo</code> 命令）、编译程序（在终端输入 <code>nim c programName.nim</code> ）以及运行程序（有多种方式）。</p>
+</div>
+<div class="paragraph">
+<p>现在我们可以开始探索基本元素，这些元素将帮助我们编写简单的 Nim 程序。</p>
+</div>
+</div>
+</div>
+<h1 id="_命名值naming_values" class="sect0">命名值(Naming values)</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>在编程中，为程序中的值赋予名称通常有助于我们追踪和管理数据。
+例如，当向用户询问其姓名时，我们希望存储该姓名以便后续使用，避免每次需要进行相关计算时反复询问。</p>
+</div>
+<div class="paragraph">
+<p>在示例 <code>pi = 3.14</code> 中，名称 <code>pi</code> 与值 <code>3.14</code> 相关联。
+根据经验可知，变量 <code>pi</code> 的类型为（十进制）数字。</p>
+</div>
+<div class="paragraph">
+<p>Another example would be <code>firstName = Alice</code>, where <code>firstName</code> is the name of a variable with the value <code>Alice</code>.
+We would say that the type of this variable is a word.</p>
+</div>
+<div class="paragraph">
+<p>编程语言中的机制与此类似。
+这些名称分配包含它们的名称(<em>name</em>)、值(<em>value</em>)和类型(<em>type</em>)三个要素。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_变量声明variable_declaration">变量声明(Variable declaration)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nim 是一种静态类型( <a href="https://en.wikipedia.org/wiki/Type_system#STATIC">statically typed</a> )编程语言，这意味着在使用值之前需要声明其赋值类型。（译者注：其实nim也可以自动推理，有的情况下无需声明。）</p>
+</div>
+<div class="paragraph">
+<p>在Nim中，我们还会区分可以改变或可变的值与不可变的值(mutate)，但这一点稍后再详述。</p>
+</div>
+<div class="paragraph">
+<p>我们可以使用 <code>var</code> 关键字声明一个变量（即可变赋值），只需通过以下语法指定其名称和类型（值可以稍后添加）：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">:</span> <span class="o">&lt;</span><span class="k">type</span><span class="o">&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如果我们已经知道它的值，可以立即声明一个变量并为其赋值：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span><span class="p">:</span> <span class="o">&lt;</span><span class="k">type</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+尖括号（ <code>&lt;&gt;</code> ）用于表示可以更改的内容.<br>
+所以 <code>&lt;name&gt;</code> 并非字面意义上的尖括号内的单词 <code>name</code> ，而是指代任意名称。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Nim 还具备类型推断( <a href="https://en.wikipedia.org/wiki/Type_inference">type inference</a> )能力：编译器能根据赋值自动推断变量类型，无需显式声明。
+我们将在下一章深入探讨各种类型。</p>
+</div>
+<div class="paragraph">
+<p>因此我们可以像这样不指定显式类型来声明变量:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>在 Nim 中，一个示例如下:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span> <span class="n">a</span><span class="p">:</span> <span class="kt">int</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="k">var</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">7</span>   <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>变量 <code>a</code> 的类型为 <code>int</code> （整数），未显式设置值。(with no value explicitly set.)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>变量 <code>b</code> 的值为 <code>7</code> ，其类型被自动推断为整数。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>在命名时，选择对程序有意义的名称非常重要。
+简单地命名为 <code>a</code> 、 <code>b</code> 、 <code>c</code> 等很快就会变得混乱。
+名称中不能使用空格，因为这会将其分割成两部分。
+因此，如果你选择的名称由多个单词组成，通常的做法是使用 <code>camelCase</code> 风格书写（注意名称的首字母应为小写）。</p>
+</div>
+<div class="paragraph">
+<p>但请注意，Nim对大小写和下划线不敏感，这意味着 <code>helloWorld</code> 和 <code>hello_world</code> 会被视为相同的名称。
+唯一的例外是首字符，它对大小写敏感。
+名称中还可以包含数字和其他 UTF-8 字符，甚至可以使用表情符号（如果你愿意的话），但请记住，你和其他人可能需要输入这些字符。</p>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>无需为每个变量单独输入 <code>var</code>，可以在同一个 <code>var</code> 块中声明多个变量（类型不必相同）。
+在 Nim 中，块是指具有相同缩进（首字符前空格数相同）的代码部分，默认缩进级别为两个空格。
+在 Nim 程序中，此类块随处可见，不仅用于命名赋值。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">11</span>
+  <span class="n">d</span> <span class="o">=</span> <span class="s">"Hello"</span>
+  <span class="n">e</span> <span class="o">=</span> <span class="sc">'!'</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+在 Nim 中不允许使用制表符进行缩进.<br>
+你可以设置代码编辑器将按下 Tab 转换为任意数量的空格.<br>
+在 VS Code 中，默认设置是将 <code>Tab</code> 转换为四个空格。
+这可以通过在设置中（ <code>Ctrl+,</code> ）配置 <code>"editor.tabSize": 2</code> 轻松覆盖。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>如前所述，变量是可变的，即:它们的值可以（多次）改变，但变量的类型必须与声明时保持一致。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span> <span class="n">f</span> <span class="o">=</span> <span class="mi">7</span>           <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="n">f</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span>              <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="n">f</span> <span class="o">=</span> <span class="mi">19</span>
+<span class="n">f</span> <span class="o">=</span> <span class="s">"Hello"</span> <span class="c"># error </span><i class="conum" data-value="3"></i><b>(3)</b> <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>变量 <code>f</code> 的初始值为 <code>7</code> ，其类型被推断为 <code>int</code> 。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>首先将 <code>f</code> 的值更改为 <code>-3</code> ，然后再改为 <code>19</code> 。这两个值都是整数，与原值类型相同。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>尝试将 <code>f</code> 的值更改为 "Hello" 时会产生错误，因为 <code>Hello</code> 不是数字，这将导致 <code>f</code> 的类型从整数变为字符串。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code># error</code> 是注释。Nim代码中的注释写在 <code>#</code> 字符之后。同一行中该字符后的所有内容都会被忽略。</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_不可变赋值immutable_assignment">不可变赋值(Immutable assignment)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>与使用 var 关键字声明的变量不同，Nim中还存在另外两种赋值类型，其值不可更改，一种是用 <code>const</code> 关键字声明的，另一种则是用 <code>let</code> 关键字声明的。</p>
+</div>
+<div class="sect2">
+<h3 id="_常量const">常量(Const)</h3>
+<div class="paragraph">
+<p>使用 <code>const</code> 关键字声明的不可变赋值，其值必须在编译时（程序运行前）已知。</p>
+</div>
+<div class="paragraph">
+<p>例如，我们可以将重力加速度声明为 <code>const g = 9.81</code> 或将圆周率声明为 <code>const pi = 3.14</code> ，因为我们预先知道它们的值，并且这些值在程序执行过程中不会改变。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">const</span> <span class="n">g</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">g</span> <span class="o">=</span> <span class="o">-</span><span class="mi">27</span>         <span class="c"># error </span><i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="k">var</span> <span class="n">h</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="k">const</span> <span class="n">i</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="mi">7</span> <span class="c"># error </span><i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>常量的值不可更改。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>变量 <code>h</code> 在编译时不会被求值（它是一个变量，其值在程序执行过程中可能改变），因此常量 <code>i</code> 的值在编译时无法确定，这将引发错误。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>在某些编程语言中，常量的名称通常以 <code>ALL_CAPS</code> 书写。
+而在Nim中，常量的书写方式与其他变量无异。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_let">Let</h3>
+<div class="paragraph">
+<p>使用 <code>let</code> 声明的不可变赋值不需要在编译时已知，它们的值可以在程序执行的任何时间设置，但一旦设置，它们的值就不能更改。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">35</span>
+<span class="n">j</span> <span class="o">=</span> <span class="o">-</span><span class="mi">27</span> <span class="c"># error </span><i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="k">var</span> <span class="n">k</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5</span>
+<span class="k">let</span> <span class="n">l</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">7</span>   <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>不可变对象的值不能被改变。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>与上面的 <code>const</code> 示例不同，这个可以工作。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>在实际应用中，你会更频繁地见到或使用 <code>let</code> 而非 <code>const</code> 。</p>
+</div>
+<div class="paragraph">
+<p>虽然你可以用 <code>var</code> 处理所有情况，但默认应选择 <code>let</code> 。
+仅对那些需要被修改的变量使用 <code>var</code> 。</p>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_基本数据类型basic_data_types" class="sect0">基本数据类型(Basic data types)</h1>
+<div class="sect1">
+<h2 id="_整数_integers">整数 Integers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>如前一章所述，整数是没有小数部分且不带小数点的数字。</p>
+</div>
+<div class="paragraph">
+<p>例如: <code>32</code> , <code>-174</code> , <code>0</code> , <code>10_000_000</code> 都是整数。注意，我们可以使用 ` _ ` 作为千位分隔符，使较大的数字更易读（比如写成 <code>10_000_000</code> 比 <code>10000000</code> 更容易看出我们指的是1000万）。</p>
+</div>
+<div class="paragraph">
+<p>常见的数学运算符—-—加法（ <code>+</code> ）、减法（ <code>-</code> ）、乘法（ <code>*</code> ）和除法（ <code>/</code> ）—-—其行为与预期一致。前三种运算总是产生整数结果，而两个整数相除总会得到一个浮点数（带小数点的数），即使两数能够整除也不例外。</p>
+</div>
+<div class="paragraph">
+<p>整数除法（丢弃小数部分的除法）可以通过 <code>div</code> 运算符实现。如果对整数除法的余数（模数）感兴趣，可以使用 <code>mod</code> 运算符。
+这两个运算的结果始终是整数。</p>
+</div>
+<div class="listingblock">
+<div class="title">integers.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="mi">11</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">echo</span> <span class="s">"a + b = "</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">echo</span> <span class="s">"a - b = "</span><span class="p">,</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+<span class="n">echo</span> <span class="s">"a * b = "</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+<span class="n">echo</span> <span class="s">"a / b = "</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+<span class="n">echo</span> <span class="s">"a div b = "</span><span class="p">,</span> <span class="n">a</span> <span class="ow">div</span> <span class="n">b</span>
+<span class="n">echo</span> <span class="s">"a mod b = "</span><span class="p">,</span> <span class="n">a</span> <span class="ow">mod</span> <span class="n">b</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>echo</code> 命令会将紧随其后由逗号分隔的所有内容打印到屏幕上。在本例中，它首先打印字符串 <code>a + b =</code> ，然后紧接着在同一行打印表达式 <code>a + b</code> 的结果。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>我们可以编译并运行上述代码，输出结果应为:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">a + b = 15
+a - b = 7
+a * b = 44
+a / b = 2.75
+a div b = 2
+a mod b = 3</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_浮点数_floats">浮点数 Floats</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>浮点数，简称 floats，是实数的一种 <a href="https://en.wikipedia.org/wiki/Floating-point_arithmetic">近似表示</a> 。</p>
+</div>
+<div class="paragraph">
+<p>例如： <code>2.73</code> , <code>-3.14</code> , <code>5.0</code> , <code>4e7</code> 是浮点数。</p>
+</div>
+<div class="paragraph">
+<p>注意，对于较大的浮点数，我们可以使用科学计数法，其中 e 后面的数字是指数。在这个例子中， <code>4e7</code> 是一种表示 <code>4*10^7</code> 的记法。</p>
+</div>
+<div class="paragraph">
+<p>我们也可以在两个浮点数之间使用四种基本数学运算。运算符 div 和 mod 未针对浮点数定义。</p>
+</div>
+<div class="listingblock">
+<div class="title">floats.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="mf">6.75</span>
+  <span class="n">d</span> <span class="o">=</span> <span class="mf">2.25</span>
+
+<span class="n">echo</span> <span class="s">"c + d = "</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="n">d</span>
+<span class="n">echo</span> <span class="s">"c - d = "</span><span class="p">,</span> <span class="n">c</span> <span class="o">-</span> <span class="n">d</span>
+<span class="n">echo</span> <span class="s">"c * d = "</span><span class="p">,</span> <span class="n">c</span> <span class="o">*</span> <span class="n">d</span>
+<span class="n">echo</span> <span class="s">"c / d = "</span><span class="p">,</span> <span class="n">c</span> <span class="o">/</span> <span class="n">d</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">c + d = 9.0  <i class="conum" data-value="1"></i><b>(1)</b>
+c - d = 4.5
+c * d = 15.1875
+c / d = 3.0  <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>请注意，在加法和除法的例子中，即使我们得到的数字没有小数部分，结果仍然是浮点类型。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>数学运算的优先级符合预期：乘法和除法的优先级高于加法和减法。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="n">echo</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span>
+<span class="n">echo</span> <span class="mi">24</span> <span class="o">-</span> <span class="mi">8</span> <span class="o">/</span> <span class="mi">4</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">14
+22.0</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_浮点数和整数的转换">浮点数和整数的转换</h3>
+<div class="paragraph">
+<p>在Nim中，不同数值类型的变量之间无法进行数学运算，否则会产生错误：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span>
+  <span class="n">e</span> <span class="o">=</span> <span class="mi">5</span>
+  <span class="n">f</span> <span class="o">=</span> <span class="mf">23.456</span>
+
+<span class="n">echo</span> <span class="n">e</span> <span class="o">+</span> <span class="n">f</span>   <span class="c"># error</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>变量的值需要转换为同一类型。
+转换过程很简单：要转换为整数，我们使用 <code>int</code> 函数；要转换为浮点数，则使用 <code>float</code> 函数。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span>
+  <span class="n">e</span> <span class="o">=</span> <span class="mi">5</span>
+  <span class="n">f</span> <span class="o">=</span> <span class="mf">23.987</span>
+
+<span class="n">echo</span> <span class="kt">float</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>      <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">echo</span> <span class="kt">int</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>        <i class="conum" data-value="2"></i><b>(2)</b>
+
+<span class="n">echo</span> <span class="kt">float</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span>  <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="n">echo</span> <span class="n">e</span> <span class="o">+</span> <span class="kt">int</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>    <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>打印一个整数的 <code>float</code> 形式。（ <code>e</code> 仍为整数类型）</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>打印浮点数`f`的 <code>int</code> 形式。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>两个操作数均为浮点数，可以进行加法运算。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>两个操作数都是整数，可以相加。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">5.0
+23
+28.987
+28</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+使用 <code>int</code> 函数将浮点数转换为整数时不会执行四舍五入操作，数字会直接舍弃小数部分。<br>
+要进行四舍五入运算，我们必须调用另一个函数，但在此之前需要先了解一些关于如何使用 Nim 的基础知识。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_字符_characters">字符 Characters</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>char</code> 类型用于表示单个 <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> 字符。</p>
+</div>
+<div class="paragraph">
+<p>字符写在两个单引号之间（ <code>'</code> ）。
+字符可以是字母、符号或单个数字。
+多个数字或多个字母会导致错误。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span>
+  <span class="n">h</span> <span class="o">=</span> <span class="sc">'z'</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="sc">'+'</span>
+  <span class="n">j</span> <span class="o">=</span> <span class="sc">'2'</span>
+  <span class="n">k</span> <span class="o">=</span> <span class="sc">'35'</span> <span class="c"># error</span>
+  <span class="n">l</span> <span class="o">=</span> <span class="sc">'xy'</span> <span class="c"># error</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_字符串_strings">字符串 Strings</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>字符串可以被描述为一系列字符。
+其内容写在两个双引号之间（ <code>"</code> ）。</p>
+</div>
+<div class="paragraph">
+<p>我们可能认为字符串就是单词，但它们可以包含多个单词、一些符号(译者注：可以是utf-8字符)或数字。</p>
+</div>
+<div class="listingblock">
+<div class="title">strings.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span>
+  <span class="n">m</span> <span class="o">=</span> <span class="s">"word"</span>
+  <span class="n">n</span> <span class="o">=</span> <span class="s">"A sentence with interpunction."</span>
+  <span class="n">o</span> <span class="o">=</span> <span class="s">""</span>    <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="n">p</span> <span class="o">=</span> <span class="s">"32"</span>  <i class="conum" data-value="2"></i><b>(2)</b>
+  <span class="n">q</span> <span class="o">=</span> <span class="s">"!"</span>   <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>一个空字符串</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>这不是数字（整数）。它在双引号内，因此是一个字符串。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>尽管这只是一个字符，但它不是 char 类型，因为它被包含在双引号内。</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_特殊字符_special_characters">特殊字符 Special characters</h3>
+<div class="paragraph">
+<p>如果我们尝试打印以下字符串：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="n">echo</span> <span class="s">"some</span><span class="se">\n</span><span class="s">im</span><span class="se">\t</span><span class="s">ips"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>结果可能会让我们感到惊讶：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">some
+im	ips</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这是因为有几个字符具有特殊含义。
+它们通过在字符前添加转义字符 <code>\</code> 来使用。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>\n</code> 是换行符</p>
+</li>
+<li>
+<p><code>\t</code> 是一个制表符</p>
+</li>
+<li>
+<p><code>\\</code> 是一个反斜杠（因为一个 <code>\</code> 被用作转义字符）</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>如果我们想按照原样打印上面的示例，那么有两种可能选择：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>使用 <code>\\</code> 而不是 <code>\</code> 来打印反斜杠，或者:</p>
+</li>
+<li>
+<p>使用原始字符串，其语法为 <code>r"…​"</code> （在第一个引号前紧接字母 <code>r</code> ），其中没有转义字符，也没有特殊含义：所有内容都会原样输出。</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="n">echo</span> <span class="s">"some</span><span class="se">\\</span><span class="s">nim</span><span class="se">\\</span><span class="s">tips"</span>
+<span class="n">echo</span> <span class="s">r"some\nim\tips"</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">some\nim\tips
+some\nim\tips</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>除了上面列出的特殊字符外，还有更多特殊字符，它们都可以在 Nim 手册中找到. (<a href="https://nim-lang.org/docs/manual.html#lexical-analysis-string-literals">Nim manual</a>)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_字符串连接_string_concatenation">字符串连接 String concatenation</h3>
+<div class="paragraph">
+<p>Nim中的字符串是可变的，意味着它们的内容可以改变。
+通过 <code>add</code> 函数，我们可以向现有字符串添加（或追加）另一个字符串或字符。如果我们不想改变原始字符串，也可以使用 <code>&amp;</code> 运算符来连接（拼接）字符串，这会返回一个新的字符串。</p>
+</div>
+<div class="listingblock">
+<div class="title">stringConcat.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span>                     <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="n">p</span> <span class="o">=</span> <span class="s">"abc"</span>
+  <span class="n">q</span> <span class="o">=</span> <span class="s">"xy"</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="sc">'z'</span>
+
+<span class="n">p</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s">"def"</span><span class="p">)</span>            <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="n">echo</span> <span class="s">"p is now: "</span><span class="p">,</span> <span class="n">p</span>
+
+<span class="n">q</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>                <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="n">echo</span> <span class="s">"q is now: "</span><span class="p">,</span> <span class="n">q</span>
+
+<span class="n">echo</span> <span class="s">"concat: "</span><span class="p">,</span> <span class="n">p</span> <span class="o">&amp;</span> <span class="n">q</span>  <i class="conum" data-value="4"></i><b>(4)</b>
+
+<span class="n">echo</span> <span class="s">"p is still: "</span><span class="p">,</span> <span class="n">p</span>
+<span class="n">echo</span> <span class="s">"q is still: "</span><span class="p">,</span> <span class="n">q</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>如果我们计划修改字符串，它们应该被声明为 <code>var</code> 。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>添加另一个字符串会就地修改现有字符串 <code>p</code> ，改变其值。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>我们也可以向字符串添加一个 <code>char</code> 。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>连接两个字符串会产生一个新的字符串，而不会修改原始字符串。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">p is now: abcdef
+q is now: xyz
+concat: abcdefxyz
+p is still: abcdef
+q is still: xyz</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_布尔型_boolean">布尔型 Boolean</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>一个布尔型（Boolean）（或简称 bool ）数据类型只能有两个值： <code>true</code> 或 <code>false</code> 。布尔值通常用于控制流程（参见<a href="#_控制流_control_flow">下一章</a>），并且常常是关系运算符的运算结果。</p>
+</div>
+<div class="paragraph">
+<p>The usual naming convention for boolean variables is to write them as a simple yes/no (true/false) question, e.g. <code>isEmpty</code>, <code>isFinished</code>, <code>isMoving</code>, etc.
+布尔变量的命名惯例是将其写成简单的 yes/no（真/假）问题形式，例如 <code>isEmpty</code> 、 <code>isFinished</code> 、 <code>isMoving</code> 等。</p>
+</div>
+<div class="sect2">
+<h3 id="_关系运算符_relational_operators">关系运算符 Relational operators</h3>
+<div class="paragraph">
+<p>关系运算符测试两个实体之间的关系，这两个实体必须是可比较的。</p>
+</div>
+<div class="paragraph">
+<p>要比较两个值是否相同，使用 <code>==</code> （两个等号）。
+不要将其与 <code>=</code> 混淆，后者(即“=”)如我们之前所见用于赋值。</p>
+</div>
+<div class="paragraph">
+<p>以下是针对整数定义的所有关系运算符:</p>
+</div>
+<div class="listingblock">
+<div class="title">relationalOperators.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span>
+  <span class="n">g</span> <span class="o">=</span> <span class="mi">31</span>
+  <span class="n">h</span> <span class="o">=</span> <span class="mi">99</span>
+
+<span class="n">echo</span> <span class="s">"g is greater than h: "</span><span class="p">,</span> <span class="n">g</span> <span class="o">&gt;</span> <span class="n">h</span>
+<span class="n">echo</span> <span class="s">"g is smaller than h: "</span><span class="p">,</span> <span class="n">g</span> <span class="o">&lt;</span> <span class="n">h</span>
+<span class="n">echo</span> <span class="s">"g is equal to h: "</span><span class="p">,</span> <span class="n">g</span> <span class="o">==</span> <span class="n">h</span>
+<span class="n">echo</span> <span class="s">"g is not equal to h: "</span><span class="p">,</span> <span class="n">g</span> <span class="o">!=</span> <span class="n">h</span>
+<span class="n">echo</span> <span class="s">"g is greater or equal to h: "</span><span class="p">,</span> <span class="n">g</span> <span class="o">&gt;=</span> <span class="n">h</span>
+<span class="n">echo</span> <span class="s">"g is smaller or equal to h: "</span><span class="p">,</span> <span class="n">g</span> <span class="o">&lt;=</span> <span class="n">h</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">g is greater than h: false
+g is smaller than h: true
+g is equal to h: false
+g is not equal to h: true
+g is greater or equal to h: false
+g is smaller or equal to h: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>我们也可以比较字符和字符串：</p>
+</div>
+<div class="listingblock">
+<div class="title">relationalOperators.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="sc">'a'</span>
+  <span class="n">j</span> <span class="o">=</span> <span class="sc">'d'</span>
+  <span class="n">k</span> <span class="o">=</span> <span class="sc">'Z'</span>
+
+<span class="n">echo</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span>
+<span class="n">echo</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="k">let</span>
+  <span class="n">m</span> <span class="o">=</span> <span class="s">"axyb"</span>
+  <span class="n">n</span> <span class="o">=</span> <span class="s">"axyz"</span>
+  <span class="n">o</span> <span class="o">=</span> <span class="s">"ba"</span>
+  <span class="n">p</span> <span class="o">=</span> <span class="s">"ba "</span>
+
+<span class="n">echo</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="n">n</span>  <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="n">echo</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">o</span>  <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="n">echo</span> <span class="n">o</span> <span class="o">&lt;</span> <span class="n">p</span>  <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>所有大写（译者注：应当是ASCII中的英文字符）字母都排在小写字母之前。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>字符串比较是按字符逐个进行的。前三个字符相同，字符 <code>b</code> 小于字符 <code>z</code> 。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>如果字符串的字符不完全相同，比较时长度并不重要。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>较短的字符串比长的字符串小。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">true
+false
+true
+true
+true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_逻辑运算符_logical_operators">逻辑运算符 Logical operators</h3>
+<div class="paragraph">
+<p>Logical operators are used to test the truthiness of an expression consisting of one or more boolean values.</p>
+</div>
+<div class="paragraph">
+<p>逻辑运算符用于测试由一个或多个布尔值组成的表达式的真值。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>逻辑 <code>and</code> 仅在两个成员都为 <code>true</code> 时返回 <code>true</code></p>
+</li>
+<li>
+<p>逻辑 <code>or</code> 在至少有一个成员为 <code>true</code> 时返回 <code>true</code></p>
+</li>
+<li>
+<p>逻辑 <code>xor</code> 在一个成员为真而另一个为假时返回 <code>true</code></p>
+</li>
+<li>
+<p>逻辑运算符 <code>not</code> 会反转其操作数的真值：将 <code>true</code> 变为 <code>false</code>，反之亦然（它是唯一一个只需要一个操作数的逻辑运算符）</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">logicalOperators.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="n">echo</span> <span class="s">"T and T: "</span><span class="p">,</span> <span class="kp">true</span> <span class="ow">and</span> <span class="kp">true</span>
+<span class="n">echo</span> <span class="s">"T and F: "</span><span class="p">,</span> <span class="kp">true</span> <span class="ow">and</span> <span class="kp">false</span>
+<span class="n">echo</span> <span class="s">"F and F: "</span><span class="p">,</span> <span class="kp">false</span> <span class="ow">and</span> <span class="kp">false</span>
+<span class="n">echo</span> <span class="s">"---"</span>
+<span class="n">echo</span> <span class="s">"T or T: "</span><span class="p">,</span> <span class="kp">true</span> <span class="ow">or</span> <span class="kp">true</span>
+<span class="n">echo</span> <span class="s">"T or F: "</span><span class="p">,</span> <span class="kp">true</span> <span class="ow">or</span> <span class="kp">false</span>
+<span class="n">echo</span> <span class="s">"F or F: "</span><span class="p">,</span> <span class="kp">false</span> <span class="ow">or</span> <span class="kp">false</span>
+<span class="n">echo</span> <span class="s">"---"</span>
+<span class="n">echo</span> <span class="s">"T xor T: "</span><span class="p">,</span> <span class="kp">true</span> <span class="ow">xor</span> <span class="kp">true</span>
+<span class="n">echo</span> <span class="s">"T xor F: "</span><span class="p">,</span> <span class="kp">true</span> <span class="ow">xor</span> <span class="kp">false</span>
+<span class="n">echo</span> <span class="s">"F xor F: "</span><span class="p">,</span> <span class="kp">false</span> <span class="ow">xor</span> <span class="kp">false</span>
+<span class="n">echo</span> <span class="s">"---"</span>
+<span class="n">echo</span> <span class="s">"not T: "</span><span class="p">,</span> <span class="ow">not</span> <span class="kp">true</span>
+<span class="n">echo</span> <span class="s">"not F: "</span><span class="p">,</span> <span class="ow">not</span> <span class="kp">false</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">T and T: true
+T and F: false
+F and F: false
+---
+T or T: true
+T or F: true
+F or F: false
+---
+T xor T: false
+T xor F: true
+F xor F: false
+---
+not T: false
+not F: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>关系运算符和逻辑运算符可以组合在一起形成更复杂的表达式.</p>
+</div>
+<div class="paragraph">
+<p>例如: <code>(5 &lt; 7) and (11 + 9 == 32 - 2*6)</code> 将变为 <code>true and (20 == 20)</code> ，接着变为 <code>true and true</code> ，最终得到的结果是 <code>true</code> 。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_回顾">回顾</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>这是本教程中最长的一章，我们涵盖了大量内容。请花时间逐一了解每种数据类型，并尝试用它们进行各种操作实验。</p>
+</div>
+<div class="paragraph">
+<p>这些类型(types)初看可能像是一种限制，但它们能让 Nim 编译器既提升代码运行速度，又确保你不会无意中犯错——这对大型代码库尤为有益。</p>
+</div>
+<div class="paragraph">
+<p>现在你已经了解了基本数据类型及其相关操作，这些知识足以在Nim中进行一些简单的计算。
+通过完成以下练习来测试你的掌握程度。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_练习">练习</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>创建一个不可变变量，包含你的年龄（以年为单位）。打印你的年龄对应的天数。（1 年 = 365 天）</p>
+</li>
+<li>
+<p>检查你的年龄是否能被 3 整除。（提示：使用 <code>mod</code> ）</p>
+</li>
+<li>
+<p>创建一个包含你身高（厘米）的不可变变量，并以英寸为单位打印你的身高。（1 英寸=2.54 厘米）</p>
+</li>
+<li>
+<p>一根管子的直径为 3/8 英寸。请用厘米表示该直径。</p>
+</li>
+<li>
+<p>创建一个不可变变量存储你的名字，再创建另一个存储你的姓氏。通过拼接前两个变量生成变量 <code>fullName</code> ，注意中间要加一个空格。打印你的全名。</p>
+</li>
+<li>
+<p>爱丽丝(Alice)每 15 天赚 400 美元。鲍勃每小时赚 3.14 美元，每天工作 8 小时，每周工作 7 天。30 天后，爱丽丝赚的钱比鲍勃多吗？（提示：使用关系运算符）</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<h1 id="_控制流_control_flow" class="sect0">控制流 Control flow</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>到目前为止，在我们的程序中，每一行代码都会在某个时刻执行。控制流语句允许我们编写仅在满足某些布尔条件时才会执行的代码部分。</p>
+</div>
+<div class="paragraph">
+<p>If we think of our program as a road we can think of control flow as various branches, and we pick our path depending on some condition.
+For example, we will buy eggs only <em>if</em> their price is less than some value.
+如果我们将程序想象成一条道路，那么控制流就像是各种分支，我们根据某些条件来选择路径。例如，只有当鸡蛋的价格低于某个值时，我们才会购买。<em>或者</em>，如果下雨了，我们会带伞，否则（else）我们会带太阳镜。</p>
+</div>
+<div class="paragraph">
+<p>用伪代码( <a href="https://en.wikipedia.org/wiki/Pseudocode">pseudocode</a>)表示，这两个例子看起来是这样的：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">if</span> <span class="n">eggPrice</span> <span class="o">&lt;</span> <span class="n">wantedPrice</span><span class="p">:</span>
+  <span class="n">buyEggs</span>
+
+<span class="k">if</span> <span class="n">isRaining</span><span class="p">:</span>
+  <span class="n">bring</span> <span class="n">umbrella</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">bring</span> <span class="n">sunglasses</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Nim的语法非常相似，如下所示。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_if_语句">If 语句</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>如上所示的 if 语句是分支程序的最简单方式。</p>
+</div>
+<div class="paragraph">
+<p>编写 if 语句的 Nim 语法是：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">if</span> <span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span><span class="p">:</span>     <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="o">&lt;</span><span class="n">indented</span> <span class="k">block</span><span class="o">&gt;</span>  <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>condition（即“某种情况或情形”） 必须是布尔类型：可以是布尔变量，也可以是关系和/或逻辑表达式。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>在 <code>if</code> 行之后所有缩进两个空格的代码行构成同一个代码块，只有当条件为 <code>true</code> 时才会执行。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>if 语句可以嵌套，即在一个 if 代码块内部可以包含另一个 if 语句。</p>
+</div>
+<div class="listingblock">
+<div class="title">if.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="mi">11</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="mi">22</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="mi">999</span>
+
+<span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"a is smaller than b"</span>
+  <span class="k">if</span> <span class="mi">10</span><span class="o">*</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">echo</span> <span class="s">"not only that, a is *much* smaller than b"</span>
+
+<span class="k">if</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">c</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"b is smaller than c"</span>
+  <span class="k">if</span> <span class="mi">10</span><span class="o">*</span><span class="n">b</span> <span class="o">&lt;</span> <span class="n">c</span><span class="p">:</span>  <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="n">echo</span> <span class="s">"not only that, b is *much* smaller than c"</span>
+
+<span class="k">if</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span> <span class="o">&gt;</span> <span class="n">c</span><span class="p">:</span>     <i class="conum" data-value="3"></i><b>(3)</b>
+  <span class="n">echo</span> <span class="s">"a and b are larger than c"</span>
+  <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">100</span> <span class="ow">and</span> <span class="mi">321</span> <span class="o">&gt;</span> <span class="mi">123</span><span class="p">:</span>  <i class="conum" data-value="4"></i><b>(4)</b>
+    <span class="n">echo</span> <span class="s">"did you know that 1 is smaller than 100?"</span>
+    <span class="n">echo</span> <span class="s">"and 321 is larger than 123! wow!"</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>第一个条件为真，第二个为假——内部 <code>echo</code> 未执行。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>两个条件均为真，两行内容都会被打印。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>第一个条件为假——其代码块内的所有行都将被跳过，不会打印任何内容。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>在 <code>if</code> 语句中使用逻辑 <code>and</code> 。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">a is smaller than b
+b is smaller than c
+not only that, b is *much* smaller than c</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_else_否则">Else (否则)</h3>
+<div class="paragraph">
+<p>Else 跟在 if 代码块之后，允许我们编写一段在 if 语句条件不成立时执行的代码分支。</p>
+</div>
+<div class="listingblock">
+<div class="title">else.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span>
+  <span class="n">d</span> <span class="o">=</span> <span class="mi">63</span>
+  <span class="n">e</span> <span class="o">=</span> <span class="mf">2.718</span>
+
+<span class="k">if</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"d is a small number"</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"d is a large number"</span>
+
+<span class="k">if</span> <span class="n">e</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"e is a small number"</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"e is a large number"</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">d is a large number
+e is a small number</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+如果你只想在语句为 <code>false</code> 时执行一个代码块，可以简单地用 <code>not</code> 运算符对条件取反。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_elif">Elif</h3>
+<div class="paragraph">
+<p>Elif 是"else if"的缩写，它使我们能够将多个 if 语句串联在一起。</p>
+</div>
+<div class="paragraph">
+<p>程序测试每一个语句，直到找到一个为真的语句。之后，所有后续语句都会被忽略。</p>
+</div>
+<div class="listingblock">
+<div class="title">elif.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span>
+  <span class="n">f</span> <span class="o">=</span> <span class="mi">3456</span>
+  <span class="n">g</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="k">if</span> <span class="n">f</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"f is smaller than 10"</span>
+<span class="k">elif</span> <span class="n">f</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"f is between 10 and 100"</span>
+<span class="k">elif</span> <span class="n">f</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"f is between 100 and 1000"</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"f is larger than 1000"</span>
+
+<span class="k">if</span> <span class="n">g</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"g is smaller than 1000"</span>
+<span class="k">elif</span> <span class="n">g</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"g is smaller than 100"</span>
+<span class="k">elif</span> <span class="n">g</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"g is smaller than 10"</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">f is larger than 1000
+g is smaller than 1000</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+在 <code>g</code> 的情况下，即使 <code>g</code> 满足所有三个条件，也只会执行第一个分支，自动跳过所有其他分支。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_case情况">Case（情况）</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>case 语句是另一种仅选择多个可能路径之一的方式，类似于带有多个 elif 的 if 语句。
+然而， case 语句不接受多个布尔条件，而是接受具有不同状态的任何值，并为每个可能的值提供一个路径。</p>
+</div>
+<div class="paragraph">
+<p>使用 if-elif 块编写的代码看起来像这样：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"Five!"</span>
+<span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"Seven!"</span>
+<span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"Ten!"</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"unknown number"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>可以使用 case 语句这样写:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">case</span> <span class="n">x</span>
+<span class="k">of</span> <span class="mi">5</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"Five!"</span>
+<span class="k">of</span> <span class="mi">7</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"Seven!"</span>
+<span class="k">of</span> <span class="mi">10</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"Ten!"</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"unknown number"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>与 if 语句不同，case 语句必须覆盖所有可能的情况。如果对某些情况不感兴趣，可以使用 <code>else: discard</code> .</p>
+</div>
+<div class="listingblock">
+<div class="title">case.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span> <span class="n">h</span> <span class="o">=</span> <span class="sc">'y'</span>
+
+<span class="k">case</span> <span class="n">h</span>
+<span class="k">of</span> <span class="sc">'x'</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"You've chosen x"</span>
+<span class="k">of</span> <span class="sc">'y'</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"You've chosen y"</span>
+<span class="k">of</span> <span class="sc">'z'</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"You've chosen z"</span>
+<span class="k">else</span><span class="p">:</span> <span class="k">discard</span>  <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>尽管我们只对 <code>h</code> 的三个值感兴趣，但必须包含这一行以涵盖所有其他可能的情况（所有其他字符）。没有它，代码将无法编译。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">You've chosen y</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如果多个值需要执行相同的操作，我们也可以为每个分支使用多个值。</p>
+</div>
+<div class="listingblock">
+<div class="title">multipleCase.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="k">case</span> <span class="n">i</span>
+  <span class="k">of</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">echo</span> <span class="s">"i is zero"</span>
+  <span class="k">of</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">:</span>
+    <span class="n">echo</span> <span class="s">"i is odd"</span>
+  <span class="k">of</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">:</span>
+    <span class="n">echo</span> <span class="s">"i is even"</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">echo</span> <span class="s">"i is too large"</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">i is odd</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_循环_loops" class="sect0">循环 Loops</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>循环是另一种控制流结构，它允许我们多次运行某些代码部分。</p>
+</div>
+<div class="paragraph">
+<p>在本章中，我们将介绍两种循环类型：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>for循环(for-loop)：运行已知次数</p>
+</li>
+<li>
+<p>while-loop: 只要满足某些条件就会一直运行</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_for循环for_loop">for循环(For loop)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>for 循环的语法是:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">for</span> <span class="o">&lt;</span><span class="n">loopVariable</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">iterable</span><span class="o">&gt;</span><span class="p">:</span>
+  <span class="o">&lt;</span><span class="n">loop</span> <span class="n">body</span><span class="o">&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>传统上， <code>i</code> 常被用作 <code>loopVariable</code> 名称，但也可以使用其他任何名称。该变量仅在循环内部可用。一旦循环完成，变量的值就会被丢弃。</p>
+</div>
+<div class="paragraph">
+<p><code>iterable</code> 是我们可以遍历的任何对象。在已经提到的类型中，字符串是可迭代对象。（更多可迭代类型将在下一章介绍。）</p>
+</div>
+<div class="paragraph">
+<p>循环体(loop body) 中的所有行在每次循环时都会执行，这使我们能够高效地编写重复的代码部分。</p>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>如果要在Nim中遍历一个（整数）数字范围，语法是 <code>start .. finish</code> ，其中 <code>start</code> 和 <code>finish</code> 是数字。
+这将遍历 <code>start</code> 和 <code>finish</code> 之间的所有数字，包括 <code>start</code> 和 <code>finish</code> 。对于默认的范围可迭代对象， <code>start</code> 需要小于 <code>finish</code> 。</p>
+</div>
+<div class="paragraph">
+<p>如果我们想迭代到一个数字（不包括该数字），可以使用 <code>..&lt;</code> :</p>
+</div>
+<div class="listingblock">
+<div class="title">for1.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="mi">5</span> <span class="p">..</span> <span class="mi">9</span><span class="p">:</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="n">echo</span> <span class="n">n</span>
+
+<span class="n">echo</span> <span class="s">""</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="mi">5</span> <span class="p">..</span><span class="o">&lt;</span> <span class="mi">9</span><span class="p">:</span> <i class="conum" data-value="2"></i><b>(2)</b>
+  <span class="n">echo</span> <span class="n">n</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>使用 <code>..</code> 遍历数字范围——范围的两端都包含在内。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>使用 <code>..&lt;</code> 遍历相同的范围——它会迭代到上限但不包括上限。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">5
+6
+7
+8
+9
+
+5
+6
+7
+8</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如果我们想以不同于1的步长(step size)遍历数字范围，可以使用 <code>countup</code> 。通过 <code>countup</code> 我们可以定义起始值、终止值（包含在范围内）以及步长。</p>
+</div>
+<div class="listingblock">
+<div class="title">for2.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">countup</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="n">echo</span> <span class="n">n</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>从0开始以步长4向上计数至16（包含16）。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">0
+4
+8
+12
+16</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>要遍历一个范围，其中 <code>start</code> 大于 <code>finish</code> ，可以使用一个名为 <code>countdown</code> 的类似函数。
+即使我们在倒计数，步长也必须是正数。</p>
+</div>
+<div class="listingblock">
+<div class="title">for2.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">countdown</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>       <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="n">echo</span> <span class="n">n</span>
+
+<span class="n">echo</span> <span class="s">""</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">countdown</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>  <i class="conum" data-value="2"></i><b>(2)</b>
+  <span class="n">echo</span> <span class="n">n</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>To iterate from a higher to a lower number, we must use <code>countdown</code> (The <code>..</code> operator can only be used when the starting value is smaller than the end value).要从高到低进行迭代，我们必须使用 <code>countdown</code> （ <code>..</code> 运算符只能在起始值小于结束值时使用）。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>即使在"倒计时"(counting down)时，步长也必须是一个正数。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">4
+3
+2
+1
+0
+
+-3
+-5
+-7
+-9</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>由于字符串是可迭代的，我们可以使用 <code>for</code> 循环来遍历字符串中的每个字符（这种迭代有时称为 <code>for-each</code> 循环）。</p>
+</div>
+<div class="listingblock">
+<div class="title">for3.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span> <span class="n">word</span> <span class="o">=</span> <span class="s">"alphabet"</span>
+
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="n">letter</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">a
+l
+p
+h
+a
+b
+e
+t</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如果还需要一个从零开始的迭代计数器，我们可以使用 <code>for &lt;counterVariable&gt;, &lt;loopVariable&gt; in &lt;iterator&gt;:</code> 语法来实现。这在需要遍历一个可迭代对象，同时按相同偏移量访问另一个可迭代对象时非常实用。</p>
+</div>
+<div class="listingblock">
+<div class="title">for3.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+  <span class="n">echo</span> <span class="s">"letter "</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s">" is: "</span><span class="p">,</span> <span class="n">letter</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">letter 0 is: a
+letter 1 is: l
+letter 2 is: p
+letter 3 is: h
+letter 4 is: a
+letter 5 is: b
+letter 6 is: e
+letter 7 is: t</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_while循环_while_loop">while循环 While loop</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>while循环与if语句类似，但只要条件保持为真，它们就会持续执行其代码块。当我们无法预先知道循环将运行多少次时，就会使用它们。</p>
+</div>
+<div class="paragraph">
+<p>我们必须确保循环在某个时刻终止，而不会变成无限循环(<a href="https://en.wikipedia.org/wiki/Infinite_loop">infinite loop</a>.)</p>
+</div>
+<div class="listingblock">
+<div class="title">while.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">while</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span> <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="n">echo</span> <span class="s">"a is: "</span><span class="p">,</span> <span class="n">a</span>
+  <span class="n">inc</span> <span class="n">a</span>         <i class="conum" data-value="2"></i><b>(2)</b>
+
+<span class="n">echo</span> <span class="s">"final value of a: "</span><span class="p">,</span> <span class="n">a</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>每次进入新循环并执行其中的代码之前，都会检查此条件。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>inc</code> 用于将 <code>a</code> 加一。这与写成 <code>a = a + 1</code> 或 <code>a += 1</code> 是相同的。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">a is: 1
+a is: 2
+a is: 3
+final value of a: 4</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_中断break与_继续continue">中断（Break）与 继续（continue）</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>break</code> 语句用于提前退出循环，通常在满足某些条件时使用。</p>
+</div>
+<div class="paragraph">
+<p>在下面的示例中，如果没有包含 <code>break</code> 的 <code>if</code> 语句，循环将持续运行并打印直到 <code>i</code> 达到 <code>1000</code> 。而通过 <code>break</code> 语句，当 <code>i</code> 变为 <code>3</code> 时，我们会立即退出循环（此时尚未打印 <code>i</code> 的值）。</p>
+</div>
+<div class="listingblock">
+<div class="title">break.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1000</span><span class="p">:</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">break</span>
+  <span class="n">echo</span> <span class="n">i</span>
+  <span class="n">inc</span> <span class="n">i</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">1
+2</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p><code>continue</code> 语句会立即开始循环的下一次迭代，而不会执行当前迭代的剩余代码。注意以下代码的输出中缺少了 <code>3</code> 和 <code>6</code> ：</p>
+</div>
+<div class="listingblock">
+<div class="title">continue.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="mi">1</span> <span class="p">..</span> <span class="mi">8</span><span class="p">:</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">6</span><span class="p">):</span>
+    <span class="k">continue</span>
+  <span class="n">echo</span> <span class="n">i</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">1
+2
+4
+5
+7
+8</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_练习_2">练习</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>科拉兹猜想（ <a href="https://en.wikipedia.org/wiki/Collatz_conjecture">Collatz conjecture</a> ） 是一个规则简单却广受欢迎的数学问题。首先选择一个数字，若为奇数则乘以三加一；若为偶数则除以二。重复此过程直至结果为1。例如：5 → 奇数 → 3*5+1=16 → 偶数 → 16/2=8 → 偶数 → 4 → 2 → 1 → 终止！<br>
+选取一个整数（作为可变变量），编写循环打印科拉兹猜想的每一步骤。（提示:使用 <code>div</code> 表示除法）</p>
+</li>
+<li>
+<p>创建一个包含你全名的不可变变量。编写一个 <code>for</code> 循环，遍历该字符串并仅打印元音字母（a、e、i、o、u）。（提示：使用 <code>case</code> 语句，每个分支包含多个值）</p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Fizz_buzz">Fizz buzz</a> 是一种儿童游戏，有时用于测试基础编程能力。我们从1开始向上计数。如果一个数字能被3整除，就用fizz替代；能被5整除则用buzz替代；若同时能被15（即3和5）整除，则替换为 fizzbuzz。前几轮的游戏序列如下:1,2,fizz,4,buzz,fizz, 7,…​<br>
+编写一个程序，输出 Fizz buzz 游戏的前 30 轮结果。（提示：注意整除测试的顺序）</p>
+</li>
+<li>
+<p>在之前的练习中，你已经将英寸转换为厘米，反之亦然。创建一个包含多个值的转换表。例如，表格可能如下所示：<br></p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="ow">in</span>	<span class="o">|</span> <span class="n">cm</span>
+<span class="o">----------------</span>
+<span class="mi">1</span>	<span class="o">|</span> <span class="mf">2.54</span>
+<span class="mi">4</span>	<span class="o">|</span> <span class="mf">10.16</span>
+<span class="mi">7</span>	<span class="o">|</span> <span class="mf">17.78</span>
+<span class="mi">10</span>	<span class="o">|</span> <span class="mf">25.4</span>
+<span class="mi">13</span>	<span class="o">|</span> <span class="mf">33.02</span>
+<span class="mi">16</span>	<span class="o">|</span> <span class="mf">40.64</span>
+<span class="mi">19</span>	<span class="o">|</span> <span class="mf">48.26</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_容器_containers" class="sect0">容器 Containers</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>容器是一种数据类型，它包含一组元素并允许我们访问这些元素。通常容器也是可迭代的，这意味着我们可以像在<a href="#_循环_loops">循环 Loops</a>中使用字符串那样使用它们。</p>
+</div>
+<div class="paragraph">
+<p>例如，购物清单是我们想购买的物品的容器，而质数列表则是数字的容器。用伪代码表示：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="n">groceryList</span> <span class="o">=</span> <span class="o">[</span><span class="n">ham</span><span class="p">,</span> <span class="n">eggs</span><span class="p">,</span> <span class="n">bread</span><span class="p">,</span> <span class="n">apples</span><span class="o">]</span>
+<span class="n">primes</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="o">]</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_数组_arrays">数组 Arrays</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>数组是最简单的容器类型。数组是同质的，即数组中的所有元素必须具有相同的类型。数组的大小也是固定的，意味着元素的数量（或者更准确地说：可能的元素数量）必须在编译时已知。这意味着我们称数组为“固定长度的同质容器”。</p>
+</div>
+<div class="paragraph">
+<p>数组类型使用 <code>array[&lt;length&gt;, &lt;type&gt;]</code> 声明，其中 <code>length</code> 是数组的总容量（可容纳的元素数量）， <code>type</code> 是其所有元素的类型。如果长度和类型可以从传递的元素中推断出来，则可以省略声明。</p>
+</div>
+<div class="paragraph">
+<p>数组的元素被包含在方括号内。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span>
+  <span class="n">a</span><span class="p">:</span> <span class="kt">array</span><span class="o">[</span><span class="mi">3</span><span class="p">,</span> <span class="kt">int</span><span class="o">]</span> <span class="o">=</span> <span class="o">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="o">]</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="o">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="o">]</span>        <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="n">c</span> <span class="o">=</span> <span class="o">[]</span>  <span class="c"># error      </span><i class="conum" data-value="2"></i><b>(2)</b>
+  <span class="n">d</span><span class="p">:</span> <span class="kt">array</span><span class="o">[</span><span class="mi">7</span><span class="p">,</span> <span class="kt">string</span><span class="o">]</span>  <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>如果我们提供了值，数组 <code>b</code> 的长度和类型在编译时就是已知的。虽然正确，但无需像数组 <code>a</code> 那样特别声明。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>这种声明方式既无法推断元素的长度，也无法推断其类型——这会导致错误。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>正确声明空数组（稍后将填充）的方法是给出其长度和类型，而不提供元素值——数组 <code>d</code> 可以包含七个字符串。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>由于数组的长度必须在编译时已知，因此以下代码将无法工作：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">const</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">let</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">var</span> <span class="n">a</span><span class="p">:</span> <span class="kt">array</span><span class="o">[</span><span class="n">m</span><span class="p">,</span> <span class="kt">char</span><span class="o">]</span>
+<span class="k">var</span> <span class="n">b</span><span class="p">:</span> <span class="kt">array</span><span class="o">[</span><span class="n">n</span><span class="p">,</span> <span class="kt">char</span><span class="o">]</span> <span class="c"># error </span><i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>这会产生错误，因为 <code>n</code> 是用 <code>let</code> 声明的——它的值在编译时是未知的。我们只能使用用 <code>const</code> 声明的值作为数组初始化的 <code>length</code> 参数。</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_序列_sequences">序列 Sequences</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>序列（Sequences）是一种类似于数组的容器，但其长度无需在编译时已知，且可在运行时动态变化：我们仅需通过 <code>seq[&lt;type&gt;]</code> 声明所包含元素的类型。序列也是同质的（homogeneous），即序列中的每个元素必须具有相同的类型。</p>
+</div>
+<div class="paragraph">
+<p>序列的元素被包含在 <code>@[</code> 和 <code>]</code> 之间。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span>
+  <span class="n">e1</span><span class="p">:</span> <span class="kt">seq</span><span class="o">[</span><span class="kt">int</span><span class="o">]</span> <span class="o">=</span> <span class="o">@[]</span>   <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="n">f</span> <span class="o">=</span> <span class="o">@[</span><span class="s">"abc"</span><span class="p">,</span> <span class="s">"def"</span><span class="o">]</span>  <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>空序列的类型必须被声明。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>非空序列的类型可以被推断出来。在这个例子中，它是一个包含字符串的序列。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>另一种初始化空序列的方法是调用 <code>newSeq</code> 过程。我们将在<a href="#_过程_procedures">下一章节</a>更详细地介绍过程调用，但现在只需知道这也是一种可行方式：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span>
+  <span class="n">e</span> <span class="o">=</span> <span class="n">newSeq</span><span class="o">[</span><span class="kt">int</span><span class="o">]</span><span class="p">()</span> <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>在方括号内提供类型参数可以让过程知道它应该返回某种特定类型的序列。<br>
+一个常见的错误是遗漏了在末尾的 <code>()</code> ，这是必需的。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>我们可以使用 <code>add</code> 函数向序列中添加新元素，这与处理字符串的方式类似。为此，序列必须是可变的（用 <code>var</code> 定义），并且我们添加的元素必须与序列中的元素类型相同。</p>
+</div>
+<div class="listingblock">
+<div class="title">seq.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span>
+  <span class="n">g</span> <span class="o">=</span> <span class="o">@[</span><span class="sc">'x'</span><span class="p">,</span> <span class="sc">'y'</span><span class="o">]</span>
+  <span class="n">h</span> <span class="o">=</span> <span class="o">@[</span><span class="sc">'1'</span><span class="p">,</span> <span class="sc">'2'</span><span class="p">,</span> <span class="sc">'3'</span><span class="o">]</span>
+
+<span class="n">g</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="sc">'z'</span><span class="p">)</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">echo</span> <span class="n">g</span>
+
+<span class="n">h</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>    <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="n">echo</span> <span class="n">h</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>添加一个相同类型（char）的新元素。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>添加另一个包含相同类型的序列。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">@['x', 'y', 'z']
+@['1', '2', '3', 'x', 'y', 'z']</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>尝试将不同类型传递给现有序列会产生错误：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span> <span class="n">i</span> <span class="o">=</span> <span class="o">@[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="o">]</span>
+
+<span class="n">i</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mf">9.81</span><span class="p">)</span> <span class="c"># error </span><i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">g</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>    <span class="c"># error </span><i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>尝试将 <code>float</code> 添加到 <code>int</code> 的序列中。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>尝试将序列 <code>int</code> 添加到序列 <code>char</code> 中</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>由于序列长度可变，我们需要一种获取其长度的方法，为此可以使用 <code>len</code> 函数。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span> <span class="n">i</span> <span class="o">=</span> <span class="o">@[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="o">]</span>
+<span class="n">echo</span> <span class="n">i</span><span class="p">.</span><span class="n">len</span>
+
+<span class="n">i</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">echo</span> <span class="n">i</span><span class="p">.</span><span class="n">len</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">3
+4</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_索引_indexing_与_切片_slicing">索引 Indexing 与 切片 slicing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>索引允许我们通过下标从容器中获取特定元素。
+可以将索引视为容器内部的位置标识。</p>
+</div>
+<div class="paragraph">
+<p>Nim与许多编程语言一样采用零基索引，即容器中第一个元素的索引为零，第二个元素的索引为一，以此类推。</p>
+</div>
+<div class="paragraph">
+<p>若要从后向前索引，需使用 <code>^</code> 前缀。最后一个元素（即倒数第一个）的索引是 <code>^1</code> 。</p>
+</div>
+<div class="paragraph">
+<p>索引的语法是 <code>&lt;container&gt;[&lt;index&gt;]</code> 。</p>
+</div>
+<div class="listingblock">
+<div class="title">indexing.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span> <span class="n">j</span> <span class="o">=</span> <span class="o">[</span><span class="sc">'a'</span><span class="p">,</span> <span class="sc">'b'</span><span class="p">,</span> <span class="sc">'c'</span><span class="p">,</span> <span class="sc">'d'</span><span class="p">,</span> <span class="sc">'e'</span><span class="o">]</span>
+
+<span class="n">echo</span> <span class="n">j</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>   <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">echo</span> <span class="n">j</span><span class="o">[</span><span class="p">^</span><span class="mi">1</span><span class="o">]</span>  <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>零基索引：索引 <code>1</code> 对应的元素是 <code>b</code> 。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>获取最后一个元素。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">b
+e</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>切片操作允许我们通过一次调用获取一系列元素。它使用的语法与范围（在 <a href="#_for循环for_loop">for循环(For loop)</a> 中介绍过）相同。</p>
+</div>
+<div class="paragraph">
+<p>若使用 <code>start .. stop</code> 语法，切片范围包含两端。使用 <code>start ..&lt; stop</code> 语法时， <code>stop</code> 索引不包含在切片内。</p>
+</div>
+<div class="paragraph">
+<p>The syntax for slicing is <code>&lt;container&gt;[&lt;start&gt; .. &lt;stop&gt;]</code>.切片的语法是 <code>&lt;container&gt;[&lt;start&gt; .. &lt;stop&gt;]</code> 。</p>
+</div>
+<div class="listingblock">
+<div class="title">indexing.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="n">echo</span> <span class="n">j</span><span class="o">[</span><span class="mi">0</span> <span class="p">..</span> <span class="mi">3</span><span class="o">]</span>
+<span class="n">echo</span> <span class="n">j</span><span class="o">[</span><span class="mi">0</span> <span class="p">..</span><span class="o">&lt;</span> <span class="mi">3</span><span class="o">]</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">@[a, b, c, d]
+@[a, b, c]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>索引和切片均可用于为现有的可变容器和字符串赋予新值。</p>
+</div>
+<div class="listingblock">
+<div class="title">assign.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span>
+  <span class="n">k</span><span class="p">:</span> <span class="kt">array</span><span class="o">[</span><span class="mi">5</span><span class="p">,</span> <span class="kt">int</span><span class="o">]</span>
+  <span class="n">l</span> <span class="o">=</span> <span class="o">@[</span><span class="sc">'p'</span><span class="p">,</span> <span class="sc">'w'</span><span class="p">,</span> <span class="sc">'r'</span><span class="o">]</span>
+  <span class="n">m</span> <span class="o">=</span> <span class="s">"Tom and Jerry"</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="mi">0</span> <span class="p">..</span> <span class="mi">4</span><span class="p">:</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="n">k</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">7</span> <span class="o">*</span> <span class="n">i</span>
+<span class="n">echo</span> <span class="n">k</span>
+
+<span class="n">l</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="sc">'q'</span>        <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="n">echo</span> <span class="n">l</span>
+
+<span class="n">m</span><span class="o">[</span><span class="mi">8</span> <span class="p">..</span> <span class="mi">9</span><span class="o">]</span> <span class="o">=</span> <span class="s">"Ba"</span>  <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="n">echo</span> <span class="n">m</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>长度为 5 的数组索引从零到四。我们将为数组的每个元素赋值。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>修改序列中第二个元素（索引为 1）的值。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>修改字符串中索引为 8 和 9 位置的字符。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">[0, 7, 14, 21, 28]
+@['p', 'q', 'r']
+Tom and Barry</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_元组_tuples">元组 Tuples</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>我们目前所见到的容器都是同质的。
+而元组则包含异质数据，即元组中的元素可以是不同类型。与数组类似，元组具有固定大小。</p>
+</div>
+<div class="paragraph">
+<p>元组的元素被包裹在圆括号内。</p>
+</div>
+<div class="listingblock">
+<div class="title">tuples.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span> <span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="s">"Banana"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="sc">'c'</span><span class="p">)</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">echo</span> <span class="n">n</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>元组可以包含不同类型的字段。在这个例子中： <code>string</code> 、 <code>int</code> 和 <code>char</code> 。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">(Field0: "Banana", Field1: 2, Field2: 'c')</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>我们还可以为元组中的每个字段命名以便区分。这种方式可用于访问元组元素，而无需使用索引。</p>
+</div>
+<div class="listingblock">
+<div class="title">tuples.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span> <span class="n">o</span> <span class="o">=</span> <span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="s">"Banana"</span><span class="p">,</span> <span class="n">weight</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">rating</span><span class="p">:</span> <span class="sc">'c'</span><span class="p">)</span>
+
+<span class="n">o</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="mi">7</span>          <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">o</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">"Apple"</span>  <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="n">echo</span> <span class="n">o</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>通过字段索引修改字段值</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>通过字段名称修改字段值</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">(name: "Apple", weight: 7, rating: 'c')</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_练习_3">练习</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>创建一个能容纳十个整数的空数组。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>用数字10、20、……、100填充该数组。（提示：使用循环）</p>
+</li>
+<li>
+<p>仅打印该数组中位于奇数索引的元素（即数值20、40、……）。</p>
+</li>
+<li>
+<p>将偶数索引位置的元素乘以 5。打印修改后的数组。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>重新实现考拉兹猜想（<a href="#_练习_2">Collatz conjecture exercise</a>）练习，但这次不打印每个步骤，而是将其添加到序列中。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>选择一个起始数字。有趣的选择包括9、19、25和27等。</p>
+</li>
+<li>
+<p>创建一个仅包含该起始数字的序列</p>
+</li>
+<li>
+<p>沿用之前的逻辑，持续向序列中添加元素，直到数值变为 1</p>
+</li>
+<li>
+<p>输出序列的长度及序列本身</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>在2到100的范围内找出产生最长考拉兹序列的数字。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>对于给定范围内的每个数字，计算其考拉兹序列</p>
+</li>
+<li>
+<p>如果当前序列长度超过之前的记录，则将当前长度和起始数字保存为新记录（可以使用元组 <code>(longestLength, startingNumber)</code> 或两个单独的变量）</p>
+</li>
+<li>
+<p>输出起始数字及其对应序列的最大长度</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<h1 id="_过程_procedures" class="sect0">过程 Procedures</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>过程（在其他编程语言中常称为函数）是将执行特定任务的代码封装为一个独立单元。
+这种代码组织方式的优势在于，我们可以直接调用这些过程，而无需在每次需要时重复编写相同的代码。</p>
+</div>
+<div class="paragraph">
+<p>在前面的某些章节中，我们探讨了不同场景下的考拉兹猜想。通过将考拉兹猜想逻辑封装成过程，我们就能在所有练习中调用相同的代码。</p>
+</div>
+<div class="paragraph">
+<p>到目前为止，我们已经使用了许多内置过程，例如用于打印的 <code>echo</code> 、向序列添加元素的 <code>add</code> 、增加整数值的 <code>inc</code> 、获取容器长度的 <code>len</code> 等。现在我们将学习如何创建和使用自己的过程。</p>
+</div>
+<div class="paragraph">
+<p>使用过程（procedure）的一些优势包括：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>减少代码重复</p>
+</li>
+<li>
+<p>通过为代码片段赋予功能描述性名称，使代码更易阅读</p>
+</li>
+<li>
+<p>将复杂任务分解为更简单的步骤</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>正如本节开头所述，在其他语言中过程(procedure)常被称为函数(function)。若从数学函数的定义来看，这其实是个不太准确的称谓。数学函数接收一组参数（如 <code>f(x, y)</code> ，其中 <code>f</code> 是函数， <code>x</code> 和 <code>y</code> 是其参数），对于相同的输入总是返回相同的结果。</p>
+</div>
+<div class="paragraph">
+<p>另一方面，程序化过程对于给定输入并不总是返回相同输出。有时它们根本不返回任何内容。这是因为我们的计算机程序可以在之前提到的变量中存储状态，这些过程可以读取和更改状态。在Nim中，当前保留使用 <code>func</code> 这个词来表示数学上更准确的函数类型，强制要求无副作用。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_声明过程_declaring_a_procedure">声明过程 Declaring a procedure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在使用（调用）过程之前，我们需要创建它并定义其功能。</p>
+</div>
+<div class="paragraph">
+<p>过程通过使用 proc 关键字和过程名称来声明，后跟括号内的输入参数及其类型，最后部分是一个冒号和过程返回值的类型，如下所示：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">proc </span><span class="err">&lt;</span><span class="nf">name</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">p1</span><span class="o">&gt;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">type1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">p2</span><span class="o">&gt;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">type2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...):</span> <span class="o">&lt;</span><span class="n">returnType</span><span class="o">&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>过程体以缩进块的形式编写，紧跟在带有 <code>=</code> 符号的声明之后。</p>
+</div>
+<div class="listingblock">
+<div class="title">callProcs.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">proc </span><span class="nf">findMax</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="kt">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="kt">int</span><span class="p">):</span> <span class="kt">int</span> <span class="o">=</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">x</span>  <i class="conum" data-value="2"></i><b>(2)</b>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">y</span>
+  <span class="c"># this is inside of the procedure</span>
+<span class="c"># this is outside of the procedure</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>声明名为 <code>findMax</code> 的过程，它有两个参数 <code>x</code> 和 <code>y</code> ，并返回一个 <code>int</code> 类型。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>要从过程中返回值，我们使用 <code>return</code> 关键字。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">proc </span><span class="nf">echoLanguageRating</span><span class="p">(</span><span class="n">language</span><span class="p">:</span> <span class="kt">string</span><span class="p">)</span> <span class="o">=</span> <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="k">case</span> <span class="n">language</span>
+  <span class="k">of</span> <span class="s">"Nim"</span><span class="p">,</span> <span class="s">"nim"</span><span class="p">,</span> <span class="s">"NIM"</span><span class="p">:</span>
+    <span class="n">echo</span> <span class="n">language</span><span class="p">,</span> <span class="s">" is the best language!"</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">echo</span> <span class="n">language</span><span class="p">,</span> <span class="s">" might be a second-best language."</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>echoLanguageRating</code> 过程只是回显给定的名称，它不返回任何内容，因此没有声明返回类型。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>通常情况下，我们不允许修改传入的任何参数。类似这样的操作会引发错误：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">proc </span><span class="nf">changeArgument</span><span class="p">(</span><span class="n">argument</span><span class="p">:</span> <span class="kt">int</span><span class="p">)</span> <span class="o">=</span>
+  <span class="n">argument</span> <span class="o">+=</span> <span class="mi">5</span>
+
+<span class="k">var</span> <span class="n">ourVariable</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">changeArgument</span><span class="p">(</span><span class="n">ourVariable</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>为了让这能够正常工作，我们需要允许Nim以及使用我们过程的程序员通过将参数声明为变量来修改它：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">proc </span><span class="nf">changeArgument</span><span class="p">(</span><span class="n">argument</span><span class="p">:</span> <span class="k">var</span> <span class="kt">int</span><span class="p">)</span> <span class="o">=</span> <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="n">argument</span> <span class="o">+=</span> <span class="mi">5</span>
+
+<span class="k">var</span> <span class="n">ourVariable</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">changeArgument</span><span class="p">(</span><span class="n">ourVariable</span><span class="p">)</span>
+<span class="n">echo</span> <span class="n">ourVariable</span>
+<span class="n">changeArgument</span><span class="p">(</span><span class="n">ourVariable</span><span class="p">)</span>
+<span class="n">echo</span> <span class="n">ourVariable</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>注意 <code>argument</code> 现在被声明为 <code>var int</code> ，而不仅仅是 <code>int</code> 。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">15
+20</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这当然意味着我们传入的名称也必须声明为变量，传入用 <code>const</code> 或 <code>let</code> 赋值的内容会引发错误。</p>
+</div>
+<div class="paragraph">
+<p>虽然将内容作为参数传递是良好的实践，但也可以使用过程外部声明的名称，包括变量和常量：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">var</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">proc </span><span class="nf">echoX</span><span class="p">()</span> <span class="o">=</span>
+  <span class="n">echo</span> <span class="n">x</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>  <i class="conum" data-value="2"></i><b>(2)</b>
+
+<span class="n">echoX</span><span class="p">()</span>
+<span class="n">echoX</span><span class="p">()</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>这里我们访问外部变量 <code>x</code> 。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>我们可以更新它的值，因为它被声明为变量。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="mi">100</span>
+<span class="mi">101</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_调用程序_calling_the_procedures">调用程序 Calling the procedures</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>声明过程后，我们可以调用它。在许多编程语言中，调用过程/函数的常规方式是声明其名称并在括号内提供参数，如下所示：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="o">&lt;</span><span class="n">procName</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">arg1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">arg2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>调用过程的结果可以存储在变量中。</p>
+</div>
+<div class="paragraph">
+<p>如果要从上面的示例中调用我们的 findMax 过程，并将返回值保存在变量中，我们可以这样做：</p>
+</div>
+<div class="listingblock">
+<div class="title">callProcs.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">let</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="n">findMax</span><span class="p">(</span><span class="mi">987</span><span class="p">,</span> <span class="mi">789</span><span class="p">)</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="n">findMax</span><span class="p">(</span><span class="mi">123</span><span class="p">,</span> <span class="mi">321</span><span class="p">)</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="n">findMax</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="n">echo</span> <span class="n">a</span>
+<span class="n">echo</span> <span class="n">b</span>
+<span class="n">echo</span> <span class="n">c</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>函数 <code>findMax</code> 的结果在此处命名为 <code>c</code> ，并使用前两次调用( <code>findMax(987, 321)</code> )的结果进行调用。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">987
+321
+987</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>与其他许多语言不同，Nim 还支持统一函数调用( <a href="https://en.wikipedia.org/wiki/Uniform_Function_Call_Syntax">Uniform Function Call Syntax</a> )语法，这允许以多种不同方式调用过程。</p>
+</div>
+<div class="paragraph">
+<p>这是一种调用方式，其中第一个参数写在函数名之前，其余参数则在括号内声明：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="o">&lt;</span><span class="n">arg1</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="n">procName</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">arg2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...)</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>我们在向现有序列添加元素时使用了这种语法（ <code>&lt;seq&gt;.add(&lt;element&gt;)</code> ），因为它比书写 <code>add(&lt;seq&gt;, &lt;element&gt;)</code> 更具可读性且能更清晰地表达意图。参数周围的括号也可以省略：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="o">&lt;</span><span class="n">procName</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">arg1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">arg2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>我们在调用 <code>echo</code> 过程时，以及无参数调用 <code>len</code> 过程时，已经见过这种风格的用法。这两种情况也可以像这样组合使用，不过这种语法并不常见：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="o">&lt;</span><span class="n">arg1</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="n">procName</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">arg2</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">arg3</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>统一调用语法使得多个过程的链式调用更具可读性：</p>
+</div>
+<div class="listingblock">
+<div class="title">ufcs.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">proc </span><span class="nf">plus</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="kt">int</span><span class="p">):</span> <span class="kt">int</span> <span class="o">=</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="k">proc </span><span class="nf">multi</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="kt">int</span><span class="p">):</span> <span class="kt">int</span> <span class="o">=</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+
+<span class="k">let</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="n">echo</span> <span class="n">a</span><span class="p">.</span><span class="n">plus</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="n">plus</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">echo</span> <span class="n">c</span><span class="p">.</span><span class="n">multi</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">==</span> <span class="n">multi</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+
+
+<span class="n">echo</span> <span class="n">a</span><span class="p">.</span><span class="n">plus</span><span class="p">(</span><span class="n">b</span><span class="p">).</span><span class="n">multi</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>  <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="n">echo</span> <span class="n">c</span><span class="p">.</span><span class="n">multi</span><span class="p">(</span><span class="n">b</span><span class="p">).</span><span class="n">plus</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>若多个参数属于同一类型，我们可以采用这种简洁的方式进行类型声明。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>首先将 <code>a</code> 与 <code>b</code> 相加，然后将运算结果（2 + 3 = 5）作为第一个参数传递给 <code>multi</code> 过程，在该过程中与 <code>c</code> 相乘（5 * 4 = 20）。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>首先将 <code>c</code> 与 <code>b</code> 相乘，然后将运算结果（4*3=12）作为第一个参数传递给 <code>plus</code> 过程，在该过程中与 <code>a</code> 相加（12+2=14）。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">true
+true
+20
+14</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_结果变量_result_variable">结果变量 Result variable</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在Nim语言中，每个返回值的过程都会隐式声明并初始化（使用默认值）一个 <code>result</code> 变量。当过程执行到其缩进代码块末尾时，即使没有 <code>return</code> 语句，也会返回这个 <code>result</code> 变量的值。</p>
+</div>
+<div class="listingblock">
+<div class="title">result.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">proc </span><span class="nf">findBiggest</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="kt">seq</span><span class="o">[</span><span class="kt">int</span><span class="o">]</span><span class="p">):</span> <span class="kt">int</span> <span class="o">=</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">&gt;</span> <span class="n">result</span><span class="p">:</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">number</span>
+  <span class="c"># the end of proc                   </span><i class="conum" data-value="2"></i><b>(2)</b>
+
+<span class="k">let</span> <span class="n">d</span> <span class="o">=</span> <span class="o">@[</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">15</span><span class="o">]</span>
+<span class="n">echo</span> <span class="n">findBiggest</span><span class="p">(</span><span class="n">d</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>返回类型是 <code>int</code> 。 <code>result</code> 变量会被初始化为 <code>int</code> 的默认值： <code>0</code> 。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>当过程执行结束时，将返回 <code>result</code> 的值。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">33</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>请注意，此处展示的过程是为了演示 <code>result</code> 变量，它并非完全正确：如果传入一个仅包含负数的序列，该过程将返回 <code>0</code> （而该值并不存在于序列中）。</p>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+注意！
+在旧版 Nim（0.19.0 之前）中，字符串和序列的默认值为 <a href="https://en.wikipedia.org/wiki/Null_pointer"><code>nil</code></a>，当我们将它们用作返回类型时， <code>result</code> 变量需要初始化为空字符串（ <code>""</code> ）或空序列（ <code>@[]</code> ）。
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">result.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">proc </span><span class="nf">keepOdds</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="kt">seq</span><span class="o">[</span><span class="kt">int</span><span class="o">]</span><span class="p">):</span> <span class="kt">seq</span><span class="o">[</span><span class="kt">int</span><span class="o">]</span> <span class="o">=</span>
+  <span class="c"># result = @[]          </span><i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="ow">mod</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="n">result</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+
+
+<span class="k">let</span> <span class="n">f</span> <span class="o">=</span> <span class="o">@[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">98</span><span class="o">]</span>
+<span class="n">echo</span> <span class="n">keepOdds</span><span class="p">(</span><span class="n">f</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>在Nim-0.19.0及更新版本中，无需这行代码 —— 序列会自动初始化为空序列。<br>
+在旧版Nim中，序列必须手动初始化，缺少这行代码会导致编译器报错。（注意不应使用 <code>var</code> ，因为 <code>result</code> 已被隐式声明。）</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="o">@[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">57</span><span class="o">]</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>在过程内部我们也可以调用其他过程。</p>
+</div>
+<div class="listingblock">
+<div class="title">filterOdds.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">proc </span><span class="nf">isDivisibleBy3</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="kt">int</span><span class="p">):</span> <span class="kt">bool</span> <span class="o">=</span>
+  <span class="k">return</span> <span class="n">x</span> <span class="ow">mod</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="k">proc </span><span class="nf">filterMultiplesOf3</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="kt">seq</span><span class="o">[</span><span class="kt">int</span><span class="o">]</span><span class="p">):</span> <span class="kt">seq</span><span class="o">[</span><span class="kt">int</span><span class="o">]</span> <span class="o">=</span>
+  <span class="c"># result = @[]            </span><i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span><span class="p">.</span><span class="n">isDivisibleBy3</span><span class="p">():</span>  <i class="conum" data-value="2"></i><b>(2)</b>
+      <span class="n">result</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+
+<span class="k">let</span>
+  <span class="n">g</span> <span class="o">=</span> <span class="o">@[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+  <span class="n">h</span> <span class="o">=</span> <span class="o">@[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">]</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="o">@[</span><span class="mi">626</span><span class="p">,</span> <span class="mi">45390</span><span class="p">,</span> <span class="mi">3219</span><span class="p">,</span> <span class="mi">4210</span><span class="p">,</span> <span class="mi">4126</span><span class="o">]</span>
+
+<span class="n">echo</span> <span class="n">filterMultiplesOf3</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="n">echo</span> <span class="n">h</span><span class="p">.</span><span class="n">filterMultiplesOf3</span><span class="p">()</span>
+<span class="n">echo</span> <span class="n">filterMultiplesOf3</span> <span class="n">i</span>   <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>新版本的 Nim 中不再需要这行代码。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>调用先前声明的过程。其返回类型为 <code>bool</code> ，可在 <code>if</code> 语句中使用。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>第三种调用过程的方式，如上文所示。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">@[6, 9, 0, 3]
+@[3]
+@[45390, 3219]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_前置声明_forward_declaration">前置声明 Forward declaration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>正如本节开头所述，我们可以声明不带代码块的过程。
+原因在于必须先声明过程才能调用它们，以下做法是无效的：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="n">echo</span> <span class="mf">5.</span><span class="n">plus</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c"># error      </span><i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="k">proc </span><span class="nf">plus</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="kt">int</span><span class="p">):</span> <span class="kt">int</span> <span class="o">=</span>  <i class="conum" data-value="2"></i><b>(2)</b>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>这会抛出错误，因为 <code>plus</code> 尚未定义。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>这里我们定义了 <code>plus</code> ，但由于它出现在使用之后，Nim此时还不知道它的存在。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>解决这个问题的方法称为前置声明：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">proc </span><span class="nf">plus</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="kt">int</span><span class="p">):</span> <span class="kt">int</span>    <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="n">echo</span> <span class="mf">5.</span><span class="n">plus</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>              <i class="conum" data-value="2"></i><b>(2)</b>
+
+<span class="k">proc </span><span class="nf">plus</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="kt">int</span><span class="p">):</span> <span class="kt">int</span> <span class="o">=</span>  <i class="conum" data-value="3"></i><b>(3)</b>
+  <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>这里我们告诉Nim它应该认为 <code>plus</code> 过程是以这个定义存在的。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>现在我们可以在代码中自由使用它，这将正常工作。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>这里实际实现了 <code>plus</code> ，当然必须与我们之前的定义相匹配。</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_练习_4">练习</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>创建一个过程（procedure），用于根据提供的姓名向某人问候（打印"Hello &lt;姓名&gt;"）。创建一个姓名序列。使用已创建的过程向每个人问候。</p>
+</li>
+<li>
+<p>创建一个过程 <code>findMax3</code> ，该过程将返回三个值中的最大值。</p>
+</li>
+<li>
+<p>二维平面中的点可以表示为 <code>tuple[x, y: float]</code> 。编写一个过程，该过程接收两个点并返回一个新点，新点是这两个点的和（分别相加 x 坐标和 y 坐标）。</p>
+</li>
+<li>
+<p>创建两个过程 <code>tick</code> 和 <code>tock</code> ，分别输出单词"tick"和"tock"。使用一个全局变量来记录它们运行的次数，并让它们相互调用直到计数器达到 20。预期输出是交替出现 20 行"tick"和"tock"。（提示：使用前向声明。）</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+如果程序进入无限循环，可以按 Ctrl+C 停止执行。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>通过调用不同参数来测试所有过程。</p>
+</div>
+</div>
+</div>
+<h1 id="_模块_modules" class="sect0">模块 Modules</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>到目前为止，我们使用的都是每次新建 Nim 文件时默认提供的功能。这些功能可以通过模块进行扩展，从而获得针对特定主题的更多功能。</p>
+</div>
+<div class="paragraph">
+<p>最常用的Nim模块包括：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>strutils</code>: 处理字符串时的附加功能</p>
+</li>
+<li>
+<p><code>sequtils</code>: 处理序列时的附加功能</p>
+</li>
+<li>
+<p><code>math</code>: 数学函数（对数、平方根等）、三角函数（正弦、余弦等）</p>
+</li>
+<li>
+<p><code>times</code>: 测量和处理时间</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>但还有更多模块，无论是在所谓的标准库（ <a href="https://nim-lang.org/docs/lib.html">standard library</a> ）中，还是在nimble包管理器（ <a href="https://nimble.directory/">nimble package manager</a> ）中。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_导入模块">导入模块</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>如果我们想导入一个模块及其所有功能，只需在文件中添加 <code>import &lt;moduleName&gt;</code> 。通常这会在文件顶部完成，以便我们轻松查看代码使用了哪些内容。</p>
+</div>
+<div class="listingblock">
+<div class="title">stringutils.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">import</span> <span class="n">strutils</span>       <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="k">let</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="s">"My string with whitespace."</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="sc">'!'</span>
+
+<span class="n">echo</span> <span class="n">a</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>        <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="n">echo</span> <span class="n">a</span><span class="p">.</span><span class="n">toUpperAscii</span><span class="p">()</span> <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="n">echo</span> <span class="n">b</span><span class="p">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>      <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>导入 <a href="https://nim-lang.org/docs/strutils.html">strutils</a> 模块.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>使用 <code>strutils</code> 模块中的 <code>split</code> 功能。它可以将字符串分割成单词序列。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>toUpperAscii</code> 将所有 ASCII 字母转换为大写形式。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>repeat</code> 同样来自 strutils 模块，它能将单个字符或整个字符串重复指定次数。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">@["My", "string", "with", "whitespace."]
+MY STRING WITH WHITESPACE.
+!!!!!</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+对于来自其他编程语言（尤其是 Python）的用户来说，Nim 中的导入方式可能看起来"不太对"。如果是这种情况，建议阅读 <a href="https://narimiran.github.io/2019/07/01/nim-import.html">以下内容</a> 。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="listingblock">
+<div class="title">maths.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">import</span> <span class="n">math</span>                 <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="k">let</span>
+  <span class="n">c</span> <span class="o">=</span> <span class="mf">30.0</span> <span class="c"># degrees</span>
+  <span class="n">cRadians</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">degToRad</span><span class="p">()</span>   <i class="conum" data-value="2"></i><b>(2)</b>
+
+<span class="n">echo</span> <span class="n">cRadians</span>
+<span class="n">echo</span> <span class="n">sin</span><span class="p">(</span><span class="n">cRadians</span><span class="p">).</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
+
+<span class="n">echo</span> <span class="mi">2</span><span class="p">^</span><span class="mi">5</span>                    <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Importing <a href="https://nim-lang.org/docs/math.html">math</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>使用 <code>degToRad</code> 将度数转换为弧度。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>sin</code> 接收弧度值。我们将结果（同样来自 <code>math</code> 模块）四舍五入至最多两位小数。（否则结果会是：0.4999999999999999）</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>数学模块还包含用于计算数字幂的 <code>^</code> 运算符。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">0.5235987755982988
+0.5
+32</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_创建我们自己的">创建我们自己的</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在项目中，我们经常会有大量代码，这时将其拆分成各自负责特定功能的模块就很有意义。
+如果你在同一个文件夹中创建两个文件（假设命名为 <code>firstFile.nim</code> 和 <code>secondFile.nim</code> ），就可以将一个文件作为模块导入另一个文件中：</p>
+</div>
+<div class="listingblock">
+<div class="title">firstFile.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">proc </span><span class="nf">plus</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="kt">int</span><span class="p">):</span> <span class="kt">int</span> <span class="o">=</span> <i class="conum" data-value="1"></i><b>(1)</b>
+  <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="k">proc </span><span class="nf">minus</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="kt">int</span><span class="p">):</span> <span class="kt">int</span> <span class="o">=</span> <i class="conum" data-value="2"></i><b>(2)</b>
+  <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>注意 <code>plus</code> 过程现在名称后带有星号（ <code>*</code> ），这告诉 Nim 其他导入此文件的模块将能够使用该过程。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>相比之下，导入此文件时将不会显示该内容。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">secondFile.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">import</span> <span class="n">firstFile</span>          <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="n">echo</span> <span class="n">plus</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>          <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="n">echo</span> <span class="n">minus</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c"># error </span><i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>这里我们导入 <code>firstFile.nim</code> ，无需在此处添加 <code>.nim</code> 扩展名。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>这段代码能正常运行并输出 <code>15</code> ，因为它在 <code>firstFile</code> 中声明且对我们可见。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>然而这会抛出错误，因为 <code>minus</code> 过程不可见，其名称后未带星号</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>如果你有超过这两个文件，可能需要将它们组织到一个子目录（或多个子目录）中。
+采用如下目录结构：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">.
+├── myOtherSubdir
+│   ├── fifthFile.nim
+│   └── fourthFile.nim
+├── mySubdir
+│   └── thirdFile.nim
+├── firstFile.nim
+└── secondFile.nim</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如果你想导入 <code>secondFile.nim</code> 中的所有其他文件，可以这样操作：</p>
+</div>
+<div class="listingblock">
+<div class="title">secondFile.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">import</span> <span class="n">firstFile</span>
+<span class="k">import</span> <span class="n">mySubdir</span><span class="o">/</span><span class="n">thirdFile</span>
+<span class="k">import</span> <span class="n">myOtherSubdir</span> <span class="o">/</span> <span class="o">[</span><span class="n">fourthFile</span><span class="p">,</span> <span class="n">fifthFile</span><span class="o">]</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<h1 id="_与用户输入交互" class="sect0">与用户输入交互</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>利用目前介绍的内容（基本数据类型和容器、控制流、循环），我们已经能够编写不少简单程序了。</p>
+</div>
+<div class="paragraph">
+<p>在本章中，我们将学习如何让程序更具交互性。为此，我们需要实现从文件读取数据或向用户请求输入的功能。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_从文件读取">从文件读取</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>假设我们有一个名为 <code>people.txt</code> 的文本文件，它与 Nim 代码位于同一目录下。该文件内容如下：</p>
+</div>
+<div class="listingblock">
+<div class="title">people.txt</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="n">Alice</span> <span class="n">A</span><span class="p">.</span>
+<span class="n">Bob</span> <span class="n">B</span><span class="p">.</span>
+<span class="n">Carol</span> <span class="n">C</span><span class="p">.</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>我们希望将该文件内容作为名称列表（序列）用于程序中。</p>
+</div>
+<div class="listingblock">
+<div class="title">readFromFile.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">import</span> <span class="n">strutils</span>
+
+<span class="k">let</span> <span class="n">contents</span> <span class="o">=</span> <span class="n">readFile</span><span class="p">(</span><span class="s">"people.txt"</span><span class="p">)</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">echo</span> <span class="n">contents</span>
+
+<span class="k">let</span> <span class="n">people</span> <span class="o">=</span> <span class="n">contents</span><span class="p">.</span><span class="n">splitLines</span><span class="p">()</span>    <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="n">echo</span> <span class="n">people</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>要读取文件内容，我们使用 <code>readFile</code> 过程，并提供一个文件路径以供读取（如果文件与我们的 <code>Nim</code> 程序位于同一目录，仅提供文件名即可）。结果将是一个多行字符串。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>要将多行字符串拆分为字符串序列（每个字符串包含单行的全部内容），我们使用来自 <code>strutils</code> 模块的 <code>splitLines</code> 。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">Alice A.
+Bob B.
+Carol C.
+            <i class="conum" data-value="1"></i><b>(1)</b>
+@["Alice A.", "Bob B.", "Carol C.", ""] <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>原文件中存在一个最后的空行（末尾空行），此处也保留了该空行。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>由于末尾的换行符，我们的序列比预期/想要的更长。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>为了解决末尾换行符的问题，我们可以在读取文件后使用 strutils 中的 strip 过程。该过程的作用就是移除字符串首尾的所有所谓空白字符。空白字符泛指任何产生间隔的字符，包括换行符、空格、制表符等。</p>
+</div>
+<div class="listingblock">
+<div class="title">readFromFile2.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">import</span> <span class="n">strutils</span>
+
+<span class="k">let</span> <span class="n">contents</span> <span class="o">=</span> <span class="n">readFile</span><span class="p">(</span><span class="s">"people.txt"</span><span class="p">).</span><span class="n">strip</span><span class="p">()</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="n">echo</span> <span class="n">contents</span>
+
+<span class="k">let</span> <span class="n">people</span> <span class="o">=</span> <span class="n">contents</span><span class="p">.</span><span class="n">splitLines</span><span class="p">()</span>
+<span class="n">echo</span> <span class="n">people</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>使用 <code>strip</code> 可得到预期结果。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">Alice A.
+Bob B.
+Carol C.
+@["Alice A.", "Bob B.", "Carol C."]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_读取用户输入">读取用户输入</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>若要与用户交互，我们必须能够向其询问输入内容，随后处理并运用这些信息。我们需要通过向 <code>readLine</code> 过程传递 <code>stdin</code> 参数来从标准输入 <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_input_(stdin)">standard input (stdin)</a> 读取数据。</p>
+</div>
+<div class="listingblock">
+<div class="title">interaction1.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="n">echo</span> <span class="s">"Please enter your name:"</span>
+<span class="k">let</span> <span class="n">name</span> <span class="o">=</span> <span class="n">readLine</span><span class="p">(</span><span class="n">stdin</span><span class="p">)</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="n">echo</span> <span class="s">"Hello "</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s">", nice to meet you!"</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>name</code> 的类型被推断为字符串。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">Please enter your name:
+        <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>等待用户输入。当我们输入姓名并按下 <code>Enter</code> 后，程序将继续执行。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">Please enter your name:
+Alice
+Hello Alice, nice to meet you!</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+如果您使用的是旧版VS Code，则无法以常规方式运行（使用Ctrl+Alt+N），因为输出窗口不允许用户输入——您需要在终端中运行这些示例。<br>
+较新版本的VS Code不存在此类限制。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_处理数字">处理数字</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>从文件或用户输入读取的内容始终以字符串形式返回。若需使用数字，需将字符串转换为数字：我们再次使用 <code>strutils</code> 模块，通过 <code>parseInt</code> 转换为整数，或使用 <code>parseFloat</code> 转换为浮点数。</p>
+</div>
+<div class="listingblock">
+<div class="title">interaction2.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">import</span> <span class="n">strutils</span>
+
+<span class="n">echo</span> <span class="s">"Please enter your year of birth:"</span>
+<span class="k">let</span> <span class="n">yearOfBirth</span> <span class="o">=</span> <span class="n">readLine</span><span class="p">(</span><span class="n">stdin</span><span class="p">).</span><span class="n">parseInt</span><span class="p">()</span> <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="k">let</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">2018</span> <span class="o">-</span> <span class="n">yearOfBirth</span>
+
+<span class="n">echo</span> <span class="s">"You are "</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="s">" years old."</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>将字符串转换为整数。这样编写时，我们默认用户会提供有效的整数。如果用户输入 <code>'79</code> 或 <code>ninety-three</code> 会发生什么？你可以自己试试看。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">Please enter your year of birth:
+1934
+You are 84 years old.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>如果我们有一个文件 <code>numbers.txt</code> 与Nim代码位于同一目录下，其内容如下：</p>
+</div>
+<div class="listingblock">
+<div class="title">numbers.txt</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="mf">27.3</span>
+<span class="mf">98.24</span>
+<span class="mf">11.93</span>
+<span class="mf">33.67</span>
+<span class="mf">55.01</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>我们想要读取该文件并计算所提供数字的总和与平均值，可以这样做：</p>
+</div>
+<div class="listingblock">
+<div class="title">interaction3.nim</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="nim"><span class="k">import</span> <span class="n">strutils</span><span class="p">,</span> <span class="n">sequtils</span><span class="p">,</span> <span class="n">math</span>        <i class="conum" data-value="1"></i><b>(1)</b>
+
+<span class="k">let</span>
+  <span class="n">strNums</span> <span class="o">=</span> <span class="n">readFile</span><span class="p">(</span><span class="s">"numbers.txt"</span><span class="p">).</span><span class="n">strip</span><span class="p">().</span><span class="n">splitLines</span><span class="p">()</span>  <i class="conum" data-value="2"></i><b>(2)</b>
+  <span class="n">nums</span> <span class="o">=</span> <span class="n">strNums</span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="n">parseFloat</span><span class="p">)</span>       <i class="conum" data-value="3"></i><b>(3)</b>
+
+<span class="k">let</span>
+  <span class="n">sumNums</span> <span class="o">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>                  <i class="conum" data-value="4"></i><b>(4)</b>
+  <span class="n">average</span> <span class="o">=</span> <span class="n">sumNums</span> <span class="o">/</span> <span class="kt">float</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">len</span><span class="p">)</span>  <i class="conum" data-value="5"></i><b>(5)</b>
+
+<span class="n">echo</span> <span class="n">sumNums</span>
+<span class="n">echo</span> <span class="n">average</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>我们导入多个模块。 <code>strutils</code> 提供 <code>strip</code> 和 <code>splitLines</code> ， <code>sequtils</code> 提供 <code>map</code> ， <code>math</code> 提供 <code>sum</code> 。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>我们移除最后的换行符，并将文本分割成字符串序列。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>map</code> 的工作原理是对容器中的每个元素应用一个过程（本例中是 <code>parseFloat</code> ）。换句话说，我们将每个字符串转换为浮点数，返回一个新的浮点数序列。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>使用 <code>math</code> 模块中的 <code>sum</code> 函数来计算序列中所有元素的总和。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>我们需要将序列长度转换为浮点数，因为 <code>sumNums</code> 是浮点类型。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="output">226.15
+45.23</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_练习_5">练习</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>向用户询问身高和体重，计算其 <a href="https://en.wikipedia.org/wiki/Body_mass_index">BMI</a> 指数。反馈 BMI 数值及对应等级。</p>
+</li>
+<li>
+<p>重复考拉兹猜想（ <a href="#_练习_2">Collatz conjecture exercise</a> ）练习：编写程序让用户输入起始数字，打印生成的数列。</p>
+</li>
+<li>
+<p>让用户输入需要反转的字符串。创建一个接收字符串并返回反转版本的过程。例如用户输入 <code>Nim-lang</code> 时，该过程应返回 <code>gnal-miN</code> 。（提示：使用索引和 <code>countdown</code> ）</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<h1 id="_结语" class="sect0">结语</h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>是时候结束这篇教程了。希望它对您有所帮助，并让您在编程和/或 Nim 编程语言的学习上迈出了第一步。</p>
+</div>
+<div class="paragraph">
+<p>这些只是基础知识，我们仅仅触及了皮毛，但应该足以让你编写简单程序并解决一些简单任务或谜题。Nim 还有更多强大功能，希望你能继续探索它的可能性。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_下一步">下一步</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>如果你想继续学习Nim：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://nim-lang.org/docs/tut1.html">Official Nim tutorial</a></p>
+</li>
+<li>
+<p><a href="https://nim-by-example.github.io/">Nim by example</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>如果你想解决一些编程难题：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://adventofcode.com/">Advent of Code</a>: 每年12月发布的一系列趣味谜题。提供自 2015 年起的往期谜题存档。</p>
+</li>
+<li>
+<p><a href="https://projecteuler.net/">Project Euler</a>: 主要是数学相关的任务。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>编程愉快！</p>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<hr>
+<div class="paragraph">
+<p>&#160;</p>
+</div>
+<div class="paragraph">
+<p>The source files are available <a href="https://github.com/narimiran/nim-basics">on Github</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
