@@ -6,8 +6,93 @@
     <description>Welcome to My Blog</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Wed, 06 May 2026 01:37:42 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 06 May 2026 02:00:03 +0800</lastBuildDate>
     <atom:link href="https://sakuraflows.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <item>
+      <title>ARM下WSL2编译可运行waydroid的WSL2（ARM）内核</title>
+      <link>https://sakuraflows.github.io/post/wsl2bian-yi-ke-yun-xing-waydroidde-wsl2armnei-he/</link>
+      <guid isPermaLink="true">https://sakuraflows.github.io/post/wsl2bian-yi-ke-yun-xing-waydroidde-wsl2armnei-he/</guid>
+      <pubDate>Wed, 06 May 2026 01:50:16 +0800</pubDate>
+      <description><![CDATA[<p>应该也适用于linux下编译可运行waydroid的WSL2（ARM）内核吧&hellip;</p>
+<p>假设你不想编译直接用的话，我的仓库里面有一份编译好的：<br />
+<a href="https://github.com/sakuraflows/wsl2-linuxkernel-arm-build/releases">https://github.com/sakuraflows/wsl2-linuxkernel-arm-build/releases</a></p>
+<p>背景介绍：<br />
+waydroid可以让linux运行安卓程序，但在运行waydroid必须要对内核进行配置。因此想要在WSL2上运行waydroid，就必须使用自己编译的内核和自己编译内核所对应的模块文件。</p>
+<p>linux kernel可以选择不用的发行版系统，我使用的是Ubuntu 24.04.</p>
+<h3 id="heading">构建环境：</h3>
+<p>CPU：高通8cX Gen3<br />
+编译系统环境：Windows 11 on Arm 25H2，WSL2，Ubuntu 24.04，kernel ver：6.18.3。<br />
+注意：本流程为原生ARM下的非交叉编译流程。</p>
+<p>编译内核的版本：<code>WSL2-Linux-Kernel-linux-msft-wsl-6.18.20.1</code><br />
+架构：ARM64</p>
+<h3 id="heading-1">构建流程</h3>
+<h5 id="1-">1 准备</h5>
+<p>配置好基础环境：<br />
+克隆此地址下的仓库：https://github.com/microsoft/WSL2-Linux-Kernel</p>
+<p>根据微软官方的指导，安装如下依赖：<br />
+<code>$ sudo apt install build-essential flex bison dwarves libssl-dev libelf-dev cpio qemu-utils</code></p>
+<p>调整相关配置:<br />
+编译配置文件的路径是：<code>WSL2-Linux-Kernel-linux-msft-wsl-6.18.20.1/Microsoft/config-wsl-arm64</code>,因为我要后期在WSL上运行waydroid（waydroid可以让linux运行安卓程序，但运行waydroid必须要对内核进行配置，这也是我为什么要自己编译内核和模块的原因）</p>
+<p>修改配置及修改后的结果如下：</p>
+<pre><code>CONFIG_ANDROID_BINDER_IPC=y
+CONFIG_ANDROID_BINDER_DEVICES=&quot;binder,hwbinder,vndbinder&quot;
+</code></pre>
+<h5 id="2-">2 构建与编译</h5>
+<p>执行编译指令：<br />
+<code>cd WSL2-Linux-Kernel-linux-msft-wsl-6.18.20.1 # your source code path</code><br />
+<code>make ARCH=arm64 KCONFIG_CONFIG=Microsoft/config-wsl-arm64 -j$(nproc) &amp;&amp; make ARCH=arm64 INSTALL_MOD_PATH=&quot;$PWD/modules&quot; modules_install</code></p>
+<p>在编译过程中，可能会遇到如下提示：</p>
+<pre><code>* Restart config...
+*
+*
+* Android
+*
+Android Binder IPC Driver (ANDROID_BINDER_IPC) [Y/n/?] y
+Android Binderfs filesystem (ANDROID_BINDERFS) [N/y/?] (NEW)
+</code></pre>
+<p>建议选“y”</p>
+<p>大约一小时后会编译完成。</p>
+<p>在编译完成后，可以根据需要利用源代码中提供的脚本将模块打包为VHDX文件：<br />
+<code>sudo ./Microsoft/scripts/gen_modules_vhdx.sh &quot;$PWD/modules&quot; $(make -s kernelrelease) modules.vhdx</code></p>
+<h5 id="3-">3 导出文件</h5>
+<p>分别将如下两个文件导出</p>
+<ul>
+<li><code>arch/arm64/boot/Image</code></li>
+<li><code>modules.vhdx</code></li>
+</ul>
+<h5 id="4-">4 执行清理：</h5>
+<p><code>make clean</code><br />
+如果已经确定使用vhdx来加载模块，则可以执行官方指导中的<code>$ make clean &amp; rm -r “$PWD/modules”</code>,否则只执行make clean即可。</p>
+<h3 id="heading-2">使用方法</h3>
+<p>方法一：<br />
+“开始”——“WSL settings”——“开发者”，将自定义内核和自定义内核模块的路径设置为你存放导出的镜像文件和模块文件的路径。<br />
+卸载当前的linux子系统分发版，再重装分发版。或直接运行<code>wsl --install -d Ubuntu</code></p>
+<p>方法二：<br />
+修改 .wslconfig 文件（或使用 WSL 设置）。</p>
+<pre><code>[wsl2]
+kernel=&lt;your kernel path&gt;
+kernelModules=&lt; your vhdx path&gt;
+</code></pre>
+<p>详见：<a href="https://gist.github.com/onomatopellan/c5220c0efddaff69aaff77cca80b7b8e"> Waydroid in WSL2 with sound</a></p>
+<h3 id="x64">关于在x64设备上进行交叉编译：</h3>
+<pre><code>sudo apt install gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu
+
+(下面是一条指令，全部复制进你的终端)
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- \
+     KCONFIG_CONFIG=Microsoft/config-wsl-arm64 -j$(nproc) &amp;&amp; \
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- \
+     INSTALL_MOD_PATH=&quot;$PWD/modules&quot; modules_install
+
+</code></pre>
+<h3 id="heading-3">参考：</h3>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/693938916">Win11上配置Linux子系统+wsl-vscode</a></li>
+<li><a href="https://gdfr.dpdns.org/waydroid-guide/">025 完美避坑版：Windows 11 原生运行安卓 (Waydroid) 完整教程</a></li>
+<li><a href="https://elkeid-me.github.io/posts/waydroid-on-wsl2">Waydroid on WSL2</a></li>
+<li><a href="https://gist.github.com/onomatopellan/c5220c0efddaff69aaff77cca80b7b8e"> Waydroid in WSL2 with sound</a></li>
+</ul>
+]]></description>
+    </item>
     <item>
       <title>MateBook E Go 2023性能版防止长时间睡眠后进入休眠状态</title>
       <link>https://sakuraflows.github.io/post/matebook-e-go-2023xing-neng-ban-fang-zhi-chang-shi-jian-shui-mian-hou-jin-ru-xiu-mian-zhuang-tai/</link>
