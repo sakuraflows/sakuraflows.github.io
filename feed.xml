@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>樱木有枝</title>
+    <link>https://sakuraflows.github.io/</link>
+    <description>Welcome to My Blog</description>
+    <language>zh-cn</language>
+    <generator>Gridea Pro</generator>
+    <lastBuildDate>Wed, 06 May 2026 01:37:42 +0800</lastBuildDate>
+    <atom:link href="https://sakuraflows.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <item>
+      <title>MateBook E Go 2023性能版防止长时间睡眠后进入休眠状态</title>
+      <link>https://sakuraflows.github.io/post/matebook-e-go-2023xing-neng-ban-fang-zhi-chang-shi-jian-shui-mian-hou-jin-ru-xiu-mian-zhuang-tai/</link>
+      <guid isPermaLink="true">https://sakuraflows.github.io/post/matebook-e-go-2023xing-neng-ban-fang-zhi-chang-shi-jian-shui-mian-hou-jin-ru-xiu-mian-zhuang-tai/</guid>
+      <pubDate>Wed, 06 May 2026 01:31:11 +0800</pubDate>
+      <description><![CDATA[<h3 id="heading">方法一：修改注册表</h3>
+<p>这个方法笔者本人没有试过。</p>
+<p>按下Win+R键，输入 regedit 打开注册表编辑器。<br />
+导航到路径 HKEY_LOCAL_MACHINESYSTEMCurrentControlSetControlPower。<br />
+找到或创建 HibernateEnabled 和 HibernateEnabledDefault 把值设置为1。</p>
+<p>切到控制面板电源设置的界面，就会出现在多长时间后进入休眠的设置。调整这个时间就可以避免设备进入休眠状态了。</p>
+<h3 id="heading-1">方法二：调整电源策略</h3>
+<p>本方法不用修改注册表，且具有较大的灵活性，但配置略微复杂。</p>
+<h5 id="heading-2">基本要求</h5>
+<ul>
+<li>win11专业版（要求是专业版是因为要用到组策略，我的系统是25h2）</li>
+<li>PowerSettingsExplorer：一款电源策略控制软件</li>
+<li>关闭Device Guard等虚拟化安全选项</li>
+</ul>
+<h5 id="1-device-guard">1 检查睡眠状态以及Device Guard的开启情况</h5>
+<p>打开终端，输入<code>powercfg /a</code>，会显示如下类似的信息。</p>
+<pre><code>PS C:\Users\xxx&gt; powercfg /a
+此系统上有以下睡眠状态:
+    待机 (S0 低电量待机) 连接的网络
+    休眠
+    快速启动
+
+此系统上没有以下睡眠状态:
+    待机 (S1)
+        当支持 S0 低电量待机时，禁用此待机状态。
+
+    待机 (S2)
+        当支持 S0 低电量待机时，禁用此待机状态。
+
+    待机 (S3)  
+        当前Device Guard配置已禁用此待机状态。
+
+    混合睡眠
+        待机(S3)不可用。
+</code></pre>
+<p>关键在于“Device Guard”的启用无法让传统的S3睡眠方法启用，可能会影响电源策略的兼容性，因此想要调节电源策略并防止奇奇怪怪的bug发生的话，就必须先关闭Device Guard。（虽然这条并不是必选项，但是只要你搜索相关信息就会发现有很多关于S0、S3与Device Guard之间的纠缠不清的问题，我觉得关掉它是一个明智的选择。）</p>
+<p>Device Guard是一项基于虚拟化的安全功能。在骁龙设备中，虚拟化是默认开启的，我没有在我的matebookego的bios中找到开启或关闭虚拟化的选项。并且虚拟化还涉及x86-ARM转译功能，因此只能通过组策略的方法来关闭Device Guard。</p>
+<h5 id="2-device-guard">2 通过组策略关闭Device Guard</h5>
+<p>由于不确定Device Guard与windows安全中心中的“内核隔离”是否存在关联或冲突，所以我的选择是先关掉再说。</p>
+<p>打开设置——隐私和安全性——windows安全中心——设备安全性——内核隔离详细信息，关闭内存完整性和设备固件保护。</p>
+<p>右键点击“开始”——运行——输入gpedit.msc，打开本地组策略编辑器。<br />
+计算机配置——管理模板——系统——Device Guard——选中“基于虚拟化的安全”<br />
+点击左侧的“策略设置”，在弹出的界面中选择“已禁用”，其它选项保持默认不变，然后点击确定。</p>
+<p>重启设备。打开终端，输入<code>powercfg /a</code>，如果没有“当前Device Guard配置已禁用此待机状态。“字样，说明关闭成功了。</p>
+<h5 id="3-powersettingsexplorer">3 通过PowerSettingsExplorer调整电源策略</h5>
+<p>打开PowerSettingsExplorer.exe，调整以下选项：</p>
+<ul>
+<li>睡眠-在此时间后休眠：AC和DC全部调成0（AC代表接通电源，DC代表使用电池，0代表此项配置不启用）</li>
+</ul>
+<p>状态感知电源操作<br />
+配置解释：<br />
+我没有在网上找到详细的解释，说一下在拿自己设备调试时得出的理解。（系统事件也有相关记录）<br />
+待机预算百分比：意思是设备处于待机状态（也就是睡眠）时，单位时间内的耗电预算。一旦超出这个数字，就会刷新计数或在计数达到某个值后进入休眠，单位时间内耗电量没有超过预算的话，那么计数不会增加。在设备充电时，理论上电池电量只增不减，所以待机耗电百分比实际上是0.<br />
+备用预算刷新计数：待机预算耗尽后好像刷新的就是这个计数。当刷新次数大于这个计数时，电脑进入休眠状态。<br />
+备用预算刷新计时间隔：计算待机预算的单位时间</p>
+<p>说一下我的配置：</p>
+<ul>
+<li>备用预算刷新计时间隔：AC不变,DC调减到5400（也可以根据需要进行调减）</li>
+<li>待机预算百分比：都调高到5（也可以根据需要适当调高）</li>
+<li>备用预算刷新计数：AC调高到3，DC调高到5。</li>
+</ul>
+<p>以上配置调整完成后，点击”apply“，然后关闭软件，重启设备。</p>
+<p>完成。</p>
+<p>设置完成后小时耗电量大概在2-3%左右，如果不联网，前台没有窗口的话耗电还能更低，我的设备一套操作下来直到现在还没休过眠。</p>
+<p>调试技巧：<br />
+如果想弄清楚自己的设备为什么会莫名其妙休眠，可以这样做：<br />
+计算机管理——系统工具——事件查看器——windows日志——系统，按指定时间筛选出日志，然后导出为csv喂给ai。</p>
+]]></description>
+    </item>
+    <item>
+      <title>关于</title>
+      <link>https://sakuraflows.github.io/post/about/</link>
+      <guid isPermaLink="true">https://sakuraflows.github.io/post/about/</guid>
+      <pubDate>Wed, 06 May 2026 00:16:40 +0800</pubDate>
+      <description><![CDATA[<p>首先，要感谢<a href="https://github.com/Gridea-Pro/gridea-pro">Gridea Pro</a>以及源项目 <a href="https://github.com/getgridea/gridea">Gridea</a>的创造者，是他们无私的贡献才能让无数人得以以近乎零门槛创建自己的博客；也让我省去了大量的构建与部署的时间。在此向他们以及所有开源者致敬。</p>
+<h3 id="heading">关于我和我的博客</h3>
+<p>其实没什么好说，还是看看我的其它文章吧，如果对你有帮助的话，那就是这个博客唯一的意义。</p>
+<p>这个博客有两个域名，那都是我。<br />
+sakuraflows.github.io<br />
+aoeo.eu.org</p>
+<h3 id="heading-1">你能在这里看到什么</h3>
+<ul>
+<li>技术笔记和踩坑记录</li>
+<li>某些小众的文档</li>
+<li>偶尔写点产品思考和读书笔记</li>
+<li>一些不知道该归到哪一类的碎碎念</li>
+</ul>
+<h3 id="heading-2">找到我</h3>
+<ul>
+<li>GitHub: <a href="https://github.com/sakuraflows">Sakuraflows</a></li>
+<li>Email: <a href="mailto:aoeo@aoeo.eu.org">aoeo@aoeo.eu.org</a></li>
+</ul>
+]]></description>
+    </item>
+  </channel>
+</rss>
