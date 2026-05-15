@@ -6,7 +6,7 @@
     <description>Welcome to My Blog</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Wed, 06 May 2026 04:05:37 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 May 2026 05:30:12 +0800</lastBuildDate>
     <atom:link href="https://sakuraflows.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <item>
       <title>ARM下WSL2编译可运行waydroid的WSL2（ARM）内核</title>
@@ -18,7 +18,7 @@
 <a href="https://github.com/sakuraflows/wsl2-linuxkernel-arm-build/releases">https://github.com/sakuraflows/wsl2-linuxkernel-arm-build/releases</a></p>
 <p>背景介绍：<br />
 waydroid可以让linux运行安卓程序，但在运行waydroid必须要对内核进行配置。因此想要在WSL2上运行waydroid，就必须使用自己编译的内核和自己编译内核所对应的模块文件。</p>
-<p>linux kernel可以选择不用的发行版系统，我使用的是Ubuntu 24.04.</p>
+<p>linux kernel可以选择不同的发行版系统，我使用的是Ubuntu 24.04.</p>
 <h3 id="heading">构建环境：</h3>
 <p>CPU：高通8cX Gen3<br />
 编译系统环境：Windows 11 on Arm 25H2，WSL2，Ubuntu 24.04，kernel ver：6.18.3。<br />
