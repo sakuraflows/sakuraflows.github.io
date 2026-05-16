@@ -6,7 +6,7 @@
     <description>Welcome to My Blog</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Sat, 16 May 2026 19:46:38 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 May 2026 19:50:17 +0800</lastBuildDate>
     <atom:link href="https://sakuraflows.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <item>
       <title>在Windows上入门Rust的第一步</title>
@@ -115,6 +115,7 @@ Rust 的升级非常频繁。如果您安装 Rustup 后已有一段时间，那�
 <a href="https://github.com/Vizards/deepseek-v4-for-copilot/blob/main/README.zh-cn.md">VScode插件 DeepSeek V4 for Copilot Chat</a><br />
 <a href="https://blog.csdn.net/qq_29752857/article/details/148683647">解决 Rust 编译错误：link.exe 未找到</a></p>
 ]]></description>
+      <category>rust</category>
     </item>
     <item>
       <title>ARM下WSL2编译可运行waydroid的WSL2（ARM）内核</title>
