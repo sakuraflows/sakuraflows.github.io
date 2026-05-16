@@ -6,7 +6,7 @@
     <description>Welcome to My Blog</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Sat, 16 May 2026 19:50:17 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 May 2026 19:57:13 +0800</lastBuildDate>
     <atom:link href="https://sakuraflows.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <item>
       <title>在Windows上入门Rust的第一步</title>
@@ -48,7 +48,7 @@
 <li>为rust换源：<br />
 打开windows终端（powershell），输入如下指令，使用记事本打开cargo的配置文件：<br />
 <code>notepad $env:USERPROFILE\.cargo\config.toml</code><br />
-如果显示该路径不存在或没有此文件的话，那就先创建文件之后再进行编辑。<br />
+如果显示该路径不存在或没有此文件的话，那就先创建文件之后再进行编辑。或者执行<code>mkdir -p $env:USERPROFILE\.cargo</code>.<br />
 将如下内容复制到配置文件中并保存：</li>
 </ul>
 <pre><code>[source.crates-io]

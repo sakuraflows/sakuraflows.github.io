@@ -35,7 +35,7 @@
 
 <meta name="description" content="本文包含 如何在windows上安装rust 配置vscode+git+deepseek的全套运行开发环境 入门教程推荐。 1.下载rust及其所需的组件 前往官网页面下载rust：https://rust-lang.org/zh-CN/tools/install/ 下载git：https://git-scm.com/install/ 下载vs&amp;hellip;">
 <link rel="canonical" href="https://sakuraflows.github.io/post/zai-windowsshang-ru-men-rustde-di-yi-bu/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"在Windows上入门Rust的第一步","url":"https://sakuraflows.github.io/post/zai-windowsshang-ru-men-rustde-di-yi-bu/","description":"本文包含 如何在windows上安装rust 配置vscode+git+deepseek的全套运行开发环境 入门教程推荐。 1.下载rust及其所需的组件 前往官网页面下载rust：https://rust-lang.org/zh-CN/tools/install/ 下载git：https://git-scm.com/install/ 下载vs\u0026hellip;","datePublished":"2026-05-16T04:27:57+08:00","dateModified":"2026-05-16T19:50:17+08:00","author":{"@type":"Person","name":"樱木有枝"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"樱木有枝"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"在Windows上入门Rust的第一步","url":"https://sakuraflows.github.io/post/zai-windowsshang-ru-men-rustde-di-yi-bu/","description":"本文包含 如何在windows上安装rust 配置vscode+git+deepseek的全套运行开发环境 入门教程推荐。 1.下载rust及其所需的组件 前往官网页面下载rust：https://rust-lang.org/zh-CN/tools/install/ 下载git：https://git-scm.com/install/ 下载vs\u0026hellip;","datePublished":"2026-05-16T04:27:57+08:00","dateModified":"2026-05-16T19:57:13+08:00","author":{"@type":"Person","name":"樱木有枝"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"樱木有枝"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://sakuraflows.github.io","name":"樱木有枝","position":1},{"@type":"ListItem","item":"https://sakuraflows.github.io/post/zai-windowsshang-ru-men-rustde-di-yi-bu/","name":"在Windows上入门Rust的第一步","position":2}]}</script>
 <!-- Clarity tracking code for https://sakuraflows.github.io/ -->
 <script>
@@ -228,7 +228,7 @@
 <li>为rust换源：<br />
 打开windows终端（powershell），输入如下指令，使用记事本打开cargo的配置文件：<br />
 <code>notepad $env:USERPROFILE\.cargo\config.toml</code><br />
-如果显示该路径不存在或没有此文件的话，那就先创建文件之后再进行编辑。<br />
+如果显示该路径不存在或没有此文件的话，那就先创建文件之后再进行编辑。或者执行<code>mkdir -p $env:USERPROFILE\.cargo</code>.<br />
 将如下内容复制到配置文件中并保存：</li>
 </ul>
 <pre><code>[source.crates-io]
