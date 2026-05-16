@@ -6,7 +6,7 @@
     <description>Welcome to My Blog</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Sat, 16 May 2026 19:43:45 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 May 2026 19:46:38 +0800</lastBuildDate>
     <atom:link href="https://sakuraflows.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
     <item>
       <title>在Windows上入门Rust的第一步</title>
@@ -23,7 +23,7 @@
 <p>前往官网页面下载rust：https://rust-lang.org/zh-CN/tools/install/<br />
 下载git：https://git-scm.com/install/<br />
 下载vscode：https://code.visualstudio.com/Download<br />
-下载visual studio installer：</p>
+下载visual studio installer：https://visualstudio.microsoft.com/zh-hans/downloads/</p>
 <h3 id="2">2.安装</h3>
 <p>关于安装的顺序：<br />
 如果你之前已经装过vscode或者git那自然没什么好说的了，如果你是第一次安装的话，建议按我文章的先后顺序来，免得出现一些奇奇怪怪的bug。</p>
