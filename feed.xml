@@ -6,8 +6,116 @@
     <description>Welcome to My Blog</description>
     <language>zh-cn</language>
     <generator>Gridea Pro</generator>
-    <lastBuildDate>Sat, 16 May 2026 15:25:04 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 16 May 2026 19:43:45 +0800</lastBuildDate>
     <atom:link href="https://sakuraflows.github.io/feed.xml" rel="self" type="application/rss+xml"></atom:link>
+    <item>
+      <title>在Windows上入门Rust的第一步</title>
+      <link>https://sakuraflows.github.io/post/zai-windowsshang-ru-men-rustde-di-yi-bu/</link>
+      <guid isPermaLink="true">https://sakuraflows.github.io/post/zai-windowsshang-ru-men-rustde-di-yi-bu/</guid>
+      <pubDate>Sat, 16 May 2026 04:27:57 +0800</pubDate>
+      <description><![CDATA[<h5 id="heading">本文包含</h5>
+<ul>
+<li>如何在windows上安装rust</li>
+<li>配置vscode+git+deepseek的全套运行开发环境</li>
+<li>入门教程推荐。</li>
+</ul>
+<h3 id="1rust">1.下载rust及其所需的组件</h3>
+<p>前往官网页面下载rust：https://rust-lang.org/zh-CN/tools/install/<br />
+下载git：https://git-scm.com/install/<br />
+下载vscode：https://code.visualstudio.com/Download<br />
+下载visual studio installer：</p>
+<h3 id="2">2.安装</h3>
+<p>关于安装的顺序：<br />
+如果你之前已经装过vscode或者git那自然没什么好说的了，如果你是第一次安装的话，建议按我文章的先后顺序来，免得出现一些奇奇怪怪的bug。</p>
+<ul>
+<li>
+<p>2.1 安装vscode</p>
+</li>
+<li>
+<p>2.2 安装git<br />
+安装git可以参考<a href="https://zhuanlan.zhihu.com/p/1964000713093940297">Git安装【详细图文教程】</a></p>
+</li>
+</ul>
+<p>以上两点没什么好说的，如果不会的话可以去网上搜一下教程。</p>
+<h5 id="23-rust">2.3 安装rust</h5>
+<ul>
+<li>安装rust<br />
+在运行<code>rust-init.exe</code>时，程序会自动检测设备和系统环境，基本上一路enter过去就可以了。</li>
+</ul>
+<p>在windows上，rust默认采用的是MSVC 工具链（Microsoft Visual C++），因此在安装完后还要安装MSVC 工具链.</p>
+<br>
+<ul>
+<li>为rust换源：<br />
+打开windows终端（powershell），输入如下指令，使用记事本打开cargo的配置文件：<br />
+<code>notepad $env:USERPROFILE\.cargo\config.toml</code><br />
+如果显示该路径不存在或没有此文件的话，那就先创建文件之后再进行编辑。<br />
+将如下内容复制到配置文件中并保存：</li>
+</ul>
+<pre><code>[source.crates-io]
+replace-with = 'ustc'
+
+[source.ustc]
+registry = &quot;sparse+https://mirrors.ustc.edu.cn/crates.io-index/&quot;
+</code></pre>
+<p>我使用的是中科大的镜像源，你也可以去网上找其他的镜像源。<br />
+换源完成。</p>
+<h5 id="24msvc">2.4安装MSVC以及必要的依赖组件</h5>
+<p>打开你在visual studio官网上下载的visual studio安装程序,选择“单个组件”<br />
+勾选如下工具:<br />
+<code>适用于x64/x86的MSVC生成工具（最新版）</code>（ARM设备勾选适用于ARM64/ARM64EC的MSVC生成工具（最新版））<br />
+<code>Windows 11 SDK</code>（或者windows10 sdk）</p>
+<p>点击安装即可。</p>
+<h5 id="25-gitrustgithub-copilotdeepseek">2.5 配置git、rust开发所需的插件以及添加GitHub copilot对于deepseek的支持插件。</h5>
+<p>得益于rust严格的语法规范和编译检查，这门语言非常适合ai代码生成。如果不配置好ai代码工具的话，那我认为你的rust将会失去一半灵魂。这一部分，将会介绍vscode中rust开发插件、git配置和DeepSeek V4 for Copilot Chat插件的配置方式。</p>
+<p>首先打开vscode，安装如下插件并按提示进行配置：</p>
+<ul>
+<li>rust-analyzer（由rust-lang官方开发的组件）</li>
+<li>Crates-io（用于管理rust项目当中的依赖，并可以自动检查升级这些依赖）</li>
+<li>GitHub Copilot Chat（vscode内置组件）</li>
+<li>DeepSeek V4 for Copilot Chat（通过Copilot的非公开api增加Copilot对deepseek的支持）</li>
+</ul>
+<p>配置git：<br />
+一般来说，如果你的设备已经安装完git的话，那么vscode将会自动找到它。</p>
+<p>如果提示错误的话，可以点击左下角的齿轮图标（管理）——设置，<br />
+在上方配置项搜索框中输入<code>git:path</code>,找到这项配置选项,点击&quot;在settings.json中编辑&quot;<br />
+只修改<code>&quot;git.path&quot;: </code>这一项,在后面输入你设备中git.exe的路径即可.<br />
+例如:</p>
+<pre><code>&quot;git.path&quot;: &quot;C:\\Program Files\\Git\\bin\\git.exe&quot;
+</code></pre>
+<p>至此全部完成.</p>
+<h3 id="3-rust">3 初步了解rust环境</h3>
+<p>以下内容来自<a href="https://rust-lang.org/zh-CN/learn/get-started/">快速配置 Rust 开发环境并编写一个小应用！</a><br />
+Rust 的升级非常频繁。如果您安装 Rustup 后已有一段时间，那么很可能您的 Rust 版本已经过时了。运行 <code>rustup update</code> 获取最新版本的 Rust。<br />
+<code>rustup</code>是rust安装和工具链的管理工具.卸载rust可以运行<code>rustup self uninstall</code><br />
+<code>Cargo</code>：Rust 的构建工具和包管理器<br />
+您在安装 Rustup 时，也会安装 Rust 构建工具和包管理器的最新稳定版，即 Cargo。Cargo 可以做很多事情：<br />
+<code>cargo build</code> 可以构建项目<br />
+<code>cargo run</code> 可以运行项目<br />
+<code>cargo doc</code> 可以为项目构建文档<br />
+<code>cargo publish</code> 可以将库发布到 crates.io。<br />
+要检查您是否安装了Rust和Cargo，可以在终端中运行：<code>cargo --version</code><br />
+我们将在新的 Rust 开发环境中编写一个小应用。首先用 Cargo 创建一个新项目。在您的终端中执行：<br />
+<code>cargo new hello-rust</code><br />
+这会生成一个名为<code>hello-rust</code>的新目录，其中包含以下文件：</p>
+<pre><code>hello-rust
+|- Cargo.toml
+|- src
+  |- main.rs
+</code></pre>
+<p><code>Cargo.toml</code> 为Rust的清单文件。其中包含了项目的元数据和依赖库。<br />
+<code>src/main.rs</code> 为编写应用代码的地方。<br />
+<code>cargo new</code> 会生成一个新的“Hello, world!”项目！我们可以进入新创建的目录中，执行下面的命令来运行此程序：<br />
+<code>cargo run</code></p>
+<h3 id="4-">4 推荐教程</h3>
+<p>入门教程推荐：</p>
+<p><a href="https://kaisery.github.io/trpl-zh-cn/title-page.html">Rust 程序设计语言</a><br />
+或者如果访问有问题的话（没问题的话我为什么要自己重新部署..），你可以访问我自己部署的页面：<a href="https://sakuraflows.github.io/rustbook/title-page.html">Rust 程序设计语言</a></p>
+<p>参考：<br />
+<a href="https://zhuanlan.zhihu.com/p/678846997">Rust，msvc工具链最小安装，VisualStudio Installer里怎么选</a><br />
+<a href="https://github.com/Vizards/deepseek-v4-for-copilot/blob/main/README.zh-cn.md">VScode插件 DeepSeek V4 for Copilot Chat</a><br />
+<a href="https://blog.csdn.net/qq_29752857/article/details/148683647">解决 Rust 编译错误：link.exe 未找到</a></p>
+]]></description>
+    </item>
     <item>
       <title>ARM下WSL2编译可运行waydroid的WSL2（ARM）内核</title>
       <link>https://sakuraflows.github.io/post/wsl2bian-yi-ke-yun-xing-waydroidde-wsl2armnei-he/</link>
